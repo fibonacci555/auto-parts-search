@@ -21,6 +21,8 @@ import { TracingBeam } from "@/components/tracing-beam"
 import AnimeSphereAnimation from "@/components/anime-sphere-animation"
 import { Lens } from "@/components/ui/lens"
 import GradientBlinds from "@/components/anime-sphere-animation"
+import Hero from "./components/Hero"
+import MagicBento from "./components/MagicBento/MagicBento"
 
 function AnimatedPlaceholder({ texts, className }: { texts: string[]; className?: string }) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
@@ -252,69 +254,79 @@ export default function UltraModernAutoPartsSearch() {
           )}
         </header>
 
-        <TracingBeam className="pt-24 pb-16">
+        <TracingBeam className=" pb-16">
           <section
             ref={searchSectionRef}
             id="search"
             className="min-h-[90vh] flex flex-col items-center justify-center px-4 relative"
           >
             <div className="absolute inset-0 -z-10">
-              <GradientBlinds
-                gradientColors={['#FF9FFC', '#5227FF']}
-                angle={60}
-                noise={0.3}
-                blindCount={30}
-                blindMinWidth={1}
-                spotlightRadius={0.2} // foco mais pequeno
-                spotlightSoftness={3} // luz mais difusa
-                spotlightOpacity={0.5} // metade da intensidade
+              <Hero />
 
-                mouseDampening={0.55}
-                distortAmount={1}
-                shineDirection="left"
-                mixBlendMode="lighten"
-                className="absolute inset-0 opacity-90 [mask-image:radial-gradient(70%_70%_at_50%_20%,#000_40%,transparent_100%)]" dpr={undefined} />
-
-            </div>
-            <div className="max-w-4xl w-full">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 text-center">
-                <span className="inline-block bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent animate-shimmer bg-[length:200%_auto]">
-                  Find The Best Ecom Deals In Seconds
-                </span>
-              </h1>
-
-              <p className="text-xl text-white/70 text-center mb-12 max-w-2xl mx-auto">
-                One website for Ecom / SaaS deals and the best discounts. Discover trending deals nobody else has.
-              </p>
-
-              <div className="flex justify-center mt-8 animate-fade-in animation-delay-700">
-                <Button
-                  onClick={scrollToDeals}
-                  className="rounded-full bg-blue-600 hover:bg-blue-700 h-14 px-8 text-lg font-semibold shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300 hover:scale-105"
-                >
-                  See Best Deals
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </div>
-            </div>
-
-            <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-16 animate-fade-in animation-delay-900">
-              <div className="text-center">
-                <div className="text-3xl font-bold">50+</div>
-                <div className="text-white/50 text-sm">Active Deals</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold">30%</div>
-                <div className="text-white/50 text-sm">Avg Discount</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold">24/7</div>
-                <div className="text-white/50 text-sm">Updated</div>
-              </div>
             </div>
           </section>
+          <section>
+            
+          </section>
 
-          <section ref={howSectionRef} id="how" className="py-16 px-4 border-t border-white/5">
+          <div className="border border-white/10 rounded-2xl p-8 mb-16 bg-white/5 backdrop-blur-sm">
+            <h3 className="text-2xl font-bold mb-6 text-center">Why Choose Us</h3>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  title: "Exclusive Codes",
+                  description: "Access insider discount codes you won't find anywhere else",
+                  icon: <Sparkles className="h-6 w-6 text-blue-400" />,
+                },
+                {
+                  title: "Verified Deals",
+                  description: "All deals tested and verified before publishing",
+                  icon: <Check className="h-6 w-6 text-green-400" />,
+                },
+                {
+                  title: "Daily Updates",
+                  description: "New deals added every day across all categories",
+                  icon: <RefreshCw className="h-6 w-6 text-blue-400" />,
+                },
+                {
+                  title: "Save Big",
+                  description: "Average savings of 25-30% on essential ecommerce tools",
+                  icon: <DollarSign className="h-6 w-6 text-green-400" />,
+                },
+              ].map((benefit, index) => (
+                <div
+                  key={index}
+                  className="border border-white/10 rounded-xl p-4 hover:border-blue-500/50 hover:bg-white/5 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+                      {benefit.icon}
+                    </div>
+                    <h4 className="font-bold">{benefit.title}</h4>
+                  </div>
+                  <p className="text-white/70 text-sm">{benefit.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <section>
+            <MagicBento
+              textAutoHide={true}
+              enableStars={true}
+              enableSpotlight={true}
+              enableBorderGlow={true}
+              enableTilt={true}
+              enableMagnetism={true}
+              clickEffect={true}
+              spotlightRadius={300}
+              particleCount={12}
+              glowColor="132, 0, 255"
+            />
+          </section>
+
+          <section id="how" className="py-6 px-4 border-t border-white/5">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center">How it works</h2>
               <p className="text-white/70 text-center max-w-3xl mx-auto mb-16">
@@ -322,7 +334,7 @@ export default function UltraModernAutoPartsSearch() {
               </p>
 
               <div className="grid md:grid-cols-3 gap-8 mb-16 relative">
-                
+
 
                 {[
                   {
@@ -374,47 +386,7 @@ export default function UltraModernAutoPartsSearch() {
                 ))}
               </div>
 
-              <div className="border border-white/10 rounded-2xl p-8 mb-16 bg-white/5 backdrop-blur-sm">
-                <h3 className="text-2xl font-bold mb-6 text-center">Why Choose Us</h3>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {[
-                    {
-                      title: "Exclusive Codes",
-                      description: "Access insider discount codes you won't find anywhere else",
-                      icon: <Sparkles className="h-6 w-6 text-blue-400" />,
-                    },
-                    {
-                      title: "Verified Deals",
-                      description: "All deals tested and verified before publishing",
-                      icon: <Check className="h-6 w-6 text-green-400" />,
-                    },
-                    {
-                      title: "Daily Updates",
-                      description: "New deals added every day across all categories",
-                      icon: <RefreshCw className="h-6 w-6 text-blue-400" />,
-                    },
-                    {
-                      title: "Save Big",
-                      description: "Average savings of 25-30% on essential ecommerce tools",
-                      icon: <DollarSign className="h-6 w-6 text-green-400" />,
-                    },
-                  ].map((benefit, index) => (
-                    <div
-                      key={index}
-                      className="border border-white/10 rounded-xl p-4 hover:border-blue-500/50 hover:bg-white/5 transition-all duration-300"
-                    >
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
-                          {benefit.icon}
-                        </div>
-                        <h4 className="font-bold">{benefit.title}</h4>
-                      </div>
-                      <p className="text-white/70 text-sm">{benefit.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
 
               <div className="text-center">
                 <h3 className="text-2xl font-bold mb-6">Ready to save money?</h3>
