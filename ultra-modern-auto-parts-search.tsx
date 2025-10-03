@@ -20,6 +20,7 @@ import { cn } from "@/lib/utils"
 import { TracingBeam } from "@/components/tracing-beam"
 import AnimeSphereAnimation from "@/components/anime-sphere-animation"
 import { Lens } from "@/components/ui/lens"
+import GradientBlinds from "@/components/anime-sphere-animation"
 
 function AnimatedPlaceholder({ texts, className }: { texts: string[]; className?: string }) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
@@ -258,7 +259,22 @@ export default function UltraModernAutoPartsSearch() {
             className="min-h-[90vh] flex flex-col items-center justify-center px-4 relative"
           >
             <div className="absolute inset-0 -z-10">
-              <AnimeSphereAnimation />
+              <GradientBlinds
+                gradientColors={['#FF9FFC', '#5227FF']}
+                angle={60}
+                noise={0.3}
+                blindCount={30}
+                blindMinWidth={1}
+                spotlightRadius={0.2} // foco mais pequeno
+                spotlightSoftness={3} // luz mais difusa
+                spotlightOpacity={0.5} // metade da intensidade
+
+                mouseDampening={0.55}
+                distortAmount={1}
+                shineDirection="left"
+                mixBlendMode="lighten"
+                className="absolute inset-0 opacity-90 [mask-image:radial-gradient(70%_70%_at_50%_20%,#000_40%,transparent_100%)]" dpr={undefined} />
+
             </div>
             <div className="max-w-4xl w-full">
               <h1 className="text-5xl md:text-7xl font-bold mb-6 text-center">
@@ -306,13 +322,7 @@ export default function UltraModernAutoPartsSearch() {
               </p>
 
               <div className="grid md:grid-cols-3 gap-8 mb-16 relative">
-                <div className="hidden md:block absolute top-[88px] left-0 right-0 h-0.5 px-[16.67%]">
-                  <div className="h-full bg-white/10 relative">
-                    <div className="absolute top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-blue-500 rounded-full"></div>
-                    <div className="absolute top-1/2 left-full transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-blue-500 rounded-full"></div>
-                  </div>
-                </div>
+                
 
                 {[
                   {
