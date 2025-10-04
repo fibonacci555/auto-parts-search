@@ -10,41 +10,48 @@ const MOBILE_BREAKPOINT = 768;
 const cardData = [
   {
     color: '#060010',
-    title: 'Analytics',
-    description: 'Track user behavior',
-    label: 'Insights'
-  },
-  {
-    color: '#060010',
-    title: 'Dashboard',
-    description: 'Centralized data view',
-    label: 'Overview'
-  },
-  {
-    color: '#060010',
-    title: 'Collaboration',
-    description: 'Work together seamlessly',
-    label: 'Teamwork'
-  },
-  {
-    color: '#060010',
-    title: 'Automation',
-    description: 'Streamline workflows',
+    title: 'Pro Tools',
+    description: 'Handpicked tools A-players actually use. No fluff, just what works.',
     label: 'Efficiency'
   },
   {
     color: '#060010',
-    title: 'Integration',
-    description: 'Connect favorite tools',
-    label: 'Connectivity'
+    title: 'Trusted Ranking',
+    description: 'Every tool ranked based on global feedback.',
+    label: 'Analytics'
   },
   {
     color: '#060010',
-    title: 'Security',
-    description: 'Enterprise-grade protection',
-    label: 'Protection'
+    title: 'One Dashboard',
+    description: 'All your favorite Ecom tools tracked and organized in a single view.',
+    label: 'Dashboard'
+  },
+  {
+    color: '#060010',
+    title: 'Deal Alerts',
+    description: 'Get notified when prices drop on tools you’re watching. Never miss a discount.',
+    label: 'Automation'
+  },
+  {
+    color: '#060010',
+    title: 'A-Player Approved',
+    description: 'Curated by people running 7–8 figure Ecom stores. Tools they actually use.',
+    label: 'Collaboration'
+  },
+  {
+    color: '#060010',
+    title: 'Best Deals.',
+    description: 'Click to claim. No hoops, no hidden fees, just instant exclusive pricing.',
+    label: 'Integration'
+  },
+  {
+    color: '#060010',
+    title: 'Verified Partners',
+    description: 'Every company filtered. Every deal legitimate. No fcking risk.',
+    label: 'Security'
   }
 ];
+
 
 const createParticleElement = (x, y, color = DEFAULT_GLOW_COLOR) => {
   const el = document.createElement('div');

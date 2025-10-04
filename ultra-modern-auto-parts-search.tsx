@@ -23,6 +23,7 @@ import { Lens } from "@/components/ui/lens"
 import GradientBlinds from "@/components/anime-sphere-animation"
 import Hero from "./components/Hero"
 import MagicBento from "./components/MagicBento/MagicBento"
+import ProfileCardComponent from "./components/ProfileCard/ProfileCard"
 
 function AnimatedPlaceholder({ texts, className }: { texts: string[]; className?: string }) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
@@ -266,7 +267,7 @@ export default function UltraModernAutoPartsSearch() {
             </div>
           </section>
           <section>
-            
+
           </section>
 
           <div className="border border-white/10 rounded-2xl p-8 mb-16 bg-white/5 backdrop-blur-sm">
@@ -434,7 +435,13 @@ export default function UltraModernAutoPartsSearch() {
               </div>
             </section>
           )}
+
+          <section className="flex flex-col items-center justify-center gap-4 py-16 px-4 border-t border-white/5 max-h-screen">
+            <ProfileCardComponent avatarUrl="/avatar.png" name="Partick Werner" handle="patwerX" title="Super Affiliate" miniAvatarUrl="/avatar.png" behindGradient={undefined} innerGradient={undefined} onContactClick={() => console.log("clicked")} />
+          </section>
         </TracingBeam>
+
+
 
         <footer className="border-t border-white/5 py-8">
           <div className="container mx-auto px-4">
