@@ -8,8 +8,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Ecom Insider - Find The Best Ecom Deals In Seconds",
-  description: "One website for Ecom / SaaS deals and the best discounts. Discover trending deals nobody else has.",
-    generator: 'v0.app'
+  description: "One website for Ecom / SaaS deals and the best discounts. Discover trending deals nobody else has."
 }
 
 export default function RootLayout({
@@ -26,7 +25,7 @@ export default function RootLayout({
               <div className="text-center">
                 <div className="w-16 h-16 border-4 border-white/20 border-t-blue-500 rounded-full animate-spin mx-auto mb-4"></div>
                 <h2 className="text-xl font-semibold mb-2">Loading Ecom Insider</h2>
-                <p className="text-white/60">Preparing your deals experience...</p>
+                <p className="text-white/60">Preparing your vip experience...</p>
               </div>
             </div>
           }
