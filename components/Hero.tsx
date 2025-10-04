@@ -1,38 +1,43 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Star, BadgePercent } from "lucide-react";
 import GradientBlinds from "./anime-sphere-animation";
+import GooeyButton from "./goey/GoeyButton";
+import GradientText from "./GradientText/GradientText";
+import { IoIosFlash } from "react-icons/io";
 
-// Assumes GradientBlinds is globally available or imported from your UI lib
-// import { GradientBlinds } from "@/components/ui/gradient-blinds";
 
 export default function HeroEcomDeals() {
     return (
         <section className="relative isolate overflow-hidden h-screen">
-            {/* Background */}
+            {/* ===== Background ===== */}
             <div className="absolute inset-0 -z-10">
-                <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(120,119,198,0.25),transparent_60%)]" />
+                {/* Radial glow (não captura cliques) */}
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(120,119,198,0.25),transparent_60%)]" />
+
+                {/* GradientBlinds (não captura cliques) */}
                 <GradientBlinds
                     gradientColors={['#FF9FFC', '#5227FF']}
                     angle={60}
                     noise={0.3}
                     blindCount={30}
                     blindMinWidth={1}
-                    spotlightRadius={0.2} // foco mais pequeno
-                    spotlightSoftness={3} // luz mais difusa
-                    spotlightOpacity={0.5} // metade da intensidade
-
+                    spotlightRadius={0.2}
+                    spotlightSoftness={3}
+                    spotlightOpacity={0.5}
                     mouseDampening={0.55}
                     distortAmount={1}
                     shineDirection="left"
                     mixBlendMode="lighten"
-                    className="absolute inset-0 opacity-90 [mask-image:radial-gradient(70%_70%_at_50%_20%,#000_40%,transparent_100%)]" dpr={undefined} />
-                
-                {/* subtle grid overlay */}
+                    className="pointer-events-none absolute inset-0 opacity-90 [mask-image:radial-gradient(70%_70%_at_50%_20%,#000_40%,transparent_100%)]"
+                    dpr={undefined}
+                />
+
+                {/* Subtle grid overlay (não captura cliques) */}
                 <div className="pointer-events-none absolute inset-0 [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(80%_80%_at_50%_20%,#000,transparent)]" />
             </div>
 
-            {/* Content */}
-            <div className="mx-auto max-w-8xl px-6 pt-28 pb-20 md:pt-36 md:pb-28 lg:px-8">
+            {/* ===== Content ===== */}
+            <div className="relative z-10 mx-auto max-w-8xl px-6 pt-28 pb-20 md:pt-36 md:pb-28 lg:px-8">
                 {/* Top badges */}
                 <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-white/80">
                     <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/20 backdrop-blur">
@@ -69,23 +74,14 @@ export default function HeroEcomDeals() {
                     Discover trending deals nobody else has. One website for all Ecom & SaaS discounts.
                 </motion.p>
 
-                {/* CTA row */}
-                <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-                    <a
-                        href="#deals"
-                        className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-white/10 transition hover:translate-y-[-1px] hover:shadow-lg active:translate-y-[0px]"
-                    >
-                        Browse Deals
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                    </a>
+                {/* CTA row - garantidamente acima do fundo */}
+                <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center relative z-20">
 
-                    <a
-                        href="#newsletter"
-                        className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/10 px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur transition hover:bg-white/15"
-                    >
-                        Get Updates
-                        <Star className="h-4 w-4" />
-                    </a>
+                   <Button href="#" icon={<IoIosFlash  />}>
+                        Start Now
+                    </Button>
+
+
                 </div>
 
                 {/* trust row */}
@@ -95,9 +91,13 @@ export default function HeroEcomDeals() {
                     <Stat label="SaaS & Ecom" value="All-in-one" />
                     <Stat label="Updated" value="Hourly" />
                 </div>
-            </div>
 
-            {/* bottom flourish */}
+
+            </div>
+            <GradientText className="mt-20 text-2xl bg-transparent">Every dollar generated will be donated to charity - publicly shown on X.</GradientText>
+            <GradientText className="mt-20 text-xl bg-transparent">An exclusive project by: @patwer</GradientText>
+
+            {/* Bottom gradient – decorativo, sem capturar cliques */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-black" />
         </section>
     );
@@ -111,3 +111,142 @@ function Stat({ label, value }: { label: string; value: string }) {
         </div>
     );
 }
+
+interface ButtonProps {
+    href?: string;
+    children: React.ReactNode;
+    icon?: React.ReactNode;
+  }
+
+  const Button: React.FC<ButtonProps> = ({ href, children, icon }) => {
+    const buttonContent = (
+      <button
+        type="button"
+        className="relative inline-flex items-center justify-center h-12 w-fit rounded-[0.75rem] cursor-pointer overflow-hidden transition-all duration-250 ease-in-out bg-gradient-to-b from-[#7a5af8] to-[#7a5af8] hover:scale-95 focus:outline-none p-3"
+        style={{
+          background: `radial-gradient(65.28% 65.28% at 50% 100%, rgba(223, 113, 255, 0.8) 0%, rgba(223, 113, 255, 0) 100%), linear-gradient(0deg, #7a5af8, #7a5af8)`,
+        }}
+      >
+        <span
+          className="absolute top-0 right-0 h-4 w-4 rounded-bl-[0.5rem] rounded-tr-[0.75rem] transition-all duration-500 ease-in-out shadow-[0_0_3px_black]"
+          style={{
+            background: `radial-gradient(100% 75% at 55%, rgba(223, 113, 255, 0.8) 0%, rgba(223, 113, 255, 0) 100%)`,
+          }}
+        >
+          <span
+            className="absolute top-0 right-0 w-[150%] h-[150%] bg-[#e8e8e8] pointer-events-none"
+            style={{ transform: 'rotate(45deg) translateX(0%) translateY(-18px)' }}
+          ></span>
+        </span>
+  
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
+          {[...Array(10)].map((_, i) => (
+            <i
+              key={i}
+              className={`absolute bottom-[-10px] w-[2px] h-[2px] bg-white rounded-full animate-floating-points`}
+              style={{
+                left: `${[10, 30, 25, 44, 50, 75, 88, 58, 98, 65][i]}%`,
+                opacity: [1, 0.7, 0.8, 0.6, 1, 0.5, 0.9, 0.8, 0.6, 1][i],
+                animationDuration: `${[2.35, 2.5, 2.2, 2.05, 1.9, 1.5, 2.2, 2.25, 2.6, 2.5][i]}s`,
+                animationDelay: `${[0.2, 0.5, 0.1, 0, 0, 1.5, 0.2, 0.2, 0.1, 0.2][i]}s`,
+              }}
+            />
+          ))}
+        </div>
+  
+        <span className="relative z-[2] flex items-center justify-center gap-1.5 text-white text-base font-medium leading-6 transition-colors duration-200">
+          {icon && (
+            <span className="w-[18px] h-[18px] stroke-white stroke-[2.5] transition-all duration-100">
+              {icon}
+            </span>
+          )}
+          {children}
+        </span>
+  
+        <style jsx>{`
+          .animate-floating-points {
+            animation: floating-points infinite ease-in-out;
+          }
+  
+          @keyframes floating-points {
+            0% {
+              transform: translateY(0);
+            }
+            85% {
+              opacity: 0;
+            }
+            100% {
+              transform: translateY(-55px);
+              opacity: 0;
+            }
+          }
+  
+          button::before {
+            content: '';
+            position: absolute;
+            inset: 1px;
+            border-radius: calc(0.75rem - 1px);
+            background: linear-gradient(
+              177.95deg,
+              rgba(255, 255, 255, 0.19) 0%,
+              rgba(255, 255, 255, 0) 100%
+            );
+            transition: all 0.5s ease-in-out;
+            z-index: 0;
+          }
+  
+          button::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border-radius: calc(0.75rem - 2px);
+            background: radial-gradient(
+                65.28% 65.28% at 50% 100%,
+                rgba(223, 113, 255, 0.8) 0%,
+                rgba(223, 113, 255, 0) 100%
+              ),
+              linear-gradient(0deg, #7a5af8, #7a5af8);
+            transition: all 0.5s ease-in-out;
+            z-index: 0;
+          }
+  
+          button:hover > span:first-child {
+            margin-top: -1rem;
+            margin-right: -1rem;
+          }
+  
+          button:hover .stroke-white {
+            fill: transparent;
+            animation: dasharray 1s linear forwards, filled 0.1s linear forwards 0.95s;
+          }
+  
+          button:focus .stroke-white {
+            fill: white;
+          }
+  
+          @keyframes dasharray {
+            from {
+              stroke-dasharray: 0 0 0 0;
+            }
+            to {
+              stroke-dasharray: 68 68 0 0;
+            }
+          }
+  
+          @keyframes filled {
+            to {
+              fill: white;
+            }
+          }
+        `}</style>
+      </button>
+    );
+  
+    return href ? (
+      <a href={href} className="inline-flex">
+        {buttonContent}
+      </a>
+    ) : (
+      buttonContent
+    );
+  };

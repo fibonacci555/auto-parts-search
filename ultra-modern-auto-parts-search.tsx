@@ -24,6 +24,8 @@ import GradientBlinds from "@/components/anime-sphere-animation"
 import Hero from "./components/Hero"
 import MagicBento from "./components/MagicBento/MagicBento"
 import ProfileCardComponent from "./components/ProfileCard/ProfileCard"
+import CardSwap, { Card } from "./components/CardSwap/CardSwap"
+import GradientText from "./components/GradientText/GradientText"
 
 function AnimatedPlaceholder({ texts, className }: { texts: string[]; className?: string }) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
@@ -196,7 +198,7 @@ export default function UltraModernAutoPartsSearch() {
                 <Button
                   key={category}
                   variant="ghost"
-                  className="text-white/70 hover:text-white hover:bg-white/5 rounded-full"
+                  className="text-white/70 hover:text-white hover:bg-white/20 rounded-full"
                   onClick={() => {
                     setActiveCategory(category)
                     scrollToDeals()
@@ -261,11 +263,13 @@ export default function UltraModernAutoPartsSearch() {
             id="search"
             className="min-h-[90vh] flex flex-col items-center justify-center px-4 relative"
           >
-            <div className="absolute inset-0 -z-10">
+            <div className="absolute inset-0 ">
               <Hero />
 
             </div>
+            
           </section>
+          
           <section>
 
           </section>
@@ -327,80 +331,7 @@ export default function UltraModernAutoPartsSearch() {
             />
           </section>
 
-          <section id="how" className="py-6 px-4 border-t border-white/5">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-center">How it works</h2>
-              <p className="text-white/70 text-center max-w-3xl mx-auto mb-16">
-                Discover exclusive ecommerce and SaaS deals curated for entrepreneurs and marketers
-              </p>
 
-              <div className="grid md:grid-cols-3 gap-8 mb-16 relative">
-
-
-                {[
-                  {
-                    icon: <Search className="h-8 w-8 text-blue-400" />,
-                    title: "Browse Deals",
-                    description: "Explore curated deals across categories like ad accounts, tracking tools, and more",
-                    benefits: ["Organized by category", "Updated daily", "Exclusive insider codes"],
-                  },
-                  {
-                    icon: <Tag className="h-8 w-8 text-blue-400" />,
-                    title: "Copy Your Code",
-                    description: "Get instant access to discount codes with a single click",
-                    benefits: ["One-click copy", "Verified codes only", "Expiration tracking"],
-                  },
-                  {
-                    icon: <Zap className="h-8 w-8 text-blue-400" />,
-                    title: "Save Money",
-                    description: "Apply codes at checkout and save on essential ecommerce tools",
-                    benefits: ["Up to 30% off", "Lifetime deals available", "No hidden fees"],
-                  },
-                ].map((step, index) => (
-                  <div key={index} className="relative group">
-                    <div className="absolute -inset-px bg-gradient-to-r from-blue-500/0 via-blue-500/0 to-blue-500/0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></div>
-
-                    <div className="relative border border-white/10 rounded-2xl p-6 h-full transition-all duration-300 group-hover:border-blue-500/50 group-hover:bg-white/5">
-                      <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-black border border-white/10 flex items-center justify-center text-xl font-bold">
-                        {index + 1}
-                      </div>
-
-                      <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 mt-4">
-                        {step.icon}
-                      </div>
-
-                      <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                      <p className="text-white/70 mb-6">{step.description}</p>
-
-                      <div className="space-y-2">
-                        {step.benefits.map((benefit, i) => (
-                          <div key={i} className="flex items-start gap-2">
-                            <div className="w-5 h-5 rounded-full bg-blue-500/20 flex-shrink-0 flex items-center justify-center mt-0.5">
-                              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                            </div>
-                            <p className="text-sm text-white/60">{benefit}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-
-
-              <div className="text-center">
-                <h3 className="text-2xl font-bold mb-6">Ready to save money?</h3>
-                <Button
-                  className="rounded-full bg-blue-600 hover:bg-blue-700 h-12 px-8 text-lg"
-                  onClick={scrollToDeals}
-                >
-                  Browse Deals
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </div>
-            </div>
-          </section>
 
           {showResults && (
             <section ref={dealsSectionRef} className="py-16 px-4 border-t border-white/5 min-h-screen">
@@ -439,6 +370,7 @@ export default function UltraModernAutoPartsSearch() {
           <section className="flex flex-col items-center justify-center gap-4 py-16 px-4 border-t border-white/5 max-h-screen">
             <ProfileCardComponent avatarUrl="/avatar.png" name="Partick Werner" handle="patwerX" title="Super Affiliate" miniAvatarUrl="/avatar.png" behindGradient={undefined} innerGradient={undefined} onContactClick={() => console.log("clicked")} />
           </section>
+          
         </TracingBeam>
 
 
