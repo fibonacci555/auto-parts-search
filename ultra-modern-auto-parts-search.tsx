@@ -14,6 +14,7 @@ import {
   Tag,
   Percent,
   Menu,
+  Heart,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -267,9 +268,9 @@ export default function UltraModernAutoPartsSearch() {
               <Hero />
 
             </div>
-            
+
           </section>
-          
+
           <section>
 
           </section>
@@ -280,24 +281,24 @@ export default function UltraModernAutoPartsSearch() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
-                  title: "Exclusive Codes",
-                  description: "Access insider discount codes you won't find anywhere else",
+                  title: "Best Tools",
+                  description: "Find the tools you really need at the best price",
                   icon: <Sparkles className="h-6 w-6 text-blue-400" />,
                 },
                 {
-                  title: "Verified Deals",
-                  description: "All deals tested and verified before publishing",
+                  title: "Verified Tools",
+                  description: "Each tool has been tested and verified before publishing",
                   icon: <Check className="h-6 w-6 text-green-400" />,
                 },
                 {
-                  title: "Daily Updates",
-                  description: "New deals added every day across all categories",
-                  icon: <RefreshCw className="h-6 w-6 text-blue-400" />,
+                  title: "Non-Profit",
+                  description: "We donate every single dollar received in affiliate commissions to charity",
+                  icon: <Heart className="h-6 w-6 text-pink-400" />,
                 },
                 {
                   title: "Save Big",
-                  description: "Average savings of 25-30% on essential ecommerce tools",
-                  icon: <DollarSign className="h-6 w-6 text-green-400" />,
+                  description: "Average savings 10% higher than any online search you try",
+                  icon: <DollarSign className="h-6 w-6 text-yellow-400" />,
                 },
               ].map((benefit, index) => (
                 <div
@@ -315,6 +316,7 @@ export default function UltraModernAutoPartsSearch() {
               ))}
             </div>
           </div>
+
 
           <section>
             <MagicBento
@@ -370,7 +372,7 @@ export default function UltraModernAutoPartsSearch() {
           <section className="flex flex-col items-center justify-center gap-4 py-16 px-4 border-t border-white/5 max-h-screen">
             <ProfileCardComponent avatarUrl="/avatar.png" name="Partick Werner" handle="patwerX" title="Super Affiliate" miniAvatarUrl="/avatar.png" behindGradient={undefined} innerGradient={undefined} onContactClick={() => console.log("clicked")} />
           </section>
-          
+
         </TracingBeam>
 
 
