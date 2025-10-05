@@ -39,7 +39,7 @@ export default function HeroEcomDeals() {
       </div>
 
       {/* ===== Content ===== */}
-      <div className="relative z-10 mx-auto max-w-8xl px-6 pt-28 pb-20 md:pt-36 md:pb-28 lg:px-8">
+      <div className="relative z-10 w-full px-0 pt-28 pb-20 md:pt-36 md:pb-28 px-40">
         {/* Top badges */}
         <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-white/80">
           <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/20 backdrop-blur">

@@ -389,7 +389,7 @@ export default function UltraModernAutoPartsSearch() {
           <section
             ref={searchSectionRef}
             id="search"
-            className="min-h-[90vh] flex flex-col items-center justify-center px-4 relative"
+            className="min-h-[90vh] flex flex-col items-center justify-center relative w-full"
           >
             <div className="absolute inset-0 ">
               <Hero />
@@ -398,11 +398,9 @@ export default function UltraModernAutoPartsSearch() {
 
           </section>
 
-          <section>
+          
 
-          </section>
-
-          <div className="border border-white/10 rounded-2xl p-8 mb-16  backdrop-blur-3xl">
+          <div className="border border-white/10 rounded-2xl p-8 mb-16  backdrop-blur-3xl mx-40">
             <h3 className="text-2xl font-bold mb-6 text-center">Why Choose Us</h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -446,7 +444,7 @@ export default function UltraModernAutoPartsSearch() {
           </div>
 
 
-          <section>
+          <section className="px-4 md:px-6 lg:px-8">
             <MagicBento
               textAutoHide={true}
               enableStars={true}
@@ -458,11 +456,12 @@ export default function UltraModernAutoPartsSearch() {
               spotlightRadius={300}
               particleCount={12}
               glowColor="132, 0, 255"
+              className=""
             />
           </section>
 
           {/* Stepper Section */}
-          <section className="py-16 px-4 border-t border-white/5">
+        <section className="py-16 px-4 border-t border-white/5">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">

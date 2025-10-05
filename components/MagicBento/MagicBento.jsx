@@ -488,7 +488,8 @@ const MagicBento = ({
   enableTilt = false,
   glowColor = DEFAULT_GLOW_COLOR,
   clickEffect = true,
-  enableMagnetism = true
+  enableMagnetism = true,
+  className = ''
 }) => {
   const gridRef = useRef(null);
   const isMobile = useMobileDetection();
@@ -506,7 +507,8 @@ const MagicBento = ({
         />
       )}
 
-      <BentoCardGrid gridRef={gridRef}>
+      <div className={`w-full max-w-7xl mx-auto px-4 ${className}`}>
+        <BentoCardGrid gridRef={gridRef}>
         {cardData.map((card, index) => {
           const baseClassName = `card ${textAutoHide ? 'card--text-autohide' : ''} ${enableBorderGlow ? 'card--border-glow' : ''}`;
           const cardProps = {
@@ -661,8 +663,9 @@ const MagicBento = ({
               </div>
             </div>
           );
-        })}
-      </BentoCardGrid>
+          })}
+        </BentoCardGrid>
+      </div>
     </>
   );
 };

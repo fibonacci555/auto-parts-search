@@ -79,7 +79,7 @@ export const TracingBeam = ({
   }, [svgHeight, lastScrollY, lastScrollTime])
 
   return (
-    <div ref={ref} className={cn("relative mx-auto h-full w-full max-w-6xl", className)}>
+    <div ref={ref} className={cn("relative mx-auto h-full w-full", className)}>
       <div className="absolute top-3 -left-4 md:-left-20">
         <div
           className={cn(
