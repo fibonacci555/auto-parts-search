@@ -612,7 +612,20 @@ export default function UltraModernAutoPartsSearch() {
 
         </TracingBeam>
 
-
+        {/* Affiliate Disclosure Disclaimer */}
+        <div className="border-t border-white/5 py-6">
+          <div className="container mx-auto px-4">
+            <p className="text-center text-white/40 text-sm">
+              We earn commissions on purchases made through our links.{' '}
+              <a 
+                href="/affiliate-disclosure" 
+                className="text-purple-400 hover:text-purple-300 transition-colors underline"
+              >
+                Learn more
+              </a>
+            </p>
+          </div>
+        </div>
 
         <footer className="border-t border-white/5 py-8">
           <div className="container mx-auto px-4">
@@ -620,14 +633,14 @@ export default function UltraModernAutoPartsSearch() {
               <span className="font-bold"><img src="/logo.svg" alt="logo" className=" h-5" /></span>
 
               <div className="flex gap-6">
-                <a href="#" className="text-white/50 hover:text-white transition-colors">
-                  About
+                <a href="/private-policy" className="text-white/50 hover:text-white transition-colors">
+                  Privacy Policy
                 </a>
-                <a href="#" className="text-white/50 hover:text-white transition-colors">
-                  Submit Deal
+                <a href="/terms-and-conditions" className="text-white/50 hover:text-white transition-colors">
+                  Terms and Conditions
                 </a>
-                <a href="#" className="text-white/50 hover:text-white transition-colors">
-                  Terms
+                <a href="/affiliate-disclosure" className="text-white/50 hover:text-white transition-colors">
+                  Affiliate Disclosure
                 </a>
                 <a href="#" className="text-white/50 hover:text-white transition-colors">
                   Contact

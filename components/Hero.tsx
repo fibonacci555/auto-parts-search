@@ -23,8 +23,8 @@ export default function HeroEcomDeals() {
       </div>
 
       {/* ===== Content ===== */}
-      <div className="relative z-10 w-full px-0 pt-28 pb-20 md:pt-36 md:pb-28 px-40">
-      <SplashCursor />
+      <div className="relative z-10 w-full px-40 pt-28 pb-20 md:pt-36 md:pb-28">
+      <SplashCursor targetSelector="section" intensity={0.7} />
         {/* Top badges */}
         <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-white/80">
           <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/20 backdrop-blur">

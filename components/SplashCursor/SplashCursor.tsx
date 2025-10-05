@@ -22,6 +22,8 @@ interface SplashCursorProps {
   COLOR_UPDATE_SPEED?: number;
   BACK_COLOR?: ColorRGB;
   TRANSPARENT?: boolean;
+  targetSelector?: string; // CSS selector for the target element
+  intensity?: number; // Intensity multiplier (0-1)
 }
 
 interface Pointer {
@@ -66,7 +68,9 @@ export default function SplashCursor({
   SHADING = true,
   COLOR_UPDATE_SPEED = 10,
   BACK_COLOR = { r: 0.5, g: 0, b: 0 },
-  TRANSPARENT = true
+  TRANSPARENT = true,
+  targetSelector = 'body',
+  intensity = 1.0
 }: SplashCursorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -1038,18 +1042,18 @@ export default function SplashCursor({
     }
 
     function splatPointer(pointer: Pointer) {
-      const dx = pointer.deltaX * config.SPLAT_FORCE;
-      const dy = pointer.deltaY * config.SPLAT_FORCE;
+      const dx = pointer.deltaX * config.SPLAT_FORCE * intensity;
+      const dy = pointer.deltaY * config.SPLAT_FORCE * intensity;
       splat(pointer.texcoordX, pointer.texcoordY, dx, dy, pointer.color);
     }
 
     function clickSplat(pointer: Pointer) {
       const color = generateColor();
-      color.r *= 10;
-      color.g *= 10;
-      color.b *= 10;
-      const dx = 10 * (Math.random() - 0.5);
-      const dy = 30 * (Math.random() - 0.5);
+      color.r *= 10 * intensity;
+      color.g *= 10 * intensity;
+      color.b *= 10 * intensity;
+      const dx = 10 * (Math.random() - 0.5) * intensity;
+      const dy = 30 * (Math.random() - 0.5) * intensity;
       splat(pointer.texcoordX, pointer.texcoordY, dx, dy, color);
     }
 
@@ -1131,9 +1135,9 @@ export default function SplashCursor({
 
     function generateColor(): ColorRGB {
       const c = HSVtoRGB(Math.random(), 1.0, 1.0);
-      c.r *= 0.15;
-      c.g *= 0.15;
-      c.b *= 0.15;
+      c.r *= 0.15 * intensity;
+      c.g *= 0.15 * intensity;
+      c.b *= 0.15 * intensity;
       return c;
     }
 
@@ -1188,7 +1192,10 @@ export default function SplashCursor({
       return ((value - min) % range) + min;
     }
 
-    window.addEventListener('mousedown', e => {
+    const targetElement = document.querySelector(targetSelector);
+    if (!targetElement) return;
+
+    targetElement.addEventListener('mousedown', e => {
       const pointer = pointers[0];
       const posX = scaleByPixelRatio(e.clientX);
       const posY = scaleByPixelRatio(e.clientY);
@@ -1203,11 +1210,11 @@ export default function SplashCursor({
       const color = generateColor();
       updateFrame();
       updatePointerMoveData(pointer, posX, posY, color);
-      document.body.removeEventListener('mousemove', handleFirstMouseMove);
+      targetElement.removeEventListener('mousemove', handleFirstMouseMove);
     }
-    document.body.addEventListener('mousemove', handleFirstMouseMove);
+    targetElement.addEventListener('mousemove', handleFirstMouseMove);
 
-    window.addEventListener('mousemove', e => {
+    targetElement.addEventListener('mousemove', e => {
       const pointer = pointers[0];
       const posX = scaleByPixelRatio(e.clientX);
       const posY = scaleByPixelRatio(e.clientY);
@@ -1224,11 +1231,11 @@ export default function SplashCursor({
         updateFrame();
         updatePointerDownData(pointer, touches[i].identifier, posX, posY);
       }
-      document.body.removeEventListener('touchstart', handleFirstTouchStart);
+      targetElement.removeEventListener('touchstart', handleFirstTouchStart);
     }
-    document.body.addEventListener('touchstart', handleFirstTouchStart);
+    targetElement.addEventListener('touchstart', handleFirstTouchStart);
 
-    window.addEventListener(
+    targetElement.addEventListener(
       'touchstart',
       e => {
         const touches = e.targetTouches;
@@ -1242,7 +1249,7 @@ export default function SplashCursor({
       false
     );
 
-    window.addEventListener(
+    targetElement.addEventListener(
       'touchmove',
       e => {
         const touches = e.targetTouches;
@@ -1256,7 +1263,7 @@ export default function SplashCursor({
       false
     );
 
-    window.addEventListener('touchend', e => {
+    targetElement.addEventListener('touchend', e => {
       const touches = e.changedTouches;
       const pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {
@@ -1277,7 +1284,9 @@ export default function SplashCursor({
     SHADING,
     COLOR_UPDATE_SPEED,
     BACK_COLOR,
-    TRANSPARENT
+    TRANSPARENT,
+    targetSelector,
+    intensity
   ]);
 
   return (
