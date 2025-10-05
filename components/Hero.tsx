@@ -96,8 +96,10 @@ export default function HeroEcomDeals() {
 
 
       </div>
-      <GradientText className="mt-20 text-2xl bg-transparent">Every dollar generated will be donated to charity - publicly shown on X.</GradientText>
-      <GradientText className="mt-20 text-xl bg-transparent">An exclusive project by: @patwer</GradientText>
+      <div className="flex flex-col items-center justify-center mx-auto">
+      <GradientText className="mt-20 text-xl bg-transparent mx-auto justify-center text-center ">Every dollar generated will be donated to charity - publicly shown on X.</GradientText>
+      <GradientText className="mt-20 text-lg bg-transparent mx-auto justify-center text-center ">An exclusive project by: @patwer</GradientText>
+      </div>
 
       {/* Bottom gradient – decorativo, sem capturar cliques */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-black" />

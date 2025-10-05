@@ -1,8 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X, ChevronDown, ExternalLink, ArrowRight } from "lucide-react"
+import { X, ChevronDown, ExternalLink, ArrowRight, Home, Grid3X3, Sparkles, HelpCircle, MessageCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 import "./MobileMenu.css"
 
 interface MobileMenuProps {
@@ -58,40 +59,57 @@ export default function MobileMenu({
     setExpandedCategory(expandedCategory === category ? null : category)
   }
 
+  const getCategorySlug = (category: string) => {
+    const slugMap: Record<string, string> = {
+      "Best Agency Ad Accounts": "agency-ad-accounts",
+      "Best Advertising Libraries": "advertising-libraries", 
+      "Best UGC Tools": "ugc-tools",
+      "Best Ad Tracking Software": "ad-tracking-software"
+    }
+    return slugMap[category] || category.toLowerCase().replace(/\s+/g, '-')
+  }
+
   const menuItems = [
     {
       label: "Home",
-      onClick: () => onClose(),
+      href: "/",
+      icon: Home,
       isButton: true,
     },
     {
       label: "Tool Categories",
+      icon: Grid3X3,
       hasSubmenu: true,
       submenuItems: Object.keys(toolCategories).map((category) => ({
         label: category,
-        onClick: () => handleCategoryClick(category),
+        href: `/${getCategorySlug(category)}`,
+        icon: "🏆",
       })),
     },
     {
       label: "All Tools",
+      icon: Sparkles,
       onClick: handleAllToolsClick,
     },
     {
       label: "About",
-      onClick: () => onClose(),
+      href: "/about",
+      icon: Sparkles,
     },
     {
       label: "Blog",
-      onClick: () => onClose(),
+      href: "https://blog.ecominsider.com",
+      icon: ExternalLink,
       hasExternalIcon: true,
     },
     {
       label: "Help Center",
+      icon: HelpCircle,
       hasSubmenu: true,
       submenuItems: [
-        { label: "FAQ", onClick: () => onClose() },
-        { label: "Contact", onClick: () => onClose() },
-        { label: "Support", onClick: () => onClose() },
+        { label: "FAQ", href: "/faq", icon: "❓" },
+        { label: "Contact", href: "/contact", icon: "📧" },
+        { label: "Support", href: "/support", icon: "🆘" },
       ],
     },
   ]
@@ -141,85 +159,129 @@ export default function MobileMenu({
         {/* Menu Items */}
         <div className="flex-1 overflow-y-auto py-6 mobile-menu-scroll">
           <nav className="space-y-2 px-6">
-            {menuItems.map((item, index) => (
-              <div key={index}>
-                {item.isButton ? (
-                  <button
-                    onClick={item.onClick}
-                    className="w-full text-left px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium transition-all duration-200 flex items-center gap-3 menu-item-hover"
-                  >
-                    <span>{item.label}</span>
-                  </button>
-                ) : item.hasSubmenu ? (
-                  <div>
-                    <button
-                      onClick={() => toggleCategory(item.label)}
-                      className="w-full text-left px-4 py-3 rounded-xl hover:bg-white/5 text-white font-medium transition-all duration-200 flex items-center justify-between"
-                    >
-                      <span>{item.label}</span>
-                      <ChevronDown
-                        className={cn(
-                          "h-4 w-4 text-blue-400 transition-transform duration-200",
-                          expandedCategory === item.label && "rotate-180"
+            {menuItems.map((item, index) => {
+              const IconComponent = item.icon
+              return (
+                <div key={index} className="animate-in slide-in-from-right-4 duration-300" style={{ animationDelay: `${index * 50}ms` }}>
+                  {item.isButton ? (
+                    item.href ? (
+                      <Link href={item.href} onClick={onClose}>
+                        <div className="w-full text-left px-4 py-4 rounded-xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 text-white font-semibold transition-all duration-200 flex items-center gap-3 menu-item-hover border border-blue-500/30">
+                          <IconComponent className="h-5 w-5 text-blue-400" />
+                          <span>{item.label}</span>
+                        </div>
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={item.onClick}
+                        className="w-full text-left px-4 py-4 rounded-xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 text-white font-semibold transition-all duration-200 flex items-center gap-3 menu-item-hover border border-blue-500/30"
+                      >
+                        <IconComponent className="h-5 w-5 text-blue-400" />
+                        <span>{item.label}</span>
+                      </button>
+                    )
+                  ) : item.hasSubmenu ? (
+                    <div>
+                      <button
+                        onClick={() => toggleCategory(item.label)}
+                        className="w-full text-left px-4 py-4 rounded-xl hover:bg-white/10 text-white font-medium transition-all duration-200 flex items-center justify-between group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <IconComponent className="h-5 w-5 text-blue-400 group-hover:text-blue-300 transition-colors" />
+                          <span>{item.label}</span>
+                        </div>
+                        <ChevronDown
+                          className={cn(
+                            "h-4 w-4 text-blue-400 transition-transform duration-200",
+                            expandedCategory === item.label && "rotate-180"
+                          )}
+                        />
+                      </button>
+                      
+                      {expandedCategory === item.label && (
+                        <div className="ml-4 mt-2 space-y-1 animate-in slide-in-from-top-2 duration-200">
+                          {item.submenuItems?.map((subItem, subIndex) => (
+                            subItem.href ? (
+                              <Link key={subIndex} href={subItem.href} onClick={onClose}>
+                                <div className="w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 text-white/80 text-sm transition-colors duration-200 flex items-center gap-3 group">
+                                  <span className="text-lg">{subItem.icon}</span>
+                                  <span>{subItem.label}</span>
+                                </div>
+                              </Link>
+                            ) : (
+                              <button
+                                key={subIndex}
+                                onClick={subItem.onClick}
+                                className="w-full text-left px-4 py-3 rounded-lg hover:bg-white/10 text-white/80 text-sm transition-colors duration-200 flex items-center gap-3 group"
+                              >
+                                <span className="text-lg">{subItem.icon}</span>
+                                <span>{subItem.label}</span>
+                              </button>
+                            )
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    item.href ? (
+                      <Link href={item.href} onClick={onClose}>
+                        <div className="w-full text-left px-4 py-4 rounded-xl hover:bg-white/10 text-white font-medium transition-all duration-200 flex items-center gap-3 menu-item-hover group">
+                          <IconComponent className="h-5 w-5 text-blue-400 group-hover:text-blue-300 transition-colors" />
+                          <span>{item.label}</span>
+                          {item.hasExternalIcon && (
+                            <ExternalLink className="h-3 w-3 text-blue-400 ml-auto" />
+                          )}
+                        </div>
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={item.onClick}
+                        className="w-full text-left px-4 py-4 rounded-xl hover:bg-white/10 text-white font-medium transition-all duration-200 flex items-center gap-3 menu-item-hover group"
+                      >
+                        <IconComponent className="h-5 w-5 text-blue-400 group-hover:text-blue-300 transition-colors" />
+                        <span>{item.label}</span>
+                        {item.hasExternalIcon && (
+                          <ExternalLink className="h-3 w-3 text-blue-400 ml-auto" />
                         )}
-                      />
-                    </button>
-                    
-                    {expandedCategory === item.label && (
-                      <div className="ml-4 mt-2 space-y-1 animate-in slide-in-from-top-2 duration-200">
-                        {item.submenuItems?.map((subItem, subIndex) => (
-                          <button
-                            key={subIndex}
-                            onClick={subItem.onClick}
-                            className="w-full text-left px-4 py-2 rounded-lg hover:bg-white/5 text-white/80 text-sm transition-colors duration-200 flex items-center gap-2"
-                          >
-                            {subItem.label}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <button
-                    onClick={item.onClick}
-                    className="w-full text-left px-4 py-3 rounded-xl hover:bg-white/5 text-white font-medium transition-all duration-200 flex items-center gap-3 menu-item-hover"
-                  >
-                    <span>{item.label}</span>
-                    {item.hasExternalIcon && (
-                      <ExternalLink className="h-3 w-3 text-blue-400" />
-                    )}
-                  </button>
-                )}
-              </div>
-            ))}
+                      </button>
+                    )
+                  )}
+                </div>
+              )
+            })}
           </nav>
         </div>
 
         {/* Call to Action */}
-        <div className="p-6 border-t border-white/10">
-          <button className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 cta-glow">
-            <span>Explore Tools</span>
-            <ArrowRight className="h-4 w-4" />
-          </button>
+        <div className="p-6 border-t border-white/10 bg-gradient-to-r from-blue-500/10 to-purple-500/10">
+          <div className="space-y-3">
+            <button 
+              onClick={handleAllToolsClick}
+              className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 cta-glow shadow-lg"
+            >
+              <Sparkles className="h-5 w-5" />
+              <span>Explore All Tools</span>
+              <ArrowRight className="h-4 w-4" />
+            </button>
+            
+            {/* Quick Stats */}
+            <div className="grid grid-cols-2 gap-2 text-xs text-white/60">
+              <div className="text-center py-2 bg-white/5 rounded-lg">
+                <div className="font-semibold text-white">50+</div>
+                <div>Top Tools</div>
+              </div>
+              <div className="text-center py-2 bg-white/5 rounded-lg">
+                <div className="font-semibold text-white">25%</div>
+                <div>Avg Savings</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Floating Chat Button */}
-        <div className="absolute bottom-20 right-6">
-          <button className="w-12 h-12 rounded-full bg-blue-500 hover:bg-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center group chat-pulse">
-            <svg
-              className="h-5 w-5 group-hover:scale-110 transition-transform duration-200"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-              />
-            </svg>
+        <div className="absolute bottom-20 right-6 z-10">
+          <button className="w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center group chat-pulse">
+            <MessageCircle className="h-6 w-6 group-hover:scale-110 transition-transform duration-200" />
           </button>
         </div>
       </div>
