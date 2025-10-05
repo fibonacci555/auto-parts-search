@@ -37,7 +37,7 @@ import MobileMenu from "@/components/MobileMenu"
 import Stepper, { Step } from "@/components/Stepper/Stepper"
 import { toolCategories } from "./lib/tool-data"
 import { useRouter } from "next/navigation"
-import SplashCursor from './components/SplashCursor/SplashCursor'
+
 
 
 
@@ -296,7 +296,7 @@ export default function UltraModernAutoPartsSearch() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      <SplashCursor />
+      
       {/* Background elements */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black"></div>
@@ -470,10 +470,10 @@ export default function UltraModernAutoPartsSearch() {
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  Get Started in 3 Simple Steps
+                  Want Weekly Insider Deals?
                 </h2>
                 <p className="text-white/70 text-lg max-w-2xl mx-auto">
-                  Follow our guided process to find and activate the best tools for your business
+                  Get early access to new deals before they go public. Price drops delivered straight to your inbox.
                 </p>
               </div>
               
@@ -498,7 +498,7 @@ export default function UltraModernAutoPartsSearch() {
                       </div>
                       <h3 className="text-2xl font-bold mb-4 text-white">What's your first name?</h3>
                       <p className="text-white/70 text-lg max-w-md mx-auto leading-relaxed mb-6">
-                        We'd love to personalize your experience with the best tools and exclusive deals.
+                        Help us send you the most relevant deals for your business.
                       </p>
                       <div className="max-w-sm mx-auto">
                         <input
@@ -519,7 +519,7 @@ export default function UltraModernAutoPartsSearch() {
                       </div>
                       <h3 className="text-2xl font-bold mb-4 text-white">Get exclusive deals via email</h3>
                       <p className="text-white/70 text-lg max-w-md mx-auto leading-relaxed mb-6">
-                        Enter your email to receive the best tool discounts and insider tips directly to your inbox.
+                        Weekly insider deals straight to your inbox.
                       </p>
                       <div className="max-w-sm mx-auto">
                         <input

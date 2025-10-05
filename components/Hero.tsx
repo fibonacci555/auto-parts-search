@@ -5,7 +5,7 @@ import GooeyButton from "./goey/GoeyButton";
 import GradientText from "./GradientText/GradientText";
 import { IoIosFlash } from "react-icons/io";
 import LiquidEther from "./LiquidEther/LiquidEther";
-
+import SplashCursor from "./SplashCursor/SplashCursor";
 
 export default function HeroEcomDeals() {
   return (
@@ -16,23 +16,7 @@ export default function HeroEcomDeals() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_50%_at_50%_50%,rgba(120,119,198,0.15),transparent_60%)] sm:bg-[radial-gradient(60%_60%_at_50%_0%,rgba(120,119,198,0.25),transparent_60%)]" />
 
         {/* GradientBlinds - adjusted for mobile */}
-        <LiquidEther
-          colors={['#5227FF', '#FF9FFC', '#B19EEF']}
-          mouseForce={20}
-          cursorSize={100}
-          isViscous={false}
-          viscous={30}
-          iterationsViscous={32}
-          iterationsPoisson={32}
-          resolution={0.5}
-          isBounce={false}
-          autoDemo={true}
-          autoSpeed={0.5}
-          autoIntensity={2.2}
-          takeoverDuration={0.25}
-          autoResumeDelay={3000}
-          autoRampDuration={0.6}
-        />
+       
 
         {/* Subtle grid overlay - adjusted for mobile */}
         <div className="pointer-events-none absolute inset-0 [background-image:linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:20px_20px] sm:[background-size:24px_24px] [mask-image:radial-gradient(60%_60%_at_50%_50%,#000,transparent)] sm:[mask-image:radial-gradient(80%_80%_at_50%_20%,#000,transparent)]" />
@@ -40,6 +24,7 @@ export default function HeroEcomDeals() {
 
       {/* ===== Content ===== */}
       <div className="relative z-10 w-full px-0 pt-28 pb-20 md:pt-36 md:pb-28 px-40">
+      <SplashCursor />
         {/* Top badges */}
         <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-white/80">
           <span className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 ring-1 ring-white/20 backdrop-blur">
