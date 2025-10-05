@@ -15,6 +15,7 @@ import {
   Percent,
   Menu,
   Heart,
+  ExternalLink,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -27,6 +28,7 @@ import MagicBento from "./components/MagicBento/MagicBento"
 import ProfileCardComponent from "./components/ProfileCard/ProfileCard"
 import CardSwap, { Card } from "./components/CardSwap/CardSwap"
 import GradientText from "./components/GradientText/GradientText"
+import MobileMenu from "@/components/MobileMenu"
 
 function AnimatedPlaceholder({ texts, className }: { texts: string[]; className?: string }) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
@@ -69,19 +71,110 @@ function AnimatedPlaceholder({ texts, className }: { texts: string[]; className?
   )
 }
 
-const dealCategories = {
-  "Agency Ad Accounts": [
-    { name: "Adrevival", discount: "10% off first month", code: "INSIDER", isTop: true },
-    { name: "Agency Aurora", discount: "30% off for 3 months", code: "INSIDER", isTop: false },
-    { name: "UpRoas", discount: "30% off first month", code: "INSIDER", isTop: false },
-    { name: "Zocket", discount: "15% off for 3 months", code: "INSIDER", isTop: false },
+const toolCategories = {
+  "Best Agency Ad Accounts": [
+    { 
+      name: "Adrevival", 
+      description: "Best agency ad accounts because of their proven track record with 95% success rate and dedicated account managers",
+      discount: "10% off first month", 
+      code: "INSIDER", 
+      rank: 1,
+      badge: "gold",
+      disclaimer: "Discount applies to new customers only"
+    },
+    { 
+      name: "Agency Aurora", 
+      description: "Premium agency with white-glove service and custom ad strategies for scaling businesses",
+      discount: "30% off for 3 months", 
+      code: "INSIDER", 
+      rank: 2,
+      badge: "silver"
+    },
+    { 
+      name: "UpRoas", 
+      description: "Data-driven approach with advanced analytics and performance optimization",
+      discount: "30% off first month", 
+      code: "INSIDER", 
+      rank: 3,
+      badge: "bronze"
+    },
+    { 
+      name: "Zocket", 
+      description: "Affordable solution with good performance for small to medium businesses",
+      discount: "15% off for 3 months", 
+      code: "INSIDER", 
+      rank: 4,
+      badge: null
+    },
   ],
-  "Advertising Library": [
-    { name: "Afterlib", discount: "25% off lifetime", code: "INSIDER", url: "afterlib.com", isTop: true },
-    { name: "Minea", discount: "20% off for 3 months", code: "INSIDER", isTop: false },
-    { name: "Adplexity", discount: "30% off for 3 months", code: "INSIDER", isTop: false },
+  "Best Advertising Libraries": [
+    { 
+      name: "Afterlib", 
+      description: "Best advertising library because it has the largest database with 10M+ ads and real-time updates",
+      discount: "25% off lifetime", 
+      code: "INSIDER", 
+      url: "afterlib.com", 
+      rank: 1,
+      badge: "gold"
+    },
+    { 
+      name: "Minea", 
+      description: "Comprehensive ad intelligence with competitor analysis and trend tracking",
+      discount: "20% off for 3 months", 
+      code: "INSIDER", 
+      rank: 2,
+      badge: "silver"
+    },
+    { 
+      name: "Adplexity", 
+      description: "Advanced filtering and search capabilities for finding winning ad creatives",
+      discount: "30% off for 3 months", 
+      code: "INSIDER", 
+      rank: 3,
+      badge: "bronze"
+    },
   ],
-  "Ad Tracking Software": [{ name: "WeTracked.io", discount: "15% off for 3 months", code: "INSIDER", isTop: true }],
+  "Best UGC Tools": [
+    { 
+      name: "Sora by OpenAI", 
+      description: "Best UGC tool because it creates photorealistic videos from text prompts with unmatched quality",
+      discount: null, 
+      code: null, 
+      url: "https://openai.com/sora/", 
+      rank: 1,
+      badge: "gold",
+      isExternal: true
+    },
+    { 
+      name: "Google Flow", 
+      description: "AI-powered video generation with natural motion and realistic physics",
+      discount: null, 
+      code: null, 
+      url: "https://labs.google/flow/about", 
+      rank: 2,
+      badge: "silver",
+      isExternal: true
+    },
+    { 
+      name: "MakeUGC", 
+      description: "User-friendly platform for creating authentic UGC content at scale",
+      discount: "25% off for 3 months", 
+      code: "INSIDER", 
+      url: "https://www.makeugc.ai/", 
+      rank: 3,
+      badge: "bronze"
+    },
+  ],
+  "Best Ad Tracking Software": [
+    { 
+      name: "WeTracked.io", 
+      description: "Best ad tracking software because it provides pixel-perfect attribution and real-time analytics",
+      discount: "15% off for 3 months", 
+      code: "INSIDER", 
+      rank: 1,
+      badge: "gold"
+    },
+  ],
 }
 
 const trendingDeals = [
@@ -165,9 +258,9 @@ export default function UltraModernAutoPartsSearch() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const filteredDeals = activeCategory
-    ? trendingDeals.filter((deal) => deal.category === activeCategory)
-    : trendingDeals
+  const filteredTools = activeCategory
+    ? toolCategories[activeCategory as keyof typeof toolCategories] || []
+    : Object.values(toolCategories).flat()
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -195,7 +288,7 @@ export default function UltraModernAutoPartsSearch() {
             <span className="font-bold text-lg tracking-tight"><img src="/logo.svg" alt="Ecom Insider" className="h-6 mr-2" /></span>
 
             <nav className="hidden md:flex items-center gap-2">
-              {Object.keys(dealCategories).map((category) => (
+              {Object.keys(toolCategories).map((category) => (
                 <Button
                   key={category}
                   variant="ghost"
@@ -220,43 +313,22 @@ export default function UltraModernAutoPartsSearch() {
             </Button>
           </div>
 
-          {mobileMenuOpen && (
-            <div
-              className={cn(
-                "md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-md border-b border-white/5 transition-all duration-300",
-                mobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4",
-              )}
-            >
-              <nav className="container mx-auto px-4 py-4 flex flex-col gap-2">
-                {Object.keys(dealCategories).map((category) => (
-                  <Button
-                    key={category}
-                    variant="ghost"
-                    className="text-white/70 hover:text-white hover:bg-white/5 rounded-lg justify-start w-full"
-                    onClick={() => {
-                      setActiveCategory(category)
-                      scrollToDeals()
-                      setMobileMenuOpen(false)
-                    }}
-                  >
-                    {category}
-                  </Button>
-                ))}
-                <Button
-                  variant="ghost"
-                  className="text-white/70 hover:text-white hover:bg-white/5 rounded-lg justify-start w-full"
-                  onClick={() => {
-                    setActiveCategory(null)
-                    scrollToDeals()
-                    setMobileMenuOpen(false)
-                  }}
-                >
-                  All Deals
-                </Button>
-              </nav>
-            </div>
-          )}
         </header>
+
+        {/* Mobile Menu */}
+        <MobileMenu
+          isOpen={mobileMenuOpen}
+          onClose={() => setMobileMenuOpen(false)}
+          toolCategories={toolCategories}
+          onCategorySelect={(category) => {
+            setActiveCategory(category)
+            scrollToDeals()
+          }}
+          onAllToolsSelect={() => {
+            setActiveCategory(null)
+            scrollToDeals()
+          }}
+        />
 
         <TracingBeam className=" pb-16">
           <section
@@ -339,7 +411,7 @@ export default function UltraModernAutoPartsSearch() {
             <section ref={dealsSectionRef} className="py-16 px-4 border-t border-white/5 min-h-screen">
               <div className="max-w-6xl mx-auto">
                 <div className="flex justify-between items-center mb-8">
-                  <h2 className="text-2xl font-bold">{activeCategory ? `${activeCategory} Deals` : "All Deals"}</h2>
+                  <h2 className="text-2xl font-bold">{activeCategory || "All Tools"}</h2>
                   {activeCategory && (
                     <Button
                       variant="ghost"
@@ -355,13 +427,13 @@ export default function UltraModernAutoPartsSearch() {
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {filteredDeals.map((deal, index) => (
-                    <DealCard
+                  {filteredTools.map((tool, index) => (
+                    <ToolCard
                       key={index}
-                      deal={deal}
-                      isHovering={hoveringDeal === deal.name}
-                      setIsHovering={(hovering) => setHoveringDeal(hovering ? deal.name : null)}
-                      onClick={() => setSelectedDeal(deal.name)}
+                      tool={tool}
+                      isHovering={hoveringDeal === tool.name}
+                      setIsHovering={(hovering) => setHoveringDeal(hovering ? tool.name : null)}
+                      onClick={() => setSelectedDeal(tool.name)}
                     />
                   ))}
                 </div>
@@ -406,64 +478,139 @@ export default function UltraModernAutoPartsSearch() {
   )
 }
 
-function DealCard({
-  deal,
+function ToolCard({
+  tool,
   isHovering,
   setIsHovering,
   onClick,
 }: {
-  deal: (typeof trendingDeals)[0]
+  tool: any
   isHovering: boolean
   setIsHovering: (hovering: boolean) => void
   onClick: () => void
 }) {
+  const getBadgeColor = (badge: string | null) => {
+    switch (badge) {
+      case 'gold': return 'from-yellow-400 to-yellow-600'
+      case 'silver': return 'from-gray-300 to-gray-500'
+      case 'bronze': return 'from-orange-400 to-orange-600'
+      default: return 'from-gray-400 to-gray-600'
+    }
+  }
+
+  const getBadgeIcon = (badge: string | null) => {
+    switch (badge) {
+      case 'gold': return '🏆'
+      case 'silver': return '🥈'
+      case 'bronze': return '🥉'
+      default: return '⭐'
+    }
+  }
+
   return (
-    <div className="w-full relative rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-8">
+    <div className={cn(
+      "w-full relative rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-8 transition-all duration-300",
+      tool.badge === 'gold' && "ring-2 ring-yellow-400/30 shadow-lg shadow-yellow-400/10"
+    )}>
       <Rays />
       <Beams />
+      
+      {/* Trophy Badge */}
+      {tool.badge && (
+        <div className={cn(
+          "absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r flex items-center justify-center text-xl z-20 shadow-lg",
+          getBadgeColor(tool.badge)
+        )}>
+          {getBadgeIcon(tool.badge)}
+        </div>
+      )}
+
       <div className="relative z-10">
         <Lens hovering={isHovering} setHovering={setIsHovering}>
           <div className="w-full h-48 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_50%)]"></div>
             <div className="relative z-10 text-center">
               <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                <Percent className="h-10 w-10 text-blue-400" />
+                <Sparkles className="h-10 w-10 text-blue-400" />
               </div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                {deal.discount.split(" ")[0]}
+              <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                #{tool.rank}
               </div>
+              <div className="text-sm text-white/60">Ranked Tool</div>
             </div>
           </div>
         </Lens>
+        
         <div className={cn("py-4 relative z-20 transition-all duration-300", isHovering ? "blur-sm" : "blur-0")}>
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="text-white text-2xl font-bold">{deal.name}</h2>
-            <span className="text-xs px-2 py-1 rounded-full bg-green-500/20 text-green-400 border border-green-500/30">
-              Active
-            </span>
-          </div>
-          <p className="text-blue-400 text-sm mb-3">{deal.category}</p>
-          <p className="text-neutral-200 mb-4">{deal.discount}</p>
-
-          <div className="bg-white/5 rounded-lg p-3 mb-4 border border-white/10">
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-white/50">Discount Code:</span>
-              <code className="text-sm font-mono bg-white/10 px-3 py-1 rounded text-blue-400">{deal.code}</code>
+          {/* Tool Name and Badge */}
+          <div className="flex items-start justify-between mb-3">
+            <div className="flex-1">
+              <h2 className="text-white text-2xl font-bold leading-tight">{tool.name}</h2>
+              {tool.badge && (
+                <div className={cn(
+                  "inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold mt-1",
+                  tool.badge === 'gold' && "bg-yellow-400/20 text-yellow-400 border border-yellow-400/30",
+                  tool.badge === 'silver' && "bg-gray-300/20 text-gray-300 border border-gray-300/30",
+                  tool.badge === 'bronze' && "bg-orange-400/20 text-orange-400 border border-orange-400/30"
+                )}>
+                  {getBadgeIcon(tool.badge)} #{tool.rank} in Category
+                </div>
+              )}
             </div>
           </div>
 
-          {deal.url && (
-            <div className="text-xs text-white/50 mb-4 flex items-center gap-2">
-              <span>🌐</span>
-              <span>{deal.url}</span>
+          {/* Description */}
+          <p className="text-white/80 text-sm mb-4 leading-relaxed">{tool.description}</p>
+
+          {/* Discount Section (Secondary) */}
+          {tool.discount && (
+            <div className="bg-white/5 rounded-lg p-4 mb-4 border border-white/10">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs text-white/50">Exclusive Discount:</span>
+                <span className="text-lg font-bold text-green-400">{tool.discount.split(" ")[0]}</span>
+              </div>
+              {tool.code && (
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-white/50">Code:</span>
+                  <code className="text-sm font-mono bg-white/10 px-3 py-1 rounded text-blue-400">{tool.code}</code>
+                </div>
+              )}
+              {tool.disclaimer && (
+                <p className="text-xs text-white/40 mt-2">{tool.disclaimer}</p>
+              )}
             </div>
           )}
 
+          {/* External Link Info */}
+          {tool.isExternal && (
+            <div className="bg-blue-500/10 rounded-lg p-3 mb-4 border border-blue-500/20">
+              <div className="flex items-center gap-2">
+                <ExternalLink className="h-4 w-4 text-blue-400" />
+                <span className="text-sm text-blue-400">External Tool</span>
+              </div>
+              <p className="text-xs text-white/60 mt-1">No discount available - premium tool</p>
+            </div>
+          )}
+
+          {/* URL Display */}
+          {tool.url && !tool.isExternal && (
+            <div className="text-xs text-white/50 mb-4 flex items-center gap-2">
+              <span>🌐</span>
+              <span>{tool.url}</span>
+            </div>
+          )}
+
+          {/* Action Button */}
           <Button
             onClick={onClick}
-            className="w-full rounded-full bg-blue-600 hover:bg-blue-700 h-10 transition-all duration-300 hover:scale-105"
+            className={cn(
+              "w-full rounded-full h-12 transition-all duration-300 hover:scale-105 font-semibold",
+              tool.isExternal 
+                ? "bg-gray-600 hover:bg-gray-700" 
+                : "bg-blue-600 hover:bg-blue-700"
+            )}
           >
-            Get Deal
+            {tool.isExternal ? "Visit Tool" : "Activate Deal"}
             <ChevronRight className="ml-1 h-4 w-4" />
           </Button>
         </div>
