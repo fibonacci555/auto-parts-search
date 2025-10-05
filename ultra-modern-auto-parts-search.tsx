@@ -37,6 +37,9 @@ import MobileMenu from "@/components/MobileMenu"
 import Stepper, { Step } from "@/components/Stepper/Stepper"
 import { toolCategories } from "./lib/tool-data"
 import { useRouter } from "next/navigation"
+import SplashCursor from './components/SplashCursor/SplashCursor'
+
+
 
 function AnimatedPlaceholder({ texts, className }: { texts: string[]; className?: string }) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
@@ -136,6 +139,7 @@ function ValidatedStepper({
 
   return (
     <div className="outer-container">
+      
       <div className="step-circle-container bg-gradient-to-br from-slate-800/50 to-slate-900/50" style={{ border: '1px solid #222' }}>
         {/* Step Indicators */}
         <div className="step-indicator-row">
@@ -292,6 +296,7 @@ export default function UltraModernAutoPartsSearch() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      <SplashCursor />
       {/* Background elements */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black"></div>
