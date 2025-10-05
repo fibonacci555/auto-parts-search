@@ -192,7 +192,7 @@ export default function UltraModernAutoPartsSearch() {
       <div className="relative z-10">
         <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/30 border-b border-white/5">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <span className="font-bold text-lg tracking-tight">Ecom Insider</span>
+            <span className="font-bold text-lg tracking-tight"><img src="/logo.svg" alt="Ecom Insider" className="h-6 mr-2" /></span>
 
             <nav className="hidden md:flex items-center gap-2">
               {Object.keys(dealCategories).map((category) => (
