@@ -43,10 +43,11 @@
   background-position: inherit;
   border-radius: inherit;
   transition: all 0.5s ease;
-  filter: contrast(2) saturate(2) blur(36px);
+  filter: contrast(0.5) saturate(0.5) blur(36px);
   transform: scale(0.8) translate3d(0, 0, 0.1px);
   background-size: 100% 100%;
   background-image: var(--behind-gradient);
+  opacity: 0.3;
 }
 
 .pc-card-wrapper:hover,
@@ -56,8 +57,8 @@
 
 .pc-card-wrapper:hover::before,
 .pc-card-wrapper.active::before {
-  filter: contrast(1) saturate(2) blur(40px) opacity(1);
-  transform: scale(0.9) translate3d(0, 0, 0.1px);
+  filter: contrast(0.7) saturate(0.8) blur(40px) opacity(0.5);
+  transform: scale(0.85) translate3d(0, 0, 0.1px);
 }
 
 .pc-card {
@@ -186,7 +187,7 @@
 
 .pc-card:hover .pc-shine,
 .pc-card.active .pc-shine {
-  filter: brightness(0.85) contrast(1.5) saturate(0.5);
+  filter: brightness(0.95) contrast(1.1) saturate(0.3);
   animation: none;
 }
 
@@ -194,7 +195,7 @@
 .pc-card.active .pc-shine::before,
 .pc-card:hover .pc-shine::after,
 .pc-card.active .pc-shine::after {
-  opacity: 1;
+  opacity: 0.3;
 }
 
 .pc-shine::before {

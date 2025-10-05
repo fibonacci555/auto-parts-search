@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import {
   Search,
   ArrowRight,
@@ -16,6 +16,8 @@ import {
   Menu,
   Heart,
   ExternalLink,
+  Mail,
+  User,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -29,6 +31,7 @@ import ProfileCardComponent from "./components/ProfileCard/ProfileCard"
 import CardSwap, { Card } from "./components/CardSwap/CardSwap"
 import GradientText from "./components/GradientText/GradientText"
 import MobileMenu from "@/components/MobileMenu"
+import Stepper, { Step } from "@/components/Stepper/Stepper"
 
 function AnimatedPlaceholder({ texts, className }: { texts: string[]; className?: string }) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
@@ -194,6 +197,109 @@ const trendingDeals = [
   { name: "Zocket", discount: "15% off for 3 months", code: "INSIDER", category: "Agency Ad Accounts" },
 ]
 
+// Validated Stepper Component
+function ValidatedStepper({ 
+  currentStep, 
+  onStepChange, 
+  stepperData, 
+  setStepperData, 
+  isStepValid, 
+  onComplete, 
+  children 
+}: {
+  currentStep: number
+  onStepChange: (step: number) => void
+  stepperData: { firstName: string; email: string; completed: boolean }
+  setStepperData: (data: any) => void
+  isStepValid: (step: number) => boolean
+  onComplete: () => void
+  children: React.ReactNode
+}) {
+  const stepsArray = React.Children.toArray(children)
+  const totalSteps = stepsArray.length
+  const isLastStep = currentStep === totalSteps
+
+  const handleNext = () => {
+    if (isStepValid(currentStep) && !isLastStep) {
+      onStepChange(currentStep + 1)
+    } else if (isStepValid(currentStep) && isLastStep) {
+      onComplete()
+    }
+  }
+
+  const handleBack = () => {
+    if (currentStep > 1) {
+      onStepChange(currentStep - 1)
+    }
+  }
+
+  return (
+    <div className="outer-container">
+      <div className="step-circle-container bg-gradient-to-br from-slate-800/50 to-slate-900/50" style={{ border: '1px solid #222' }}>
+        {/* Step Indicators */}
+        <div className="step-indicator-row">
+          {stepsArray.map((_, index) => {
+            const stepNumber = index + 1
+            const isNotLastStep = index < totalSteps - 1
+            const isActive = currentStep === stepNumber
+            const isComplete = currentStep > stepNumber
+            const isInactive = currentStep < stepNumber
+            
+            return (
+              <React.Fragment key={stepNumber}>
+                <div className="step-indicator">
+                  <div className={`step-indicator-inner ${
+                    isComplete ? 'complete' : isActive ? 'active' : 'inactive'
+                  }`}>
+                    {isComplete ? (
+                      <Check className="check-icon" />
+                    ) : isActive ? (
+                      <div className="active-dot" />
+                    ) : (
+                      <span className="step-number">{stepNumber}</span>
+                    )}
+                  </div>
+                </div>
+                {isNotLastStep && (
+                  <div className="step-connector">
+                    <div className={`step-connector-inner ${isComplete ? 'complete' : 'incomplete'}`} />
+                  </div>
+                )}
+              </React.Fragment>
+            )
+          })}
+        </div>
+
+        {/* Step Content */}
+        <div className="step-content-default text-white">
+          {stepsArray[currentStep - 1]}
+        </div>
+
+        {/* Navigation */}
+        <div className="footer-container">
+          <div className={`footer-nav ${currentStep !== 1 ? 'spread' : 'end'}`}>
+            {currentStep !== 1 && (
+              <button
+                onClick={handleBack}
+                className="back-button"
+              >
+                Previous
+              </button>
+            )}
+            <button 
+              onClick={handleNext} 
+              className={`next-button ${!isStepValid(currentStep) ? 'opacity-50 cursor-not-allowed' : ''}`}
+              disabled={!isStepValid(currentStep)}
+            >
+              {isLastStep ? 'Complete' : 'Next Step'}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function UltraModernAutoPartsSearch() {
   const [activeSection, setActiveSection] = useState("search")
   const [showResults, setShowResults] = useState(true)
@@ -201,6 +307,12 @@ export default function UltraModernAutoPartsSearch() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [hoveringDeal, setHoveringDeal] = useState<string | null>(null)
+  const [stepperData, setStepperData] = useState({
+    firstName: '',
+    email: '',
+    completed: false
+  })
+  const [currentStep, setCurrentStep] = useState(1)
 
   const searchSectionRef = useRef<HTMLElement>(null)
   const howSectionRef = useRef<HTMLElement>(null)
@@ -261,6 +373,20 @@ export default function UltraModernAutoPartsSearch() {
   const filteredTools = activeCategory
     ? toolCategories[activeCategory as keyof typeof toolCategories] || []
     : Object.values(toolCategories).flat()
+
+  // Stepper validation logic
+  const isStepValid = (step: number) => {
+    switch (step) {
+      case 1:
+        return stepperData.firstName.trim().length > 0
+      case 2:
+        return stepperData.email.trim().length > 0 && stepperData.email.includes('@')
+      case 3:
+        return stepperData.firstName.trim().length > 0 && stepperData.email.trim().length > 0 && stepperData.email.includes('@')
+      default:
+        return false
+    }
+  }
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -347,10 +473,10 @@ export default function UltraModernAutoPartsSearch() {
 
           </section>
 
-          <div className="border border-white/10 rounded-2xl p-8 mb-16 bg-white/5 backdrop-blur-sm">
+          <div className="border border-white/10 rounded-2xl p-8 mb-16  backdrop-blur-3xl">
             <h3 className="text-2xl font-bold mb-6 text-center">Why Choose Us</h3>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
                   title: "Best Tools",
@@ -381,9 +507,9 @@ export default function UltraModernAutoPartsSearch() {
                     <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
                       {benefit.icon}
                     </div>
-                    <h4 className="font-bold">{benefit.title}</h4>
+                    <h4 className="font-bold text-sm sm:text-base">{benefit.title}</h4>
                   </div>
-                  <p className="text-white/70 text-sm">{benefit.description}</p>
+                  <p className="text-white/70 text-xs sm:text-sm">{benefit.description}</p>
                 </div>
               ))}
             </div>
@@ -403,6 +529,102 @@ export default function UltraModernAutoPartsSearch() {
               particleCount={12}
               glowColor="132, 0, 255"
             />
+          </section>
+
+          {/* Stepper Section */}
+          <section className="py-16 px-4 border-t border-white/5">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  Get Started in 3 Simple Steps
+                </h2>
+                <p className="text-white/70 text-lg max-w-2xl mx-auto">
+                  Follow our guided process to find and activate the best tools for your business
+                </p>
+              </div>
+              
+              <div className=" backdrop-blur-sm rounded-2xl mt-20  p-6 md:p-8">
+                <ValidatedStepper
+                  currentStep={currentStep}
+                  onStepChange={setCurrentStep}
+                  stepperData={stepperData}
+                  setStepperData={setStepperData}
+                  isStepValid={isStepValid}
+                  onComplete={() => {
+                    console.log('All steps completed!', stepperData)
+                    setStepperData(prev => ({ ...prev, completed: true }))
+                    // Here you would typically send the data to your backend
+                    alert(`Welcome ${stepperData.firstName}! You'll receive the best deals at ${stepperData.email}`)
+                  }}
+                >
+                  <Step>
+                    <div className="text-center py-4">
+                      <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                        <User className="h-8 w-8 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 text-white">What's your first name?</h3>
+                      <p className="text-white/70 text-lg max-w-md mx-auto leading-relaxed mb-6">
+                        We'd love to personalize your experience with the best tools and exclusive deals.
+                      </p>
+                      <div className="max-w-sm mx-auto">
+                        <input
+                          type="text"
+                          placeholder="Enter your first name"
+                          value={stepperData.firstName}
+                          onChange={(e) => setStepperData(prev => ({ ...prev, firstName: e.target.value }))}
+                          className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-blue-500 focus:bg-white/15 transition-all duration-300"
+                        />
+                      </div>
+                    </div>
+                  </Step>
+                  
+                  <Step>
+                    <div className="text-center py-8">
+                      <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                        <Mail className="h-8 w-8 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 text-white">Get exclusive deals via email</h3>
+                      <p className="text-white/70 text-lg max-w-md mx-auto leading-relaxed mb-6">
+                        Enter your email to receive the best tool discounts and insider tips directly to your inbox.
+                      </p>
+                      <div className="max-w-sm mx-auto">
+                        <input
+                          type="email"
+                          placeholder="Enter your email address"
+                          value={stepperData.email}
+                          onChange={(e) => setStepperData(prev => ({ ...prev, email: e.target.value }))}
+                          className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-blue-500 focus:bg-white/15 transition-all duration-300"
+                        />
+                        <p className="text-white/50 text-sm mt-2">
+                          We respect your privacy. Unsubscribe anytime.
+                        </p>
+                      </div>
+                    </div>
+                  </Step>
+                  
+                  <Step>
+                    <div className="text-center py-8">
+                      <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center">
+                        <Zap className="h-8 w-8 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 text-white">You're all set, {stepperData.firstName}!</h3>
+                      <p className="text-white/70 text-lg max-w-md mx-auto leading-relaxed mb-6">
+                        You'll now receive exclusive discounts and the best tool recommendations directly to {stepperData.email}.
+                      </p>
+                      <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-4 max-w-sm mx-auto">
+                        <div className="flex items-center gap-3">
+                          <Check className="h-6 w-6 text-green-400" />
+                          <div className="text-left">
+                            <p className="text-green-400 font-semibold">Success!</p>
+                            <p className="text-white/70 text-sm">You're subscribed to our exclusive deals</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Step>
+                </ValidatedStepper>
+              </div>
+            </div>
           </section>
 
 
@@ -426,7 +648,7 @@ export default function UltraModernAutoPartsSearch() {
                   )}
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                   {filteredTools.map((tool, index) => (
                     <ToolCard
                       key={index}
@@ -442,7 +664,16 @@ export default function UltraModernAutoPartsSearch() {
           )}
 
           <section className="flex flex-col items-center justify-center gap-4 py-16 px-4 border-t border-white/5 max-h-screen">
-            <ProfileCardComponent avatarUrl="/avatar.png" name="Partick Werner" handle="patwerX" title="Super Affiliate" miniAvatarUrl="/avatar.png" behindGradient={undefined} innerGradient={undefined} onContactClick={() => console.log("clicked")} />
+            <ProfileCardComponent 
+              avatarUrl="/avatar.png" 
+              name="Partick Werner" 
+              handle="patwerX" 
+              title="Super Affiliate" 
+              miniAvatarUrl="/avatar.png" 
+              behindGradient={undefined} 
+              innerGradient="linear-gradient(135deg, rgba(99, 102, 241, 0.18) 0%, rgba(168, 85, 247, 0.15) 25%, rgba(236, 72, 153, 0.12) 50%, rgba(251, 191, 36, 0.10) 75%, rgba(34, 197, 94, 0.15) 100%)" 
+              onContactClick={() => console.log("clicked")} 
+            />
           </section>
 
         </TracingBeam>
@@ -452,7 +683,7 @@ export default function UltraModernAutoPartsSearch() {
         <footer className="border-t border-white/5 py-8">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <span className="font-bold">Ecom Insider</span>
+              <span className="font-bold"><img src="/logo.svg" alt="logo" className=" h-5" /></span>
 
               <div className="flex gap-6">
                 <a href="#" className="text-white/50 hover:text-white transition-colors">
@@ -509,7 +740,7 @@ function ToolCard({
 
   return (
     <div className={cn(
-      "w-full relative rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-8 transition-all duration-300",
+      "w-full relative rounded-2xl md:rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-4 sm:p-6 md:p-8 transition-all duration-300",
       tool.badge === 'gold' && "ring-2 ring-yellow-400/30 shadow-lg shadow-yellow-400/10"
     )}>
       <Rays />
@@ -518,7 +749,7 @@ function ToolCard({
       {/* Trophy Badge */}
       {tool.badge && (
         <div className={cn(
-          "absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r flex items-center justify-center text-xl z-20 shadow-lg",
+          "absolute top-2 right-2 sm:top-4 sm:right-4 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r flex items-center justify-center text-sm sm:text-lg md:text-xl z-20 shadow-lg",
           getBadgeColor(tool.badge)
         )}>
           {getBadgeIcon(tool.badge)}
@@ -527,25 +758,25 @@ function ToolCard({
 
       <div className="relative z-10">
         <Lens hovering={isHovering} setHovering={setIsHovering}>
-          <div className="w-full h-48 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center relative overflow-hidden">
+          <div className="w-full h-32 sm:h-40 md:h-48 rounded-xl md:rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_50%)]"></div>
             <div className="relative z-10 text-center">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                <Sparkles className="h-10 w-10 text-blue-400" />
+              <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 rounded-xl md:rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 text-blue-400" />
               </div>
-              <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <div className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 #{tool.rank}
               </div>
-              <div className="text-sm text-white/60">Ranked Tool</div>
+              <div className="text-xs sm:text-sm text-white/60">Ranked Tool</div>
             </div>
           </div>
         </Lens>
         
-        <div className={cn("py-4 relative z-20 transition-all duration-300", isHovering ? "blur-sm" : "blur-0")}>
+        <div className={cn("py-2 sm:py-4 relative z-20 transition-all duration-300", isHovering ? "blur-sm" : "blur-0")}>
           {/* Tool Name and Badge */}
-          <div className="flex items-start justify-between mb-3">
+          <div className="flex items-start justify-between mb-2 sm:mb-3">
             <div className="flex-1">
-              <h2 className="text-white text-2xl font-bold leading-tight">{tool.name}</h2>
+              <h2 className="text-white text-lg sm:text-xl md:text-2xl font-bold leading-tight">{tool.name}</h2>
               {tool.badge && (
                 <div className={cn(
                   "inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold mt-1",
@@ -560,19 +791,19 @@ function ToolCard({
           </div>
 
           {/* Description */}
-          <p className="text-white/80 text-sm mb-4 leading-relaxed">{tool.description}</p>
+          <p className="text-white/80 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">{tool.description}</p>
 
           {/* Discount Section (Secondary) */}
           {tool.discount && (
-            <div className="bg-white/5 rounded-lg p-4 mb-4 border border-white/10">
+            <div className="bg-white/5 rounded-lg p-3 sm:p-4 mb-3 sm:mb-4 border border-white/10">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs text-white/50">Exclusive Discount:</span>
-                <span className="text-lg font-bold text-green-400">{tool.discount.split(" ")[0]}</span>
+                <span className="text-sm sm:text-lg font-bold text-green-400">{tool.discount.split(" ")[0]}</span>
               </div>
               {tool.code && (
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-white/50">Code:</span>
-                  <code className="text-sm font-mono bg-white/10 px-3 py-1 rounded text-blue-400">{tool.code}</code>
+                  <code className="text-xs sm:text-sm font-mono bg-white/10 px-2 sm:px-3 py-1 rounded text-blue-400">{tool.code}</code>
                 </div>
               )}
               {tool.disclaimer && (
