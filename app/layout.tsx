@@ -7,8 +7,12 @@ import { Suspense } from "react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Ecom Insider - Find The Best Ecom Deals In Seconds",
-  description: "One website for Ecom / SaaS deals and the best discounts. Discover trending deals nobody else has."
+  title: "Ecom Insider – Find The Best Ecom Tools In Seconds",
+  description: "Insider access to the best Ecom tools at pricing you won't find anywhere else.",
+  openGraph: {
+    title: "Ecom Insider – Find The Best Ecom Tools In Seconds",
+    description: "Insider access to the best Ecom tools at pricing you won't find anywhere else.",
+  }
 }
 
 export default function RootLayout({

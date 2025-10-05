@@ -62,7 +62,7 @@ export default function HeroEcomDeals() {
         >
           <span className="block">Find The Best</span>
           <span className="block bg-gradient-to-r from-[#FF9FFC] via-white to-[#5227FF] bg-clip-text text-transparent">
-            Ecom Deals In Seconds
+            Ecom Tools In Seconds
           </span>
         </motion.h1>
 
@@ -73,7 +73,7 @@ export default function HeroEcomDeals() {
           transition={{ delay: 0.05, duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
           className="mt-5 max-w-2xl text-pretty text-base text-white/80 sm:text-lg"
         >
-          Discover trending deals nobody else has. One website for all Ecom & SaaS discounts.
+          Insider access to the best Ecom tools at pricing you won't find anywhere else.
         </motion.p>
 
         {/* CTA row - garantidamente acima do fundo */}

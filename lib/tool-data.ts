@@ -5,6 +5,8 @@ export const toolCategories = {
       description: "Best agency ad accounts because of their proven track record with 95% success rate and dedicated account managers",
       discount: "10% off first month", 
       code: "INSIDER", 
+      url: "https://adrevival.com",
+      logo: "/logos/adrevival.png",
       rank: 1,
       badge: "gold",
       disclaimer: "Discount applies to new customers only"
@@ -14,6 +16,8 @@ export const toolCategories = {
       description: "Premium agency with white-glove service and custom ad strategies for scaling businesses",
       discount: "30% off for 3 months", 
       code: "INSIDER", 
+      url: "https://agencyaurora.com",
+      logo: "/logos/agency-aurora.png",
       rank: 2,
       badge: "silver"
     },
@@ -22,6 +26,8 @@ export const toolCategories = {
       description: "Data-driven approach with advanced analytics and performance optimization",
       discount: "30% off first month", 
       code: "INSIDER", 
+      url: "https://uproas.com",
+      logo: "/logos/uproas.png",
       rank: 3,
       badge: "bronze"
     },
@@ -30,6 +36,8 @@ export const toolCategories = {
       description: "Affordable solution with good performance for small to medium businesses",
       discount: "15% off for 3 months", 
       code: "INSIDER", 
+      url: "https://zocket.com",
+      logo: "/logos/zocket.png",
       rank: 4,
       badge: null
     },
@@ -40,7 +48,8 @@ export const toolCategories = {
       description: "Best advertising library because it has the largest database with 10M+ ads and real-time updates",
       discount: "25% off lifetime", 
       code: "INSIDER", 
-      url: "afterlib.com", 
+      url: "https://afterlib.com", 
+      logo: "/logos/afterlib.png",
       rank: 1,
       badge: "gold"
     },
@@ -49,6 +58,8 @@ export const toolCategories = {
       description: "Comprehensive ad intelligence with competitor analysis and trend tracking",
       discount: "20% off for 3 months", 
       code: "INSIDER", 
+      url: "https://minea.com",
+      logo: "/logos/minea.png",
       rank: 2,
       badge: "silver"
     },
@@ -57,6 +68,8 @@ export const toolCategories = {
       description: "Advanced filtering and search capabilities for finding winning ad creatives",
       discount: "30% off for 3 months", 
       code: "INSIDER", 
+      url: "https://adplexity.com",
+      logo: "/logos/adplexity.png",
       rank: 3,
       badge: "bronze"
     },
@@ -68,6 +81,7 @@ export const toolCategories = {
       discount: null, 
       code: null, 
       url: "https://openai.com/sora/", 
+      logo: "/logos/openai.png",
       rank: 1,
       badge: "gold",
       isExternal: true
@@ -78,6 +92,7 @@ export const toolCategories = {
       discount: null, 
       code: null, 
       url: "https://labs.google/flow/about", 
+      logo: "/logos/google.png",
       rank: 2,
       badge: "silver",
       isExternal: true
@@ -88,6 +103,7 @@ export const toolCategories = {
       discount: "25% off for 3 months", 
       code: "INSIDER", 
       url: "https://www.makeugc.ai/", 
+      logo: "/logos/makeugc.png",
       rank: 3,
       badge: "bronze"
     },
@@ -98,6 +114,8 @@ export const toolCategories = {
       description: "Best ad tracking software because it provides pixel-perfect attribution and real-time analytics",
       discount: "15% off for 3 months", 
       code: "INSIDER", 
+      url: "https://wetracked.io",
+      logo: "/logos/wetracked.png",
       rank: 1,
       badge: "gold"
     },

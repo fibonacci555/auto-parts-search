@@ -11,6 +11,7 @@ import {
   DollarSign,
   RefreshCw,
   Check,
+  Copy,
   Tag,
   Percent,
   Menu,
@@ -22,6 +23,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { TracingBeam } from "@/components/tracing-beam"
+import Image from "next/image"
+import { useCopy } from "@/hooks/use-copy"
 import AnimeSphereAnimation from "@/components/anime-sphere-animation"
 import { Lens } from "@/components/ui/lens"
 import GradientBlinds from "@/components/anime-sphere-animation"
@@ -310,20 +313,25 @@ export default function UltraModernAutoPartsSearch() {
       <div className="relative z-10">
         <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/30 border-b border-white/5">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <span className="font-bold text-lg tracking-tight"><img src="/logo.svg" alt="Ecom Insider" className="h-6 mr-2" /></span>
+            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="font-bold text-lg tracking-tight">
+              <img src="/logo.svg" alt="Ecom Insider" className="h-6 md:h-7 mr-2" />
+            </button>
 
             <nav className="hidden md:flex items-center gap-2">
               {Object.keys(toolCategories).map((category) => (
                 <Button
                   key={category}
                   variant="ghost"
-                  className="text-white/70 hover:text-white hover:bg-white/20 rounded-full"
+                  className={cn(
+                    "text-white/70 hover:text-white hover:bg-white/20 rounded-full relative",
+                    activeCategory === category && "shadow-[0_0_0_2px_rgba(59,130,246,0.35)]"
+                  )}
                   onClick={() => {
                     const slugMap: Record<string, string> = {
                       "Best Agency Ad Accounts": "agency-ad-accounts",
-                      "Best Advertising Libraries": "advertising-libraries", 
+                      "Spy Tools": "advertising-libraries",
                       "Best UGC Tools": "ugc-tools",
-                      "Best Ad Tracking Software": "ad-tracking-software"
+                      "Attribution tools": "ad-tracking-software"
                     }
                     const slug = slugMap[category]
                     if (slug) {
@@ -359,11 +367,11 @@ export default function UltraModernAutoPartsSearch() {
           onCategorySelect={(category) => {
             const slugMap: Record<string, string> = {
               "Best Agency Ad Accounts": "agency-ad-accounts",
-              "Best Advertising Libraries": "advertising-libraries", 
+              "Spy Tools": "advertising-libraries", 
               "Best UGC Tools": "ugc-tools",
-              "Best Ad Tracking Software": "ad-tracking-software"
+              "Attribution tools": "ad-tracking-software"
             }
-            const slug = slugMap[category]
+            const slug = category ? slugMap[category] : undefined
             if (slug) {
               router.push(`/${slug}`)
             } else {
@@ -422,8 +430,9 @@ export default function UltraModernAutoPartsSearch() {
               ].map((benefit, index) => (
                 <div
                   key={index}
-                  className="border border-white/10 rounded-xl p-4 hover:border-blue-500/50 hover:bg-white/5 transition-all duration-300"
+                  className="border border-white/10 rounded-xl p-4 hover:border-blue-500/50 hover:bg-white/5 transition-all duration-300 relative overflow-hidden"
                 >
+                  <div className="pointer-events-none absolute -inset-8 opacity-30" style={{background: 'radial-gradient(600px circle at var(--x,50%) var(--y,50%), rgba(59,130,246,0.25), transparent 40%)'}} />
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
                       {benefit.icon}
@@ -587,13 +596,13 @@ export default function UltraModernAutoPartsSearch() {
           <section className="flex flex-col items-center justify-center gap-4 py-16 px-4 border-t border-white/5 max-h-screen">
             <ProfileCardComponent 
               avatarUrl="/avatar.png" 
-              name="Partick Werner" 
+              name="Patrick Werner" 
               handle="patwerX" 
               title="Super Affiliate" 
               miniAvatarUrl="/avatar.png" 
               behindGradient={undefined} 
-              innerGradient="linear-gradient(135deg, rgba(99, 102, 241, 0.18) 0%, rgba(168, 85, 247, 0.15) 25%, rgba(236, 72, 153, 0.12) 50%, rgba(251, 191, 36, 0.10) 75%, rgba(34, 197, 94, 0.15) 100%)" 
-              onContactClick={() => console.log("clicked")} 
+              innerGradient="linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(168, 85, 247, 0.10) 25%, rgba(236, 72, 153, 0.08) 50%, rgba(251, 191, 36, 0.06) 75%, rgba(34, 197, 94, 0.10) 100%)" 
+              onContactClick={() => window.open('https://x.com/patwerX', '_blank', 'noopener,noreferrer')} 
             />
           </section>
 
@@ -641,6 +650,7 @@ function ToolCard({
   setIsHovering: (hovering: boolean) => void
   onClick: () => void
 }) {
+  const { copied, copyToClipboard } = useCopy()
   const getBadgeColor = (badge: string | null) => {
     switch (badge) {
       case 'gold': return 'from-yellow-400 to-yellow-600'
@@ -682,8 +692,12 @@ function ToolCard({
           <div className="w-full h-32 sm:h-40 md:h-48 rounded-xl md:rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_50%)]"></div>
             <div className="relative z-10 text-center">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 rounded-xl md:rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 text-blue-400" />
+              <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 rounded-xl md:rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center overflow-hidden">
+                {tool.logo ? (
+                  <Image src={tool.logo} alt={`${tool.name} logo`} width={80} height={80} className="w-full h-full object-contain p-2" />
+                ) : (
+                  <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 text-blue-400" />
+                )}
               </div>
               <div className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 #{tool.rank}
@@ -724,7 +738,14 @@ function ToolCard({
               {tool.code && (
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-white/50">Code:</span>
-                  <code className="text-xs sm:text-sm font-mono bg-white/10 px-2 sm:px-3 py-1 rounded text-blue-400">{tool.code}</code>
+                  <button onClick={() => copyToClipboard(tool.code!)} className="flex items-center gap-2 text-xs sm:text-sm font-mono bg-white/10 hover:bg-white/20 px-2 sm:px-3 py-1 rounded text-blue-400 transition-colors duration-200 group">
+                    <code>{tool.code}</code>
+                    {copied ? (
+                      <Check className="h-3 w-3 text-green-400" />
+                    ) : (
+                      <Copy className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                    )}
+                  </button>
                 </div>
               )}
               {tool.disclaimer && (

@@ -1,10 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowLeft, ExternalLink, Sparkles, ChevronRight } from "lucide-react"
+import { ArrowLeft, ExternalLink, Sparkles, ChevronRight, Copy, Check } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { useCopy } from "@/hooks/use-copy"
+import Image from "next/image"
 
 interface Tool {
   name: string
@@ -12,6 +14,7 @@ interface Tool {
   discount: string | null
   code: string | null
   url?: string
+  logo?: string
   rank: number
   badge: "gold" | "silver" | "bronze" | null
   disclaimer?: string
@@ -34,6 +37,7 @@ export default function CategoryPage({
   categoryIcon,
 }: CategoryPageProps) {
   const [hoveringTool, setHoveringTool] = useState<string | null>(null)
+  const { copied, copyToClipboard } = useCopy()
 
   const getBadgeColor = (badge: string | null) => {
     switch (badge) {
@@ -126,8 +130,25 @@ export default function CategoryPage({
               <div className="w-full h-32 sm:h-40 md:h-48 rounded-xl md:rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center relative overflow-hidden mb-4 sm:mb-6">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_50%)]"></div>
                 <div className="relative z-10 text-center">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 rounded-xl md:rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                    <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 text-blue-400" />
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 rounded-xl md:rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center overflow-hidden">
+                    {tool.logo ? (
+                      <Image
+                        src={tool.logo}
+                        alt={`${tool.name} logo`}
+                        width={64}
+                        height={64}
+                        className="w-full h-full object-contain p-2"
+                        onError={(e) => {
+                          // Fallback to icon if logo fails to load
+                          e.currentTarget.style.display = 'none'
+                          e.currentTarget.nextElementSibling?.classList.remove('hidden')
+                        }}
+                      />
+                    ) : null}
+                    <Sparkles className={cn(
+                      "h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 text-blue-400",
+                      tool.logo && "hidden"
+                    )} />
                   </div>
                   <div className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     #{tool.rank}
@@ -168,7 +189,17 @@ export default function CategoryPage({
                     {tool.code && (
                       <div className="flex items-center justify-between">
                         <span className="text-xs text-white/50">Code:</span>
-                        <code className="text-xs sm:text-sm font-mono bg-white/10 px-2 sm:px-3 py-1 rounded text-blue-400">{tool.code}</code>
+                        <button
+                          onClick={() => copyToClipboard(tool.code!)}
+                          className="flex items-center gap-2 text-xs sm:text-sm font-mono bg-white/10 hover:bg-white/20 px-2 sm:px-3 py-1 rounded text-blue-400 transition-colors duration-200 group"
+                        >
+                          <code>{tool.code}</code>
+                          {copied ? (
+                            <Check className="h-3 w-3 text-green-400" />
+                          ) : (
+                            <Copy className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                          )}
+                        </button>
                       </div>
                     )}
                     {tool.disclaimer && (
