@@ -404,7 +404,7 @@ export default function UltraModernAutoPartsSearch() {
 
 
 
-          <div className="border border-white/10 rounded-2xl p-8 mb-16  backdrop-blur-3xl mx-40">
+          <div className="border border-white/10 rounded-2xl p-8 mb-16  backdrop-blur-xl md:mx-40 mx-10 md:mt-0 mt-[-200px]">
             <h3 className="text-2xl font-bold mb-6 text-center">Why Choose Us</h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -432,9 +432,9 @@ export default function UltraModernAutoPartsSearch() {
               ].map((benefit, index) => (
                 <div
                   key={index}
-                  className="border border-white/10 rounded-xl p-4 hover:border-blue-500/50 hover:bg-white/5 transition-all duration-300 relative overflow-hidden"
+                  className="border border-white/30 rounded-xl shadow-sm p-4 hover:border-blue-500/50 hover:bg-white/5 transition-all duration-300 relative overflow-hidden"
                 >
-                  <div className="pointer-events-none absolute -inset-8 opacity-30" style={{ background: 'radial-gradient(600px circle at var(--x,50%) var(--y,50%), rgba(59,130,246,0.25), transparent 40%)' }} />
+                  <div className="pointer-events-none absolute -inset-8 opacity-30" style={{ background: 'radial-gradient(600px circle at var(--x,50%) var(--y,50%), rgba(59,130,246,0.5), transparent 100%)' }} />
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
                       {benefit.icon}
