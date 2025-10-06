@@ -334,9 +334,9 @@ export default function UltraModernAutoPartsSearch() {
                   onClick={() => {
                     const slugMap: Record<string, string> = {
                       "Best Agency Ad Accounts": "agency-ad-accounts",
-                      "Spy Tools": "advertising-libraries",
+                      "Best Advertising Libraries": "advertising-libraries",
                       "Best UGC Tools": "ugc-tools",
-                      "Attribution tools": "ad-tracking-software"
+                      "Best Ad Tracking Software": "ad-tracking-software"
                     }
                     const slug = slugMap[category]
                     if (slug) {

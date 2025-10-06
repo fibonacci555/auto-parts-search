@@ -22,7 +22,7 @@ export default function AgencyAdAccountsPage() {
         categoryDescription="Discover the top-ranked agency ad accounts with proven track records and exclusive discounts. These agencies have helped thousands of businesses scale their advertising campaigns."
         tools={categoryData}
         categorySlug="agency-ad-accounts"
-        categoryIcon="🏆"
+        categoryIcon="🏆" 
       />
     </Suspense>
   )

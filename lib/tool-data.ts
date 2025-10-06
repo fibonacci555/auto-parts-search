@@ -8,7 +8,7 @@ export const toolCategories = {
       url: "https://adrevival.com",
       logo: "/logos/adrevival.png",
       rank: 1,
-      badge: "gold",
+      badge: "gold" as const,
       disclaimer: "Discount applies to new customers only"
     },
     { 
@@ -19,7 +19,7 @@ export const toolCategories = {
       url: "https://agencyaurora.com",
       logo: "/logos/agency-aurora.png",
       rank: 2,
-      badge: "silver"
+      badge: "silver" as const
     },
     { 
       name: "UpRoas", 
@@ -29,7 +29,7 @@ export const toolCategories = {
       url: "https://uproas.com",
       logo: "/logos/uproas.png",
       rank: 3,
-      badge: "bronze"
+      badge: "bronze" as const
     },
     { 
       name: "Zocket", 
@@ -51,7 +51,7 @@ export const toolCategories = {
       url: "https://afterlib.com", 
       logo: "/logos/afterlib.png",
       rank: 1,
-      badge: "gold"
+      badge: "gold" as const
     },
     { 
       name: "Minea", 
@@ -61,7 +61,7 @@ export const toolCategories = {
       url: "https://minea.com",
       logo: "/logos/minea.png",
       rank: 2,
-      badge: "silver"
+      badge: "silver" as const
     },
     { 
       name: "Adplexity", 
@@ -71,7 +71,7 @@ export const toolCategories = {
       url: "https://adplexity.com",
       logo: "/logos/adplexity.png",
       rank: 3,
-      badge: "bronze"
+      badge: "bronze" as const
     },
   ],
   "Best UGC Tools": [
@@ -83,7 +83,7 @@ export const toolCategories = {
       url: "https://openai.com/sora/", 
       logo: "/logos/openai.png",
       rank: 1,
-      badge: "gold",
+      badge: "gold" as const,
       isExternal: true
     },
     { 
@@ -94,7 +94,7 @@ export const toolCategories = {
       url: "https://labs.google/flow/about", 
       logo: "/logos/google.png",
       rank: 2,
-      badge: "silver",
+      badge: "silver" as const,
       isExternal: true
     },
     { 
@@ -105,7 +105,7 @@ export const toolCategories = {
       url: "https://www.makeugc.ai/", 
       logo: "/logos/makeugc.png",
       rank: 3,
-      badge: "bronze"
+      badge: "bronze" as const
     },
   ],
   "Best Ad Tracking Software": [
@@ -117,7 +117,7 @@ export const toolCategories = {
       url: "https://wetracked.io",
       logo: "/logos/wetracked.png",
       rank: 1,
-      badge: "gold"
+      badge: "gold" as const
     },
   ],
 }
