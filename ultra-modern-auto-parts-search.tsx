@@ -102,14 +102,14 @@ const trendingDeals = [
 ]
 
 // Validated Stepper Component
-function ValidatedStepper({ 
-  currentStep, 
-  onStepChange, 
-  stepperData, 
-  setStepperData, 
-  isStepValid, 
-  onComplete, 
-  children 
+function ValidatedStepper({
+  currentStep,
+  onStepChange,
+  stepperData,
+  setStepperData,
+  isStepValid,
+  onComplete,
+  children
 }: {
   currentStep: number
   onStepChange: (step: number) => void
@@ -139,7 +139,7 @@ function ValidatedStepper({
 
   return (
     <div className="outer-container">
-      
+
       <div className="step-circle-container bg-gradient-to-br from-slate-800/50 to-slate-900/50" style={{ border: '1px solid #222' }}>
         {/* Step Indicators */}
         <div className="step-indicator-row">
@@ -149,13 +149,12 @@ function ValidatedStepper({
             const isActive = currentStep === stepNumber
             const isComplete = currentStep > stepNumber
             const isInactive = currentStep < stepNumber
-            
+
             return (
               <React.Fragment key={stepNumber}>
                 <div className="step-indicator">
-                  <div className={`step-indicator-inner ${
-                    isComplete ? 'complete' : isActive ? 'active' : 'inactive'
-                  }`}>
+                  <div className={`step-indicator-inner ${isComplete ? 'complete' : isActive ? 'active' : 'inactive'
+                    }`}>
                     {isComplete ? (
                       <Check className="check-icon" />
                     ) : isActive ? (
@@ -191,8 +190,8 @@ function ValidatedStepper({
                 Previous
               </button>
             )}
-            <button 
-              onClick={handleNext} 
+            <button
+              onClick={handleNext}
               className={`next-button ${!isStepValid(currentStep) ? 'opacity-50 cursor-not-allowed' : ''}`}
               disabled={!isStepValid(currentStep)}
             >
@@ -296,7 +295,7 @@ export default function UltraModernAutoPartsSearch() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      
+
       {/* Background elements */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black"></div>
@@ -334,9 +333,9 @@ export default function UltraModernAutoPartsSearch() {
                   onClick={() => {
                     const slugMap: Record<string, string> = {
                       "Best Agency Ad Accounts": "agency-ad-accounts",
-                      "Best Advertising Libraries": "advertising-libraries",
+                      "Spy Tools": "advertising-libraries",
                       "Best UGC Tools": "ugc-tools",
-                      "Best Ad Tracking Software": "ad-tracking-software"
+                      "Attribution tools": "ad-tracking-software"
                     }
                     const slug = slugMap[category]
                     if (slug) {
@@ -372,7 +371,7 @@ export default function UltraModernAutoPartsSearch() {
           onCategorySelect={(category) => {
             const slugMap: Record<string, string> = {
               "Best Agency Ad Accounts": "agency-ad-accounts",
-              "Spy Tools": "advertising-libraries", 
+              "Spy Tools": "advertising-libraries",
               "Best UGC Tools": "ugc-tools",
               "Attribution tools": "ad-tracking-software"
             }
@@ -403,7 +402,7 @@ export default function UltraModernAutoPartsSearch() {
 
           </section>
 
-          
+
 
           <div className="border border-white/10 rounded-2xl p-8 mb-16  backdrop-blur-3xl mx-40">
             <h3 className="text-2xl font-bold mb-6 text-center">Why Choose Us</h3>
@@ -435,7 +434,7 @@ export default function UltraModernAutoPartsSearch() {
                   key={index}
                   className="border border-white/10 rounded-xl p-4 hover:border-blue-500/50 hover:bg-white/5 transition-all duration-300 relative overflow-hidden"
                 >
-                  <div className="pointer-events-none absolute -inset-8 opacity-30" style={{background: 'radial-gradient(600px circle at var(--x,50%) var(--y,50%), rgba(59,130,246,0.25), transparent 40%)'}} />
+                  <div className="pointer-events-none absolute -inset-8 opacity-30" style={{ background: 'radial-gradient(600px circle at var(--x,50%) var(--y,50%), rgba(59,130,246,0.25), transparent 40%)' }} />
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
                       {benefit.icon}
@@ -466,7 +465,7 @@ export default function UltraModernAutoPartsSearch() {
           </section>
 
           {/* Stepper Section */}
-        <section className="py-16 px-4 border-t border-white/5">
+          <section className="py-16 px-4 border-t border-white/5">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -476,7 +475,7 @@ export default function UltraModernAutoPartsSearch() {
                   Get early access to new deals before they go public. Price drops delivered straight to your inbox.
                 </p>
               </div>
-              
+
               <div className=" backdrop-blur-sm rounded-2xl mt-20  p-6 md:p-8">
                 <ValidatedStepper
                   currentStep={currentStep}
@@ -511,7 +510,7 @@ export default function UltraModernAutoPartsSearch() {
                       </div>
                     </div>
                   </Step>
-                  
+
                   <Step>
                     <div className="text-center py-8">
                       <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
@@ -535,7 +534,7 @@ export default function UltraModernAutoPartsSearch() {
                       </div>
                     </div>
                   </Step>
-                  
+
                   <Step>
                     <div className="text-center py-8">
                       <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center">
@@ -598,15 +597,15 @@ export default function UltraModernAutoPartsSearch() {
           )}
 
           <section className="flex flex-col items-center justify-center gap-4 py-16 px-4 border-t border-white/5 max-h-screen">
-            <ProfileCardComponent 
-              avatarUrl="/avatar.png" 
-              name="Patrick Werner" 
-              handle="patwerX" 
-              title="Super Affiliate" 
-              miniAvatarUrl="/avatar.png" 
-              behindGradient={undefined} 
-              innerGradient="linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(168, 85, 247, 0.10) 25%, rgba(236, 72, 153, 0.08) 50%, rgba(251, 191, 36, 0.06) 75%, rgba(34, 197, 94, 0.10) 100%)" 
-              onContactClick={() => window.open('https://x.com/patwerX', '_blank', 'noopener,noreferrer')} 
+            <ProfileCardComponent
+              avatarUrl="/avatar.png"
+              name="Patrick Werner"
+              handle="patwerX"
+              title="Super Affiliate"
+              miniAvatarUrl="/avatar.png"
+              behindGradient={undefined}
+              innerGradient="linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(168, 85, 247, 0.10) 25%, rgba(236, 72, 153, 0.08) 50%, rgba(251, 191, 36, 0.06) 75%, rgba(34, 197, 94, 0.10) 100%)"
+              onContactClick={() => window.open('https://x.com/patwerX', '_blank', 'noopener,noreferrer')}
             />
           </section>
 
@@ -617,8 +616,8 @@ export default function UltraModernAutoPartsSearch() {
           <div className="container mx-auto px-4">
             <p className="text-center text-white/40 text-sm">
               We earn commissions on purchases made through our links.{' '}
-              <a 
-                href="/affiliate-disclosure" 
+              <a
+                href="/affiliate-disclosure"
                 className="text-purple-400 hover:text-purple-300 transition-colors underline"
               >
                 Learn more
@@ -693,7 +692,7 @@ function ToolCard({
     )}>
       <Rays />
       <Beams />
-      
+
       {/* Trophy Badge */}
       {tool.badge && (
         <div className={cn(
@@ -723,7 +722,7 @@ function ToolCard({
             </div>
           </div>
         </Lens>
-        
+
         <div className={cn("py-2 sm:py-4 relative z-20 transition-all duration-300", isHovering ? "blur-sm" : "blur-0")}>
           {/* Tool Name and Badge */}
           <div className="flex items-start justify-between mb-2 sm:mb-3">
@@ -795,8 +794,8 @@ function ToolCard({
             onClick={onClick}
             className={cn(
               "w-full rounded-full h-12 transition-all duration-300 hover:scale-105 font-semibold",
-              tool.isExternal 
-                ? "bg-gray-600 hover:bg-gray-700" 
+              tool.isExternal
+                ? "bg-gray-600 hover:bg-gray-700"
                 : "bg-blue-600 hover:bg-blue-700"
             )}
           >

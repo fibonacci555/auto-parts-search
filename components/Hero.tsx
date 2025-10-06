@@ -82,7 +82,7 @@ export default function HeroEcomDeals() {
 
       </div>
       <div className="flex flex-col items-center justify-center mx-auto">
-      <GradientText className="mt-20 text-xl bg-transparent mx-auto justify-center text-center ">Every dollar generated will be donated to charity - publicly shown on X.</GradientText>
+      <GradientText className="mt-20 text-xl bg-transparent mx-auto justify-center text-center ">100% of the affiliate profits will be donated to a good cause.</GradientText>
       <GradientText className="mt-20 text-lg bg-transparent mx-auto justify-center text-center ">An exclusive project by: @patwer</GradientText>
       </div>
 
