@@ -69,7 +69,7 @@ export default function HeroEcomDeals() {
 
         {/* Trust row */}
         <div className="mt-8 sm:mt-10 grid w-full grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-xs sm:text-sm text-white/70 z-20" style={{ zIndex: 200 }}>
-          <Stat label="Exclusive finds" value="200+" />
+          <Stat label="Exclusive finds" value="10+" />
           <Stat label="Avg. savings" value="35%" />
           <Stat label="SaaS & Ecom" value="All-in-one" />
           <Stat label="Updated" value="Hourly" />
