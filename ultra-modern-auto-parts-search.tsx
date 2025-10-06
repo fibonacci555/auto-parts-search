@@ -449,7 +449,7 @@ export default function UltraModernAutoPartsSearch() {
           </div>
 
 
-          <section className="px-4 md:px-6 lg:px-8">
+          <section className="px-4 md:px-6 lg:px-8 mx-auto w-full justify-center">
             <MagicBento
               textAutoHide={true}
               enableStars={true}

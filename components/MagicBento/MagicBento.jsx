@@ -507,7 +507,8 @@ const MagicBento = ({
         />
       )}
 
-      <div className={`w-full max-w-7xl mx-auto px-4 ${className}`}>
+<div className={`w-full max-w-7xl mx-auto px-4 flex justify-center items-center min-h-screen ${className}`}>
+
         <BentoCardGrid gridRef={gridRef}>
         {cardData.map((card, index) => {
           const baseClassName = `card ${textAutoHide ? 'card--text-autohide' : ''} ${enableBorderGlow ? 'card--border-glow' : ''}`;
