@@ -41,7 +41,7 @@ export default function HeroEcomDeals() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }} style={{ zIndex: 200 }}
           className="mt-4 sm:mt-6 text-balance text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-white z-20"
         >
           <span className="block">Find The Best</span>
@@ -54,21 +54,21 @@ export default function HeroEcomDeals() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.05, duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
+          transition={{ delay: 0.05, duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }} style={{ zIndex: 200 }}
           className="mt-4 sm:mt-5 max-w-full sm:max-w-xl md:max-w-2xl text-pretty text-sm sm:text-base md:text-lg text-white/80"
         >
           Insider access to the best Ecom tools at pricing you won't find anywhere else.
         </motion.p>
 
         {/* CTA row */}
-        <div className="mt-6 sm:mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4 relative z-20">
+        <div className="mt-6 sm:mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4 relative z-20" style={{ zIndex: 200 }}>
           <Button href="#" icon={<IoIosFlash />}>
             Start Now
           </Button>
         </div>
 
         {/* Trust row */}
-        <div className="mt-8 sm:mt-10 grid w-full grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-xs sm:text-sm text-white/70 z-20">
+        <div className="mt-8 sm:mt-10 grid w-full grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-xs sm:text-sm text-white/70 z-20" style={{ zIndex: 200 }}>
           <Stat label="Exclusive finds" value="200+" />
           <Stat label="Avg. savings" value="35%" />
           <Stat label="SaaS & Ecom" value="All-in-one" />
