@@ -78,7 +78,7 @@ export default function HeroEcomDeals() {
 
       <div className="relative flex flex-col items-center justify-center mx-auto px-4 sm:px-6">
         <GradientText className="mt-12 sm:mt-16 md:mt-20 text-base sm:text-lg md:text-xl bg-transparent mx-auto text-center z-20">
-          100% of the affiliate profits will be donated to a good cause.
+          100% of the Affiliate Profits Will Be Donated To a Good Cause.
         </GradientText>
 
         {/* Wrapper for counter and button */}

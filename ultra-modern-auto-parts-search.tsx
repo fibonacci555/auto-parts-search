@@ -604,7 +604,7 @@ export default function UltraModernAutoPartsSearch() {
               title="Super Affiliate"
               miniAvatarUrl="/avatar.png"
               behindGradient={undefined}
-              innerGradient="linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(168, 85, 247, 0.10) 25%, rgba(236, 72, 153, 0.08) 50%, rgba(251, 191, 36, 0.06) 75%, rgba(34, 197, 94, 0.10) 100%)"
+              innerGradient={undefined}
               onContactClick={() => window.open('https://x.com/patwerX', '_blank', 'noopener,noreferrer')}
             />
           </section>
