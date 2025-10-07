@@ -91,27 +91,8 @@ export default function MobileMenu({
       icon: Sparkles,
       onClick: handleAllToolsClick,
     },
-    {
-      label: "About",
-      href: "/about",
-      icon: Sparkles,
-    },
-    {
-      label: "Blog",
-      href: "https://blog.ecominsider.com",
-      icon: ExternalLink,
-      hasExternalIcon: true,
-    },
-    {
-      label: "Help Center",
-      icon: HelpCircle,
-      hasSubmenu: true,
-      submenuItems: [
-        { label: "FAQ", href: "/faq", icon: "❓" },
-        { label: "Contact", href: "/contact", icon: "📧" },
-        { label: "Support", href: "/support", icon: "🆘" },
-      ],
-    },
+    
+    
   ]
 
   return (

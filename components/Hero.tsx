@@ -126,7 +126,8 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({ href, children, icon }) => {
   const buttonContent = (
-    <button
+    <a
+    href="#deals"
       type="button"
       className="relative inline-flex items-center justify-center h-12 w-fit rounded-[0.75rem] cursor-pointer overflow-hidden transition-all duration-250 ease-in-out bg-gradient-to-b from-[#7a5af8] to-[#7a5af8] hover:scale-95 focus:outline-none p-3"
       style={{
@@ -245,7 +246,7 @@ const Button: React.FC<ButtonProps> = ({ href, children, icon }) => {
             }
           }
         `}</style>
-    </button>
+    </a>
   );
 
   return href ? (

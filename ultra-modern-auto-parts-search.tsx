@@ -563,7 +563,7 @@ export default function UltraModernAutoPartsSearch() {
 
 
           {showResults && (
-            <section ref={dealsSectionRef} className="py-16 px-4 border-t border-white/5 min-h-screen">
+            <section ref={dealsSectionRef} className="py-16 px-4 border-t border-white/5 min-h-screen" id="deals">
               <div className="max-w-6xl mx-auto">
                 <div className="flex justify-between items-center mb-8">
                   <h2 className="text-2xl font-bold">{activeCategory || "All Tools"}</h2>
