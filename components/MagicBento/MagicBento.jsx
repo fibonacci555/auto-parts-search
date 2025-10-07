@@ -18,7 +18,8 @@ const cardData = [
     color: '#060010',
     title: 'Trusted Ranking',
     description: 'Every tool ranked based on global feedback.',
-    label: 'Analytics'
+    label: 'Analytics',
+    hideOnMobile: true
   },
   {
     color: '#060010',
@@ -30,13 +31,15 @@ const cardData = [
     color: '#060010',
     title: 'Deal Alerts',
     description: 'Get notified when prices drop on tools you’re watching. Never miss a discount.',
-    label: 'Automation'
+    label: 'Automation',
+    hideOnMobile: true
   },
   {
     color: '#060010',
     title: 'A-Player Approved',
     description: 'Curated by people running 7–8 figure Ecom stores. Tools they actually use.',
-    label: 'Collaboration'
+    label: 'Collaboration',
+    hideOnMobile: true
   },
   {
     color: '#060010',
@@ -48,7 +51,8 @@ const cardData = [
     color: '#060010',
     title: 'Verified Partners',
     description: 'Every company filtered. Every deal legitimate. No fcking risk.',
-    label: 'Security'
+    label: 'Security',
+    hideOnMobile: true
   }
 ];
 
@@ -511,6 +515,7 @@ const MagicBento = ({
 
         <BentoCardGrid gridRef={gridRef}>
         {cardData.map((card, index) => {
+          if (isMobile && card.hideOnMobile) return null;
           const baseClassName = `card ${textAutoHide ? 'card--text-autohide' : ''} ${enableBorderGlow ? 'card--border-glow' : ''}`;
           const cardProps = {
             className: baseClassName,
