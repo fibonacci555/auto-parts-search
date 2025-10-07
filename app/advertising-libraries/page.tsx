@@ -6,7 +6,7 @@ import { Grid3X3 } from 'lucide-react'
 export default function AdvertisingLibrariesPage() {
   const categoryTitle = "Best Advertising Libraries"
   const categoryDescription = "Discover the top advertising libraries and spy tools to analyze winning ad creatives, track competitor campaigns, and find inspiration for your next breakthrough campaign."
-  const tools = toolCategories["Best Advertising Libraries"]
+  const tools = toolCategories["Best Spy Tools"]
   const categorySlug = "advertising-libraries"
   
 

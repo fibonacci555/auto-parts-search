@@ -63,6 +63,17 @@ export const toolCategories = {
       rank: 2,
       badge: "silver" as const
     },
+
+    { 
+      name: "Minea", 
+      description: "Comprehensive ad intelligence with competitor analysis and trend tracking",
+      discount: "30% off ", 
+      code: "INSIDER", 
+      url: "https://minea.com",
+      logo: "https://cdn-1.webcatalog.io/catalog/minea/minea-icon-filled-256.png?v=1714777735113",
+      rank: 3,
+      badge: "silver" as const
+    },
     { 
       name: "Adplexity Native", 
       description: "Advanced filtering and search capabilities for finding winning ad creatives",
