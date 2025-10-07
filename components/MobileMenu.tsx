@@ -62,9 +62,9 @@ export default function MobileMenu({
   const getCategorySlug = (category: string) => {
     const slugMap: Record<string, string> = {
       "Best Agency Ad Accounts": "agency-ad-accounts",
-      "Best Advertising Libraries": "advertising-libraries", 
+      "Spy Tools": "advertising-libraries", 
       "Best UGC Tools": "ugc-tools",
-      "Best Ad Tracking Software": "ad-tracking-software"
+      "Attribution tools": "ad-tracking-software"
     }
     return slugMap[category] || category.toLowerCase().replace(/\s+/g, '-')
   }

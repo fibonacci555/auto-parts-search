@@ -185,18 +185,9 @@
   opacity: 0;
 }
 
-.pc-card:hover .pc-shine,
-.pc-card.active .pc-shine {
-  filter: brightness(0.95) contrast(1.1) saturate(0.3);
-  animation: none;
-}
 
-.pc-card:hover .pc-shine::before,
-.pc-card.active .pc-shine::before,
-.pc-card:hover .pc-shine::after,
-.pc-card.active .pc-shine::after {
-  opacity: 0.3;
-}
+
+
 
 .pc-shine::before {
   background-image:

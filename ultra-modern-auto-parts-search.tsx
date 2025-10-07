@@ -316,7 +316,7 @@ export default function UltraModernAutoPartsSearch() {
                   onClick={() => {
                     const slugMap: Record<string, string> = {
                       "Best Agency Ad Accounts": "agency-ad-accounts",
-                      "Spy Tools": "advertising-libraries",
+                      "Spy Tools": "advertising-libraries", 
                       "Best UGC Tools": "ugc-tools",
                       "Attribution tools": "ad-tracking-software"
                     }
@@ -354,7 +354,7 @@ export default function UltraModernAutoPartsSearch() {
           onCategorySelect={(category) => {
             const slugMap: Record<string, string> = {
               "Best Agency Ad Accounts": "agency-ad-accounts",
-              "Spy Tools": "advertising-libraries",
+              "Spy Tools": "advertising-libraries", 
               "Best UGC Tools": "ugc-tools",
               "Attribution tools": "ad-tracking-software"
             }
@@ -586,8 +586,8 @@ export default function UltraModernAutoPartsSearch() {
               handle="patwerX"
               title="Super Affiliate"
               miniAvatarUrl="/avatar.png"
-              behindGradient={undefined}
-              innerGradient={undefined}
+              grainUrl=""
+              
               onContactClick={() => window.open('https://x.com/patwerX', '_blank', 'noopener,noreferrer')}
             />
           </section>

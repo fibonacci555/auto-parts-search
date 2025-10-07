@@ -42,7 +42,7 @@ export const toolCategories = {
       badge: null
     },
   ],
-  "Best Advertising Libraries": [
+  "Best Spy Tools": [
     { 
       name: "Afterlib", 
       description: "Best advertising library because it has the largest database with 10M+ ads and real-time updates",
@@ -108,7 +108,7 @@ export const toolCategories = {
       badge: "bronze" as const
     },
   ],
-  "Best Ad Tracking Software": [
+  "Best Attribution Tools": [
     { 
       name: "WeTracked.io", 
       description: "Best ad tracking software because it provides pixel-perfect attribution and real-time analytics",

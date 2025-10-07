@@ -91,7 +91,8 @@ export default function HeroEcomDeals() {
           <DonatedCounter target={100} className="absolute left-1/2 -translate-x-1/2 bottom-[-60px] sm:bottom-[-75px] -translate-y-1/2 z-10" />
 
           {/* The @patwer button */}
-          <button
+          <a
+          href="https://x.com/patwerX"
             className="relative inline-flex items-center justify-center px-[1px] py-[1px] font-medium text-white rounded-full z-20 bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF] transition-all duration-200 hover:scale-[1.02]"
           >
             <span
@@ -101,7 +102,7 @@ export default function HeroEcomDeals() {
             <span className="relative z-10 bg-gradient-to-r from-[#3c436d] to-[#3f1480] rounded-full px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base">
               An exclusive project by: @patwer
             </span>
-          </button>
+          </a>
         </div>
       </div>
 

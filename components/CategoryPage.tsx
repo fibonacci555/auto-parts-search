@@ -93,7 +93,7 @@ export default function CategoryPage({
       <main className="relative z-10 container mx-auto px-4 py-12 flex flex-col items-center">
         {/* Category Header */}
         <div className="text-center mb-12 max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent py-4 ">
             {categoryTitle}
           </h1>
           <p className="text-xl text-white/70 leading-relaxed">
