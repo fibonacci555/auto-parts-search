@@ -126,14 +126,14 @@ export default function CategoryPage({
                 <div className="w-full md:w-48 lg:w-56 h-32 sm:h-40 md:h-48 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center relative overflow-hidden flex-shrink-0">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_50%)]"></div>
                   <div className="relative z-10 text-center">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center overflow-hidden">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 rounded-xl md:rounded-2xl bg-white/100 backdrop-blur-sm flex items-center justify-center overflow-hidden">
                       {tool.logo ? (
                         <Image
                           src={tool.logo}
                           alt={`${tool.name} logo`}
                           width={64}
                           height={64}
-                          className="w-full h-full object-contain p-2"
+                          className="w-full h-full object-contain rounded-xl md:rounded-2xl"
                         />
                       ) : (
                         <Sparkles className="h-8 w-8 text-blue-400" />

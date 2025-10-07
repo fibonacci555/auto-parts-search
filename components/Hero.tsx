@@ -86,49 +86,77 @@ export default function HeroEcomDeals() {
 
       {/* ===== Lower block (CONSTRAINED) ===== */}
       <div className="relative mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12">
-        <div className="relative mt-4 sm:mt-16 md:mt-0 flex justify-center z-20">
-          <div className="relative inline-flex w-full max-w-[min(420px,90vw)] sm:max-w-none sm:w-auto">
+        <div className="relative mt-4 sm:mt-16 md:mt-0 z-20 flex justify-center">
+          {/* Mobile donation capsule */}
+          <div className="relative inline-flex w-full max-w-[min(420px,90vw)] sm:hidden">
             <span
-              className="pointer-events-none absolute -inset-x-6 -inset-y-3 rounded-full bg-gradient-to-r from-[#6AE4FF]/40 via-[#B27DFF]/35 to-[#6AE4FF]/40 blur-2xl opacity-90 animate-pulse"
+              className="pointer-events-none absolute -inset-x-4 -inset-y-2 rounded-[26px] bg-gradient-to-r from-[#6AE4FF]/35 via-[#B27DFF]/30 to-[#6AE4FF]/35 blur-xl opacity-80 animate-pulse"
               aria-hidden="true"
             />
             <span
-              className="pointer-events-none absolute inset-0 rounded-[999px] bg-gradient-to-r from-[#6AE4FF]/25 via-[#B27DFF]/20 to-[#6AE4FF]/25 opacity-90"
+              className="pointer-events-none absolute inset-[1px] rounded-[28px] bg-gradient-to-r from-[#6AE4FF]/20 via-[#B27DFF]/16 to-[#6AE4FF]/20 opacity-85"
               aria-hidden="true"
             />
-            <span
-              className="relative inline-flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 px-5 sm:px-8 py-3 sm:py-4 rounded-[999px] backdrop-blur-lg border border-white/25 bg-[#070E24]/100 shadow-[0_0_35px_rgba(106,228,255,0.35)] text-center sm:text-left"
-            >
-              <span className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF] text-black shadow-[0_0_18px_rgba(106,228,255,0.45)]">
-                <Heart className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
+            <div className="relative flex flex-col items-center gap-4 px-5 py-5 rounded-[30px] backdrop-blur-lg border border-white/25 bg-[#060E25]/100 shadow-[0_0_28px_rgba(106,228,255,0.28)] text-center">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF] text-black shadow-[0_0_18px_rgba(106,228,255,0.45)]">
+                <Heart className="h-5 w-5" aria-hidden="true" />
               </span>
-              <GradientText className="text-sm bg-transparent sm:text-lg md:text-xl font-semibold tracking-tight text-center sm:text-left text-balance">
+              <GradientText className="text-base bg-transparent font-semibold tracking-tight text-balance">
                 100% of Affiliate Profits will be Donated to a Good Cause.
               </GradientText>
-            </span>
+              <DonatedCounter
+                target={100}
+                className="w-full flex justify-center"
+              />
+              <a
+                href="https://x.com/patwerX"
+                className="relative inline-flex w-full items-center justify-center px-[1px] py-[1px] font-medium text-white rounded-full bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF] transition-all duration-200 hover:scale-[1.02]"
+              >
+                <span
+                  className="absolute inset-0 rounded-full p-[1px] bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF] pointer-events-none"
+                  aria-hidden="true"
+                />
+                <span className="relative z-10 w-full rounded-full bg-gradient-to-r from-[#3c436d] to-[#3f1480] px-4 py-2 text-sm">
+                  An exclusive project by: @patwer
+                </span>
+              </a>
+            </div>
           </div>
-        </div>
 
-        <div className="relative mt-4 sm:mt-6 flex justify-center">
-          {/* Counter behind the button */}
-          <DonatedCounter
-            target={100}
-            className="absolute left-1/2 -translate-x-1/2 bottom-[-60px] sm:bottom-[-75px] -translate-y-1/2 z-10"
-          />
-
-          {/* Button to author */}
-          <a
-            href="https://x.com/patwerX"
-            className="relative inline-flex items-center justify-center px-[1px] py-[1px] font-medium text-white rounded-full z-20 bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF] transition-all duration-200 hover:scale-[1.02]"
-          >
-            <span
-              className="absolute inset-0 rounded-full p-[1px] bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF] pointer-events-none"
+          {/* Desktop / tablet donation panel */}
+          <div className="relative hidden sm:flex w-full justify-center">
+            <div className="relative inline-flex w-full max-w-[520px]">
+              <span
+                className="pointer-events-none absolute -inset-x-6 -inset-y-3 rounded-[30px] bg-gradient-to-r from-[#6AE4FF]/35 via-[#B27DFF]/30 to-[#6AE4FF]/35 blur-[42px] opacity-80 animate-pulse"
               aria-hidden="true"
             />
-            <span className="relative z-10 bg-gradient-to-r from-[#3c436d] to-[#3f1480] rounded-full px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base">
-              An exclusive project by: @patwer
-            </span>
-          </a>
+            <span
+                className="pointer-events-none absolute inset-[1px] rounded-[31px] bg-gradient-to-r from-[#6AE4FF]/18 via-[#B27DFF]/16 to-[#6AE4FF]/18 opacity-85"
+              aria-hidden="true"
+            />
+            <div className="relative flex w-full flex-col items-center gap-6 px-8 py-10 rounded-[32px] backdrop-blur-xl border border-white/25 bg-[#060E25]/100 shadow-[0_0px_16px_rgba(106,228,255,0.28)] text-center">
+                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#6AE4FF] to-[#B27DFF] text-black shadow-[0_0px_8px_rgba(106,228,255,0.45)]">
+                  <Heart className="h-6 w-6" aria-hidden="true" />
+                </span>
+                <GradientText className="text-2xl font-semibold tracking-tight text-balance">
+                  100% of Affiliate Profits will be Donated to a Good Cause.
+                </GradientText>
+                <DonatedCounter target={100} className="relative" />
+                <a
+                  href="https://x.com/patwerX"
+                  className="relative inline-flex items-center justify-center px-[1px] py-[1px] font-medium text-white rounded-full bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF] transition-all duration-200 hover:scale-[1.02]"
+                >
+                  <span
+                    className="absolute inset-0 rounded-full p-[1px] bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF] pointer-events-none"
+                    aria-hidden="true"
+                  />
+                  <span className="relative z-10 bg-gradient-to-r from-[#3c436d] to-[#3f1480] rounded-full px-6 py-2.5 text-base whitespace-nowrap">
+                    An exclusive project by: @patwer
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

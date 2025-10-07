@@ -384,7 +384,7 @@ export default function UltraModernAutoPartsSearch() {
 
 
 
-          <div className="border border-white/10 rounded-2xl p-8 mb-16  backdrop-blur-xl md:mx-40 mx-10 md:mt-0 ">
+          <div className="border border-white/10 rounded-2xl p-8 mb-16 backdrop-blur-xl md:mx-40 mx-10 mt-12 sm:mt-16 md:mt-24">
             <h3 className="text-2xl font-bold mb-6 text-center">Why Choose Us</h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
