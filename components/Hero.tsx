@@ -43,11 +43,12 @@ export default function HeroEcomDeals() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+
           transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }} style={{ zIndex: 200 }}
           className="mt-4 sm:mt-6 text-balance text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-white z-20"
         >
-          <span className="block">Find The Best</span>
-          <span className="block bg-gradient-to-r from-[#FF9FFC] via-white to-[#5227FF] bg-clip-text text-transparent">
+          <span className="block z-10">Find The Best</span>
+          <span className="block bg-gradient-to-r from-[#FF9FFC] via-white to-[#5227FF] bg-clip-text text-transparent z-10">
             Ecom Tools In Seconds
           </span>
         </motion.h1>
@@ -57,7 +58,7 @@ export default function HeroEcomDeals() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.05, duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }} style={{ zIndex: 200 }}
-          className="mt-4 sm:mt-5 max-w-full sm:max-w-xl md:max-w-2xl text-pretty text-sm sm:text-base md:text-lg text-white/80"
+          className="mt-4 sm:mt-5 max-w-full sm:max-w-xl md:max-w-2xl text-pretty text-sm sm:text-base md:text-lg text-white/80 z-10"
         >
           Insider access to the best Ecom tools at pricing you won't find anywhere else.
         </motion.p>
@@ -71,7 +72,7 @@ export default function HeroEcomDeals() {
 
         {/* Trust row */}
         <div className="mt-8 sm:mt-10 grid w-full grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-xs sm:text-sm text-white/70 z-20" style={{ zIndex: 200 }}>
-          <Stat label="Exclusive finds" value="10+" />
+          <Stat label="Exclusive finds" value="10+"/>
           <Stat label="Avg. savings" value="35%" />
           <Stat label="SaaS & Ecom" value="All-in-one" />
           <Stat label="Updated" value="Hourly" />
@@ -86,7 +87,7 @@ export default function HeroEcomDeals() {
         {/* Wrapper for counter and button */}
         <div className="relative mt-4 sm:mt-6">
           {/* Counter behind the button */}
-          <DonatedCounter target={100} className="absolute left-1/2 -translate-x-1/2 bottom-[-60px] sm:bottom-[-75px] -translate-y-1/2 -z-10" />
+          <DonatedCounter target={100} className="absolute left-1/2 -translate-x-1/2 bottom-[-60px] sm:bottom-[-75px] -translate-y-1/2 z-10" />
 
           {/* The @patwer button */}
           <button
@@ -111,9 +112,9 @@ export default function HeroEcomDeals() {
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 px-3 sm:px-4 py-2 sm:py-3 backdrop-blur">
-      <div className="text-xs uppercase tracking-wide text-white/60">{label}</div>
-      <div className="text-base sm:text-lg font-semibold text-white">{value}</div>
+    <div className="rounded-xl border border-white/10 bg-white/5 px-3 sm:px-4 py-2 sm:py-3 backdrop-blur z-10">
+      <div className="text-xs uppercase tracking-wide text-white/60 z-10">{label}</div>
+      <div className="text-base sm:text-lg font-semibold text-white z-10">{value}</div>
     </div>
   );
 }
@@ -288,7 +289,7 @@ function DonatedCounter({
 
   return (
     <div className={className}>
-      <div className="relative inline-flex items-center justify-center">
+      <div className="relative inline-flex items-center justify-center z-10">
         {/* glow */}
         <span className="absolute inset-0 rounded-full bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF] blur-md opacity-40" aria-hidden="true" />
         {/* gradient border */}
