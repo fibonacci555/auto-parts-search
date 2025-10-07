@@ -6,7 +6,7 @@ export const toolCategories = {
       discount: "10% off first month", 
       code: "INSIDER", 
       url: "https://adrevival.com",
-      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpc3-J4hdqQEFNJgC5LorqkkoGW5EZpzADqQ&s",
+      logo: "/icons/icons-02.jpg",
       rank: 1,
       badge: "gold" as const,
       disclaimer: "Discount applies to new customers only"
@@ -37,7 +37,7 @@ export const toolCategories = {
       discount: "15% off for 3 months", 
       code: "INSIDER15", 
       url: "https://web.zocket.com/auth",
-      logo: "https://s3-eu-west-1.amazonaws.com/tpd/logos/66975e45a28d00325aacb83e/0x0.png",
+      logo: "/icons/icons-03.jpg",
       rank: 4,
       badge: null
     },
@@ -49,7 +49,7 @@ export const toolCategories = {
       discount: "25% off lifetime", 
       code: "INSIDER", 
       url: "https://afterlib.com", 
-      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4wIC8kWJYCa55F1CQoU2o6KKrYREfRq-ywA&s",
+      logo: "/icons/icons-04.jpg",
       rank: 1,
       badge: "gold" as const
     },
@@ -59,7 +59,7 @@ export const toolCategories = {
       discount: "30% off 3 Months ", 
       code: "INSIDER", 
       url: " https://trendtrack.io?fpr=insider",
-      logo: "https://cdn-1.webcatalog.io/catalog/minea/minea-icon-filled-256.png?v=1714777735113",
+      logo: "/icons/icons-08.jpg",
       rank: 2,
       badge: "silver" as const
     },
@@ -70,7 +70,7 @@ export const toolCategories = {
       discount: "30% off ", 
       code: "INSIDER", 
       url: "https://minea.com",
-      logo: "https://cdn-1.webcatalog.io/catalog/minea/minea-icon-filled-256.png?v=1714777735113",
+      logo: "/icons/icons-01.jpg",
       rank: 3,
       badge: "bronze" as const
     },
@@ -80,7 +80,7 @@ export const toolCategories = {
       discount: "30% off for 3 months", 
       code: "INSIDER", 
       url: "https://adplexity.com",
-      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhu12tY9pZfLWDxEuTPPZ_-hcVXGZ2xfNk7g&s",
+      logo: "/icons/icons-05.jpg",
       rank: 3,
       
     },
@@ -92,7 +92,7 @@ export const toolCategories = {
       discount: null, 
       code: null, 
       url: "https://openai.com/sora/", 
-      logo: "https://static.vecteezy.com/system/resources/previews/067/941/717/non_2x/sora-ai-logo-sora-ai-icon-transparent-background-free-png.png",
+      logo: "/icons/icons-07.jpg",
       rank: 1,
       badge: "gold" as const,
       isExternal: true
@@ -103,7 +103,7 @@ export const toolCategories = {
       discount: null, 
       code: null, 
       url: "https://labs.google/flow/about", 
-      logo: "https://vectorseek.com/wp-content/uploads/2025/09/Google-flow-Logo-PNG-SVG-Vector-1.png",
+      logo: "/icons/icons-09.jpg",
       rank: 2,
       badge: "silver" as const,
       isExternal: true
@@ -114,7 +114,7 @@ export const toolCategories = {
       discount: "25% off for 3 months", 
       code: "INSIDER", 
       url: "https://www.makeugc.ai/", 
-      logo: "https://pbs.twimg.com/profile_images/1930169196383531008/v4CLRlJk_400x400.jpg",
+      logo: "/icons/icons-06.jpg",
       rank: 3,
       badge: "bronze" as const
     },
