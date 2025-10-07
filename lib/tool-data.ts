@@ -119,7 +119,7 @@ export const toolCategories = {
       badge: "bronze" as const
     },
   ],
-  "Best Attribution Tools": [
+  "Attribution Tools": [
     { 
       name: "WeTracked.io", 
       description: "Best ad tracking software because it provides pixel-perfect attribution and real-time analytics",

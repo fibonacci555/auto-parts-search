@@ -319,7 +319,7 @@ export default function UltraModernAutoPartsSearch() {
                       "Best Agency Ad Accounts": "agency-ad-accounts",
                       "Spy Tools": "advertising-libraries", 
                       "Best UGC Tools": "ugc-tools",
-                      "Attribution tools": "ad-tracking-software"
+                      "Attribution Tools": "ad-tracking-software"
                     }
                     const slug = slugMap[category]
                     if (slug) {
@@ -357,7 +357,7 @@ export default function UltraModernAutoPartsSearch() {
               "Best Agency Ad Accounts": "agency-ad-accounts",
               "Spy Tools": "advertising-libraries", 
               "Best UGC Tools": "ugc-tools",
-              "Attribution tools": "ad-tracking-software"
+              "Attribution Tools": "ad-tracking-software"
             }
             const slug = category ? slugMap[category] : undefined
             if (slug) {
