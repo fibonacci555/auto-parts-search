@@ -51,9 +51,26 @@ export default function MobileMenu({
   }
 
   const handleAllToolsClick = () => {
-    onAllToolsSelect()
-    onClose()
-  }
+    onAllToolsSelect();
+    onClose();
+
+    // espera o menu fechar e o body recuperar o scroll
+    requestAnimationFrame(() => {
+      // em alguns casos é preciso mais um frame
+      requestAnimationFrame(() => {
+        const deals = document.getElementById("deals");
+        if (deals) {
+          // se tiveres header fixo, ajusta o offset aqui
+          const headerOffset = 0; // mete, por ex., 72 se tiveres navbar fixa de 72px
+          const top = deals.getBoundingClientRect().top + window.scrollY - headerOffset;
+          window.scrollTo({ top, behavior: "smooth" });
+        } else {
+          // fallback: usa o hash (útil em Next.js para navegar e depois scroll)
+          window.location.hash = "#deals";
+        }
+      });
+    });
+  };
 
   const toggleCategory = (category: string) => {
     setExpandedCategory(expandedCategory === category ? null : category)
@@ -62,7 +79,7 @@ export default function MobileMenu({
   const getCategorySlug = (category: string) => {
     const slugMap: Record<string, string> = {
       "Best Agency Ad Accounts": "agency-ad-accounts",
-      "Spy Tools": "advertising-libraries", 
+      "Spy Tools": "advertising-libraries",
       "Best UGC Tools": "ugc-tools",
       "Attribution tools": "ad-tracking-software"
     }
@@ -86,13 +103,9 @@ export default function MobileMenu({
         icon: "🏆",
       })),
     },
-    {
-      label: "All Tools",
-      icon: Sparkles,
-      onClick: handleAllToolsClick,
-    },
-    
-    
+   
+
+
   ]
 
   return (
@@ -114,7 +127,7 @@ export default function MobileMenu({
         )}
       >
         {/* Subtle background pattern */}
-        <div 
+        <div
           className="absolute inset-0 opacity-5"
           style={{
             backgroundImage: `radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px)`,
@@ -178,7 +191,7 @@ export default function MobileMenu({
                           )}
                         />
                       </button>
-                      
+
                       {expandedCategory === item.label && (
                         <div className="ml-4 mt-2 space-y-1 animate-in slide-in-from-top-2 duration-200">
                           {item.submenuItems?.map((subItem, subIndex) => (
@@ -236,15 +249,16 @@ export default function MobileMenu({
         {/* Call to Action */}
         <div className="p-6 border-t border-white/10 bg-gradient-to-r from-blue-500/10 to-purple-500/10">
           <div className="space-y-3">
-            <button 
-              onClick={handleAllToolsClick}
-              className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 cta-glow shadow-lg"
+            <button
+              type="button"
+              onClick={handleAllToolsClick}   // usa a tua função real, não console.log aqui
+              className="relative z-10 pointer-events-auto w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 cta-glow shadow-lg"
             >
               <Sparkles className="h-5 w-5" />
               <span>Explore All Tools</span>
               <ArrowRight className="h-4 w-4" />
             </button>
-            
+
             {/* Quick Stats */}
             <div className="grid grid-cols-2 gap-2 text-xs text-white/60">
               <div className="text-center py-2 bg-white/5 rounded-lg">
@@ -260,11 +274,7 @@ export default function MobileMenu({
         </div>
 
         {/* Floating Chat Button */}
-        <div className="absolute bottom-20 right-6 z-10">
-          <button className="w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center group chat-pulse">
-            <MessageCircle className="h-6 w-6 group-hover:scale-110 transition-transform duration-200" />
-          </button>
-        </div>
+
       </div>
     </>
   )
