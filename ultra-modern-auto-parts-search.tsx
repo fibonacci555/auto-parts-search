@@ -310,8 +310,9 @@ export default function UltraModernAutoPartsSearch() {
                   key={category}
                   variant="ghost"
                   className={cn(
-                    "text-white/70 hover:text-white hover:bg-white/20 rounded-full relative",
-                    activeCategory === category && "shadow-[0_0_0_2px_rgba(59,130,246,0.35)]"
+                    "text-white/80 hover:text-white hover:bg-white/10 rounded-full relative transition-[color,background,box-shadow] duration-300 hover:shadow-[0_0_18px_rgba(106,228,255,0.45)] focus-visible:outline-none focus-visible:shadow-[0_0_22px_rgba(106,228,255,0.55)] [text-shadow:0_0_12px_rgba(106,228,255,0.45)] hover:[text-shadow:0_0_16px_rgba(106,228,255,0.65)]",
+                    activeCategory === category &&
+                      "text-white bg-white/10 shadow-[0_0_20px_rgba(106,228,255,0.55)] ring-1 ring-[#6AE4FF]/40"
                   )}
                   onClick={() => {
                     const slugMap: Record<string, string> = {
@@ -376,13 +377,9 @@ export default function UltraModernAutoPartsSearch() {
           <section
             ref={searchSectionRef}
             id="search"
-            className="min-h-[90vh] flex flex-col items-center justify-center relative w-full"
+            className="relative w-full"
           >
-            <div className="absolute inset-0 ">
-              <Hero />
-
-            </div>
-
+            <Hero />
           </section>
 
 

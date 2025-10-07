@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Star, BadgePercent } from "lucide-react";
+import { ArrowRight, Sparkles, Star, BadgePercent, Heart } from "lucide-react";
 import GradientBlinds from "./anime-sphere-animation";
 import GooeyButton from "./goey/GoeyButton";
 import GradientText from "./GradientText/GradientText";
@@ -86,9 +86,28 @@ export default function HeroEcomDeals() {
 
       {/* ===== Lower block (CONSTRAINED) ===== */}
       <div className="relative mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12">
-        <GradientText className="mt-12 sm:mt-16 md:mt-20 text-base sm:text-lg md:text-xl bg-transparent mx-auto text-center z-20">
-          100% of Affiliate Profits will be Donated to a Good Cause.
-        </GradientText>
+        <div className="relative mt-4 sm:mt-16 md:mt-0 flex justify-center z-20">
+          <div className="relative inline-flex w-full max-w-[min(420px,90vw)] sm:max-w-none sm:w-auto">
+            <span
+              className="pointer-events-none absolute -inset-x-6 -inset-y-3 rounded-full bg-gradient-to-r from-[#6AE4FF]/40 via-[#B27DFF]/35 to-[#6AE4FF]/40 blur-2xl opacity-90 animate-pulse"
+              aria-hidden="true"
+            />
+            <span
+              className="pointer-events-none absolute inset-0 rounded-[999px] bg-gradient-to-r from-[#6AE4FF]/25 via-[#B27DFF]/20 to-[#6AE4FF]/25 opacity-90"
+              aria-hidden="true"
+            />
+            <span
+              className="relative inline-flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 px-5 sm:px-8 py-3 sm:py-4 rounded-[999px] backdrop-blur-lg border border-white/25 bg-[#070E24]/100 shadow-[0_0_35px_rgba(106,228,255,0.35)] text-center sm:text-left"
+            >
+              <span className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF] text-black shadow-[0_0_18px_rgba(106,228,255,0.45)]">
+                <Heart className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
+              </span>
+              <GradientText className="text-sm bg-transparent sm:text-lg md:text-xl font-semibold tracking-tight text-center sm:text-left text-balance">
+                100% of Affiliate Profits will be Donated to a Good Cause.
+              </GradientText>
+            </span>
+          </div>
+        </div>
 
         <div className="relative mt-4 sm:mt-6 flex justify-center">
           {/* Counter behind the button */}
@@ -125,7 +144,7 @@ function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 px-3 sm:px-4 py-2 sm:py-3 backdrop-blur z-10">
       <div className="text-xs uppercase tracking-wide text-white/60 z-10">{label}</div>
-      <div className="text-base sm:text-lg font-semibold text-white z-10">{value}</div>
+      <div className="text-lg sm:text-xl md:text-2xl font-semibold text-white z-10 tracking-tight">{value}</div>
     </div>
   );
 }

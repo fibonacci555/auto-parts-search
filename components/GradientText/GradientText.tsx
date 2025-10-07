@@ -22,9 +22,9 @@ export default function GradientText({
   };
 
   return (
-    <div className={`animated-gradient-text ${className}`}>
-      {showBorder && <div className="gradient-overlay" style={gradientStyle}></div>}
-      <div className="text-content" style={gradientStyle}>
+    <div className={`animated-gradient-text ${className} bg-transparent`}>
+      {showBorder && <div className="gradient-overlay bg-transparent" style={gradientStyle}></div>}
+      <div className="text-content bg-transparent" style={gradientStyle}>
         {children}
       </div>
     </div>
