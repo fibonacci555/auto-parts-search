@@ -12,7 +12,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ecom Insider – Find The Best Ecom Tools In Seconds",
     description: "Insider access to the best Ecom tools at pricing you won't find anywhere else.",
-  }
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 }
 
 export default function RootLayout({
@@ -22,6 +25,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </head>
       <body className={inter.className}>
         <Suspense
           fallback={
