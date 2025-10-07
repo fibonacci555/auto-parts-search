@@ -35,8 +35,8 @@ export const toolCategories = {
       name: "Zocket", 
       description: "Affordable solution with good performance for small to medium businesses",
       discount: "15% off for 3 months", 
-      code: "INSIDER", 
-      url: "https://zocket.com",
+      code: "INSIDER15", 
+      url: "https://web.zocket.com/auth",
       logo: "/logos/zocket.png",
       rank: 4,
       badge: null
@@ -56,7 +56,7 @@ export const toolCategories = {
     { 
       name: "Minea", 
       description: "Comprehensive ad intelligence with competitor analysis and trend tracking",
-      discount: "20% off for 3 months", 
+      discount: "30% off ", 
       code: "INSIDER", 
       url: "https://minea.com",
       logo: "/logos/minea.png",
@@ -64,7 +64,7 @@ export const toolCategories = {
       badge: "silver" as const
     },
     { 
-      name: "Adplexity", 
+      name: "Adplexity Native", 
       description: "Advanced filtering and search capabilities for finding winning ad creatives",
       discount: "30% off for 3 months", 
       code: "INSIDER", 

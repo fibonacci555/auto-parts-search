@@ -85,7 +85,7 @@ export default function CategoryPage({
               Back to Home
             </Button>
           </Link>
-          <h1 className="text-lg sm:text-xl font-bold">{categoryTitle}</h1>
+          <h1 className="text-lg sm:text-xl font-bold"><img src="/logo.svg" alt="logo" className=" h-5" /></h1>
         </div>
       </header>
 

@@ -22,8 +22,9 @@ export default function HeroEcomDeals() {
       </div>
 
       {/* ===== Content ===== */}
-      <div className="relative z-10 w-full px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40 pt-16 sm:pt-20 md:pt-28 lg:pt-36 pb-12 sm:pb-16 md:pb-20 lg:pb-28 md:mt-0 mt-10">
-        <div className="z-1" style={{zIndex: -1}}>
+      <div className="w-full max-w-10xl mx-auto px-6 lg:px-60 pt-16 sm:pt-20 md:pt-28 lg:pt-36 pb-12 sm:pb-16 md:pb-20 lg:pb-28 md:mt-0 mt-10">
+
+        <div className="z-1" style={{ zIndex: -1 }}>
           <SplashCursor targetSelector="section" intensity={0.7} />
         </div>
         {/* Top badges */}
@@ -45,7 +46,7 @@ export default function HeroEcomDeals() {
           viewport={{ once: true }}
 
           transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }} style={{ zIndex: 200 }}
-          className="mt-4 sm:mt-6 text-balance text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-white z-20"
+          className="mt-4 sm:mt-6 text-balance text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-white "
         >
           <span className="block z-10">Find The Best</span>
           <span className="block bg-gradient-to-r from-[#FF9FFC] via-white to-[#5227FF] bg-clip-text text-transparent z-10">
@@ -72,16 +73,16 @@ export default function HeroEcomDeals() {
 
         {/* Trust row */}
         <div className="mt-8 sm:mt-10 grid w-full grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-xs sm:text-sm text-white/70 z-20" style={{ zIndex: 200 }}>
-          <Stat label="Exclusive finds" value="10+"/>
-          <Stat label="Avg. savings" value="35%" />
+          <Stat label="Exclusive finds" value="10+" />
+          <Stat label="Avg. savings" value="25%" />
           <Stat label="SaaS & Ecom" value="All-in-one" />
           <Stat label="Updated" value="Hourly" />
         </div>
       </div>
 
-      <div className="relative flex flex-col items-center justify-center mx-auto px-4 sm:px-6">
+      <div className="relative flex flex-col items-center justify-center mx-auto px-6 sm:px-6">
         <GradientText className="mt-12 sm:mt-16 md:mt-20 text-base sm:text-lg md:text-xl bg-transparent mx-auto text-center z-20">
-          100% of the Affiliate Profits Will Be Donated To a Good Cause.
+          100% of Affiliate Profits will be Donated to a Good Cause.
         </GradientText>
 
         {/* Wrapper for counter and button */}
@@ -128,7 +129,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ href, children, icon }) => {
   const buttonContent = (
     <a
-    href="#deals"
+      href="#deals"
       type="button"
       className="relative inline-flex items-center justify-center h-12 w-fit rounded-[0.75rem] cursor-pointer overflow-hidden transition-all duration-250 ease-in-out bg-gradient-to-b from-[#7a5af8] to-[#7a5af8] hover:scale-95 focus:outline-none p-3"
       style={{

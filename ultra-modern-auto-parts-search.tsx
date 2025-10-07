@@ -95,7 +95,7 @@ const trendingDeals = [
   { name: "Adrevival", discount: "10% off first month", code: "INSIDER", category: "Agency Ad Accounts" },
   { name: "Make UGC", discount: "25% off for 3 months", code: "INSIDER", category: "Content Creation" },
   { name: "WeTracked.io", discount: "15% off for 3 months", code: "INSIDER", category: "Ad Tracking Software" },
-  { name: "Adplexity", discount: "30% off for 3 months", code: "INSIDER", category: "Advertising Library" },
+  { name: "Adplexity Native", discount: "30% off for 3 months", code: "INSIDER", category: "Advertising Library" },
   { name: "UpRoas", discount: "30% off first month", code: "INSIDER", category: "Agency Ad Accounts" },
   { name: "Agency Aurora", discount: "30% off for 3 months", code: "INSIDER", category: "Agency Ad Accounts" },
   { name: "Zocket", discount: "15% off for 3 months", code: "INSIDER", category: "Agency Ad Accounts" },
