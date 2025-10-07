@@ -54,11 +54,11 @@ export const toolCategories = {
       badge: "gold" as const
     },
     { 
-      name: "Minea", 
+      name: "Trendtrack", 
       description: "Comprehensive ad intelligence with competitor analysis and trend tracking",
-      discount: "30% off ", 
+      discount: "30% off 3 Months ", 
       code: "INSIDER", 
-      url: "https://minea.com",
+      url: " https://trendtrack.io?fpr=insider",
       logo: "https://cdn-1.webcatalog.io/catalog/minea/minea-icon-filled-256.png?v=1714777735113",
       rank: 2,
       badge: "silver" as const
@@ -72,7 +72,7 @@ export const toolCategories = {
       url: "https://minea.com",
       logo: "https://cdn-1.webcatalog.io/catalog/minea/minea-icon-filled-256.png?v=1714777735113",
       rank: 3,
-      badge: "silver" as const
+      badge: "bronze" as const
     },
     { 
       name: "Adplexity Native", 
@@ -82,7 +82,7 @@ export const toolCategories = {
       url: "https://adplexity.com",
       logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhu12tY9pZfLWDxEuTPPZ_-hcVXGZ2xfNk7g&s",
       rank: 3,
-      badge: "bronze" as const
+      
     },
   ],
   "Best UGC Tools": [
