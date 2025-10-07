@@ -82,24 +82,7 @@ function AnimatedPlaceholder({ texts, className }: { texts: string[]; className?
   )
 }
 
-// Tool categories are now imported from lib/tool-data.ts
 
-const trendingDeals = [
-  {
-    name: "Afterlib",
-    discount: "25% off lifetime",
-    code: "INSIDER",
-    url: "afterlib.com",
-    category: "Advertising Library",
-  },
-  { name: "Adrevival", discount: "10% off first month", code: "INSIDER", category: "Agency Ad Accounts" },
-  { name: "Make UGC", discount: "25% off for 3 months", code: "INSIDER", category: "Content Creation" },
-  { name: "WeTracked.io", discount: "15% off for 3 months", code: "INSIDER", category: "Ad Tracking Software" },
-  { name: "Adplexity Native", discount: "30% off for 3 months", code: "INSIDER", category: "Advertising Library" },
-  { name: "UpRoas", discount: "30% off first month", code: "INSIDER", category: "Agency Ad Accounts" },
-  { name: "Agency Aurora", discount: "30% off for 3 months", code: "INSIDER", category: "Agency Ad Accounts" },
-  { name: "Zocket", discount: "15% off for 3 months", code: "INSIDER", category: "Agency Ad Accounts" },
-]
 
 // Validated Stepper Component
 function ValidatedStepper({
@@ -708,9 +691,9 @@ function ToolCard({
           <div className="w-full h-32 sm:h-40 md:h-48 rounded-xl md:rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_50%)]"></div>
             <div className="relative z-10 text-center">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 rounded-xl md:rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center overflow-hidden">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 rounded-xl md:rounded-2xl bg-white/100 backdrop-blur-sm flex items-center justify-center overflow-hidden">
                 {tool.logo ? (
-                  <Image src={tool.logo} alt={`${tool.name} logo`} width={80} height={80} className="w-full h-full object-contain p-2" />
+                  <Image src={tool.logo} alt={`${tool.name} logo`} width={80} height={80} className="w-full h-full object-contain rounded-xl" />
                 ) : (
                   <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 text-blue-400" />
                 )}

@@ -6,7 +6,7 @@ export const toolCategories = {
       discount: "10% off first month", 
       code: "INSIDER", 
       url: "https://adrevival.com",
-      logo: "/logos/adrevival.png",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpc3-J4hdqQEFNJgC5LorqkkoGW5EZpzADqQ&s",
       rank: 1,
       badge: "gold" as const,
       disclaimer: "Discount applies to new customers only"
@@ -17,7 +17,7 @@ export const toolCategories = {
       discount: "30% off for 3 months", 
       code: "INSIDER", 
       url: "https://agencyaurora.com",
-      logo: "/logos/agency-aurora.png",
+      logo: "https://media.licdn.com/dms/image/v2/D4E0BAQFtkeB4XTtQ7g/company-logo_200_200/company-logo_200_200/0/1714415780856/agency_aurora_logo?e=2147483647&v=beta&t=vwlKeJJXp4kmVfcbh497Z-kWtnRg_8H-npio215l_OQ",
       rank: 2,
       badge: "silver" as const
     },
@@ -27,7 +27,7 @@ export const toolCategories = {
       discount: "30% off first month", 
       code: "INSIDER", 
       url: "https://uproas.com",
-      logo: "/logos/uproas.png",
+      logo: "https://media.licdn.com/dms/image/v2/D4D0BAQHHVnELrXJ0Rw/company-logo_200_200/company-logo_200_200/0/1723407743169?e=2147483647&v=beta&t=Ua73-iYypHakS-oTXlDmsA6GcHBSPsfiLBavbEtLC8E",
       rank: 3,
       badge: "bronze" as const
     },
@@ -37,7 +37,7 @@ export const toolCategories = {
       discount: "15% off for 3 months", 
       code: "INSIDER15", 
       url: "https://web.zocket.com/auth",
-      logo: "/logos/zocket.png",
+      logo: "https://s3-eu-west-1.amazonaws.com/tpd/logos/66975e45a28d00325aacb83e/0x0.png",
       rank: 4,
       badge: null
     },
@@ -49,7 +49,7 @@ export const toolCategories = {
       discount: "25% off lifetime", 
       code: "INSIDER", 
       url: "https://afterlib.com", 
-      logo: "/logos/afterlib.png",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4wIC8kWJYCa55F1CQoU2o6KKrYREfRq-ywA&s",
       rank: 1,
       badge: "gold" as const
     },
@@ -59,7 +59,7 @@ export const toolCategories = {
       discount: "30% off ", 
       code: "INSIDER", 
       url: "https://minea.com",
-      logo: "/logos/minea.png",
+      logo: "https://cdn-1.webcatalog.io/catalog/minea/minea-icon-filled-256.png?v=1714777735113",
       rank: 2,
       badge: "silver" as const
     },
@@ -69,7 +69,7 @@ export const toolCategories = {
       discount: "30% off for 3 months", 
       code: "INSIDER", 
       url: "https://adplexity.com",
-      logo: "/logos/adplexity.png",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhu12tY9pZfLWDxEuTPPZ_-hcVXGZ2xfNk7g&s",
       rank: 3,
       badge: "bronze" as const
     },
@@ -81,7 +81,7 @@ export const toolCategories = {
       discount: null, 
       code: null, 
       url: "https://openai.com/sora/", 
-      logo: "/logos/openai.png",
+      logo: "https://static.vecteezy.com/system/resources/previews/067/941/717/non_2x/sora-ai-logo-sora-ai-icon-transparent-background-free-png.png",
       rank: 1,
       badge: "gold" as const,
       isExternal: true
@@ -92,7 +92,7 @@ export const toolCategories = {
       discount: null, 
       code: null, 
       url: "https://labs.google/flow/about", 
-      logo: "/logos/google.png",
+      logo: "https://vectorseek.com/wp-content/uploads/2025/09/Google-flow-Logo-PNG-SVG-Vector-1.png",
       rank: 2,
       badge: "silver" as const,
       isExternal: true
@@ -103,7 +103,7 @@ export const toolCategories = {
       discount: "25% off for 3 months", 
       code: "INSIDER", 
       url: "https://www.makeugc.ai/", 
-      logo: "/logos/makeugc.png",
+      logo: "https://pbs.twimg.com/profile_images/1930169196383531008/v4CLRlJk_400x400.jpg",
       rank: 3,
       badge: "bronze" as const
     },
@@ -115,7 +115,7 @@ export const toolCategories = {
       discount: "15% off for 3 months", 
       code: "INSIDER", 
       url: "https://wetracked.io",
-      logo: "/logos/wetracked.png",
+      logo: "https://media.licdn.com/dms/image/v2/D4E0BAQHEWFsBQQ_MDQ/company-logo_200_200/company-logo_200_200/0/1719257959864/wetracked_io_logo?e=2147483647&v=beta&t=Fu4EitdtXjHE0s4Tis1Pk2i8PZQrH6JwZ2KTYg9DKlA",
       rank: 1,
       badge: "gold" as const
     },
