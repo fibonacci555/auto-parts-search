@@ -301,7 +301,7 @@ export default function UltraModernAutoPartsSearch() {
         <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/30 border-b border-white/5">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
             <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="font-bold text-lg tracking-tight">
-              <img src="/logo.svg" alt="Ecom Insider" className="h-6 md:h-7 mr-2" />
+              <img src="/logo.svg" alt="Ecom Insider" className="h-5 md:h-5 mr-2" />
             </button>
 
             <nav className="hidden md:flex items-center gap-2">

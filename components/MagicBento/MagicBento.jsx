@@ -47,13 +47,6 @@ const cardData = [
     description: 'Click to claim. No hoops, no hidden fees, just instant exclusive pricing.',
     label: 'Integration'
   },
-  {
-    color: '#060010',
-    title: 'Verified Partners',
-    description: 'Every company filtered. Every deal legitimate. No fcking risk.',
-    label: 'Security',
-    hideOnMobile: true
-  }
 ];
 
 
