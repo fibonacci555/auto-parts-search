@@ -513,7 +513,7 @@ const MagicBento = ({
           if (isMobile && card.hideOnMobile) return null;
           const baseClassName = `card ${textAutoHide ? 'card--text-autohide' : ''} ${enableBorderGlow ? 'card--border-glow' : ''}`;
           const desktopBackgroundStyles =
-            !isMobile && card.backgroundImageDesktop
+             card.backgroundImageDesktop
               ? {
                   backgroundImage: `linear-gradient(rgba(6,0,16,0.55), rgba(6,0,16,0.9)), url(${card.backgroundImageDesktop})`,
                   backgroundSize: 'cover',
