@@ -21,6 +21,7 @@ interface Tool {
   isExternal?: boolean
   preCtaText?: string
   ctaLabel?: string
+  special?: boolean
 }
 
 interface CategoryPageProps {
@@ -139,127 +140,147 @@ export default function CategoryPage({
                   tool.badge === 'gold' && "ring-2 ring-yellow-400/30 shadow-lg shadow-yellow-400/10"
                 )}
               >
-              {tool.badge && (
-                <div className={cn(
-                  "absolute top-2 left-2 sm:top-4 sm:left-4 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r flex items-center justify-center text-sm sm:text-lg md:text-xl z-20 shadow-lg",
-                  getBadgeColor(tool.badge)
-                )}>
-                  {getBadgeIcon(tool.badge)}
-                </div>
-              )}
+                {tool.badge && (
+                  <div className={cn(
+                    "absolute top-2 left-2 sm:top-4 sm:left-4 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r flex items-center justify-center text-sm sm:text-lg md:text-xl z-20 shadow-lg",
+                    getBadgeColor(tool.badge)
+                  )}>
+                    {getBadgeIcon(tool.badge)}
+                  </div>
+                )}
 
-              {/* Layout Normal */}
-              <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center">
-                {/* Logo e Rank */}
-                <div className="w-full md:w-48 lg:w-56 h-32 sm:h-40 md:h-48 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center relative overflow-hidden flex-shrink-0">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_50%)]"></div>
-                  <div className="relative z-10 text-center">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 rounded-xl md:rounded-2xl bg-white/100 backdrop-blur-sm flex items-center justify-center overflow-hidden">
-                      {tool.logo ? (
-                        <Image
-                          src={tool.logo}
-                          alt={`${tool.name} logo`}
-                          width={64}
-                          height={64}
-                          className="w-full h-full object-contain rounded-xl md:rounded-2xl"
-                        />
-                      ) : (
-                        <Sparkles className="h-8 w-8 text-blue-400" />
+                {/* Layout Normal */}
+                <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center">
+                  {/* Logo e Rank */}
+                  <div className="w-full md:w-48 lg:w-56 h-32 sm:h-40 md:h-48 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_50%)]"></div>
+                    <div className="relative z-10 text-center">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 rounded-xl md:rounded-2xl bg-white/100 backdrop-blur-sm flex items-center justify-center overflow-hidden">
+                        {tool.logo ? (
+                          <Image
+                            src={tool.logo}
+                            alt={`${tool.name} logo`}
+                            width={64}
+                            height={64}
+                            className="w-full h-full object-contain rounded-xl md:rounded-2xl"
+                          />
+                        ) : (
+                          <Sparkles className="h-8 w-8 text-blue-400" />
+                        )}
+                      </div>
+                      <div className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        #{tool.rank}
+                      </div>
+                      {tool.special && (
+                         <div className="text-xs sm:text-sm text-white/60">Ranked Processor</div>
+                      )
+                      
+                      }
+                      {!tool.special && (
+                         <div className="text-xs sm:text-sm text-white/60">Ranked Tool</div>
+                      )
+                      
+                      }
+                      
+                    </div>
+                  </div>
+
+                  {/* Info */}
+                  <div className="flex-1 flex flex-col justify-center text-left">
+                    <h2 className="text-white text-lg sm:text-xl md:text-2xl font-bold leading-tight">{tool.name}</h2>
+                    {tool.badge && (
+                      <div className={cn(
+                        "inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold mt-1",
+                        tool.badge === 'gold' && "bg-yellow-400/20 text-yellow-400 border border-yellow-400/30",
+                        tool.badge === 'silver' && "bg-gray-300/20 text-gray-300 border border-gray-300/30",
+                        tool.badge === 'bronze' && "bg-orange-400/20 text-orange-400 border border-orange-400/30"
+                      )}>
+                        {getBadgeIcon(tool.badge)} #{tool.rank} in Category
+                      </div>
+                    )}
+
+                    {
+                      !tool.special && (
+                        <p className="text-white/70 text-sm mt-3 mb-4 leading-relaxed">{tool.description}</p>
+                      )
+                    }
+                   
+                    {
+                      tool.special && (
+                        <p className="text-green-400 font-bold text-xl mt-3 mb-4 leading-relaxed">{tool.description}</p>
+                      )
+                    }
+
+                    {tool.discount && (
+                      <div className="bg-white/5 rounded-lg p-3 sm:p-4 mb-3 border border-white/10">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs text-white/50">Exclusive Discount:</span>
+                          <span className="text-2xl font-bold text-green-400">{tool.discount.split(" ")[0]}</span>
+                        </div>
+                        {tool.code && (
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-white/50">Code:</span>
+                            <button
+                              onClick={() => copyToClipboard(tool.code!)}
+                              className="flex items-center gap-2 text-xs sm:text-sm font-mono bg-white/10 hover:bg-white/20 px-2 sm:px-3 py-1 rounded text-blue-400 transition-colors duration-200 group"
+                            >
+                              <code>{tool.code}</code>
+                              {copied ? (
+                                <Check className="h-3 w-3 text-green-400" />
+                              ) : (
+                                <Copy className="h-3 w-3 opacity-60 group-hover:opacity-100" />
+                              )}
+                            </button>
+                          </div>
+                        )}
+                        {tool.disclaimer && (
+                          <p className="text-xs text-white/40 mt-2">{tool.disclaimer}</p>
+                        )}
+                      </div>
+                    )}
+
+                    {tool.isExternal && (
+                      <div className="bg-blue-500/10 rounded-lg p-3 mb-3 border border-blue-500/20">
+                        <div className="flex items-center gap-2">
+                          <ExternalLink className="h-4 w-4 text-blue-400" />
+                          <span className="text-sm text-blue-400">External Tool</span>
+                        </div>
+                        <p className="text-xs text-white/60 mt-1">No discount available - premium tool</p>
+                      </div>
+                    )}
+
+                    {tool.url && !tool.isExternal && (
+                      <div className="text-xs text-white/50 mb-3 flex items-center gap-2">
+                        <span>🌐</span>
+                        <span>{tool.url.trim()}</span>
+                      </div>
+                    )}
+
+                    {tool.preCtaText && (
+                      <p className="text-xs sm:text-sm text-white/60 mb-3">
+                        {tool.preCtaText}
+                      </p>
+                    )}
+
+                    <Button
+                      onClick={() => handleVisitTool(tool)}
+                      disabled={!tool.url}
+                      className={cn(
+                        "w-full rounded-full h-10 sm:h-12 transition-all duration-300 hover:scale-105 font-semibold",
+                        tool.isExternal
+                          ? "bg-gray-600 hover:bg-gray-700"
+                          : "bg-blue-600 hover:bg-blue-700",
+                        !tool.url && "opacity-50 cursor-not-allowed hover:scale-100"
                       )}
-                    </div>
-                    <div className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                      #{tool.rank}
-                    </div>
-                    <div className="text-xs sm:text-sm text-white/60">Ranked Tool</div>
+                    >
+                      {buttonLabel}
+                      <ChevronRight className="ml-1 h-4 w-4" />
+                    </Button>
                   </div>
                 </div>
-
-                {/* Info */}
-                <div className="flex-1 flex flex-col justify-center text-left">
-                  <h2 className="text-white text-lg sm:text-xl md:text-2xl font-bold leading-tight">{tool.name}</h2>
-                  {tool.badge && (
-                    <div className={cn(
-                      "inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold mt-1",
-                      tool.badge === 'gold' && "bg-yellow-400/20 text-yellow-400 border border-yellow-400/30",
-                      tool.badge === 'silver' && "bg-gray-300/20 text-gray-300 border border-gray-300/30",
-                      tool.badge === 'bronze' && "bg-orange-400/20 text-orange-400 border border-orange-400/30"
-                    )}>
-                      {getBadgeIcon(tool.badge)} #{tool.rank} in Category
-                    </div>
-                  )}
-
-                  <p className="text-lime-400 text-sm mt-3 mb-4 leading-relaxed">{tool.description}</p>
-
-                  {tool.discount && (
-                    <div className="bg-white/5 rounded-lg p-3 sm:p-4 mb-3 border border-white/10">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs text-white/50">Exclusive Discount:</span>
-                        <span className="text-sm sm:text-lg font-bold text-green-400">{tool.discount.split(" ")[0]}</span>
-                      </div>
-                      {tool.code && (
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs text-white/50">Code:</span>
-                          <button
-                            onClick={() => copyToClipboard(tool.code!)}
-                            className="flex items-center gap-2 text-xs sm:text-sm font-mono bg-white/10 hover:bg-white/20 px-2 sm:px-3 py-1 rounded text-blue-400 transition-colors duration-200 group"
-                          >
-                            <code>{tool.code}</code>
-                            {copied ? (
-                              <Check className="h-3 w-3 text-green-400" />
-                            ) : (
-                              <Copy className="h-3 w-3 opacity-60 group-hover:opacity-100" />
-                            )}
-                          </button>
-                        </div>
-                      )}
-                      {tool.disclaimer && (
-                        <p className="text-xs text-white/40 mt-2">{tool.disclaimer}</p>
-                      )}
-                    </div>
-                  )}
-
-                  {tool.isExternal && (
-                    <div className="bg-blue-500/10 rounded-lg p-3 mb-3 border border-blue-500/20">
-                      <div className="flex items-center gap-2">
-                        <ExternalLink className="h-4 w-4 text-blue-400" />
-                        <span className="text-sm text-blue-400">External Tool</span>
-                      </div>
-                      <p className="text-xs text-white/60 mt-1">No discount available - premium tool</p>
-                    </div>
-                  )}
-
-                  {tool.url && !tool.isExternal && (
-                    <div className="text-xs text-white/50 mb-3 flex items-center gap-2">
-                      <span>🌐</span>
-                      <span>{tool.url.trim()}</span>
-                    </div>
-                  )}
-
-                  {tool.preCtaText && (
-                    <p className="text-xs sm:text-sm text-white/60 mb-3">
-                      {tool.preCtaText}
-                    </p>
-                  )}
-
-                  <Button
-                    onClick={() => handleVisitTool(tool)}
-                    disabled={!tool.url}
-                    className={cn(
-                      "w-full rounded-full h-10 sm:h-12 transition-all duration-300 hover:scale-105 font-semibold",
-                      tool.isExternal 
-                        ? "bg-gray-600 hover:bg-gray-700" 
-                        : "bg-blue-600 hover:bg-blue-700",
-                      !tool.url && "opacity-50 cursor-not-allowed hover:scale-100"
-                    )}
-                  >
-                    {buttonLabel}
-                    <ChevronRight className="ml-1 h-4 w-4" />
-                  </Button>
-                </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
         </div>
 
         {/* Bottom CTA */}

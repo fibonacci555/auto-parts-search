@@ -88,15 +88,15 @@ export const toolCategories = {
   "Payment Processors": [
     { 
       name: "Sound Commerce", 
-      description: "25% reduction",
+      description: "25% Fee Reduction",
       
-      
+      special: true,
       url: "https://sound-commerce.com/contact?ref=ecom-insider",
       logo: "/icons/logo_11.jpeg",
       rank: 1,
       badge: "gold" as const,
   
-      preCtaText: "25% reduction on MIDs + standard fees",
+      preCtaText: "25% Fee Reduction on MIDs + standard fees",
      
     },
     

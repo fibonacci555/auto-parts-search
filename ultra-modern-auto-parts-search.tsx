@@ -309,7 +309,7 @@ export default function UltraModernAutoPartsSearch() {
                   className={cn(
                     "text-white/80 hover:text-white hover:bg-white/10 rounded-full relative transition-[color,background,box-shadow] duration-300 hover:shadow-[0_0_18px_rgba(106,228,255,0.45)] focus-visible:outline-none focus-visible:shadow-[0_0_22px_rgba(106,228,255,0.55)] [text-shadow:0_0_12px_rgba(106,228,255,0.45)] hover:[text-shadow:0_0_16px_rgba(106,228,255,0.65)]",
                     activeCategory === category &&
-                      "text-white bg-white/10 shadow-[0_0_20px_rgba(106,228,255,0.55)] ring-1 ring-[#6AE4FF]/40"
+                    "text-white bg-white/10 shadow-[0_0_20px_rgba(106,228,255,0.55)] ring-1 ring-[#6AE4FF]/40"
                   )}
                   onClick={() => {
                     const slugMap: Record<string, string> = {
@@ -598,7 +598,7 @@ export default function UltraModernAutoPartsSearch() {
               title="Super Affiliate"
               miniAvatarUrl="/avatar.png"
               grainUrl=""
-              
+
               onContactClick={() => window.open('https://x.com/patwerX', '_blank', 'noopener,noreferrer')}
             />
           </section>
@@ -741,7 +741,16 @@ function ToolCard({ tool }: { tool: any }) {
             <div className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               #{tool.rank}
             </div>
-            <div className="text-xs sm:text-sm text-white/60">Ranked Tool</div>
+            {tool.special && (
+              <div className="text-xs sm:text-sm text-white/60">Ranked Processor</div>
+            )
+
+            }
+            {!tool.special && (
+              <div className="text-xs sm:text-sm text-white/60">Ranked Tool</div>
+            )
+
+            }
           </div>
         </div>
 
@@ -766,7 +775,7 @@ function ToolCard({ tool }: { tool: any }) {
             <div className="bg-white/5 rounded-lg p-3 sm:p-4 mb-3 border border-white/10">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs text-white/50">Exclusive Discount:</span>
-                <span className="text-sm sm:text-lg font-bold text-green-400">{tool.discount.split(" ")[0]}</span>
+                <span className="text-2xl font-bold text-green-400">{tool.discount.split(" ")[0]} Discount</span>
               </div>
               {tool.code && (
                 <div className="flex items-center justify-between">
