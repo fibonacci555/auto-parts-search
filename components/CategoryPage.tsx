@@ -110,7 +110,7 @@ export default function CategoryPage({
               Back to Home
             </Button>
           </Link>
-          <h1 className="text-lg sm:text-xl font-bold"><img src="/logo.svg" alt="logo" className=" h-5" /></h1>
+          <a href="/" className="cursor-pointer"><img src="/logo.svg" alt="logo" className=" h-5" /></a>
         </div>
       </header>
 
@@ -188,7 +188,7 @@ export default function CategoryPage({
                     </div>
                   )}
 
-                  <p className="text-white/80 text-sm mt-3 mb-4 leading-relaxed">{tool.description}</p>
+                  <p className="text-lime-400 text-sm mt-3 mb-4 leading-relaxed">{tool.description}</p>
 
                   {tool.discount && (
                     <div className="bg-white/5 rounded-lg p-3 sm:p-4 mb-3 border border-white/10">
