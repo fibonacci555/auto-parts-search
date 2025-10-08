@@ -769,7 +769,17 @@ function ToolCard({ tool }: { tool: any }) {
             </div>
           )}
 
-          <p className="text-white/80 text-sm mt-3 mb-4 leading-relaxed">{tool.description}</p>
+          {
+            !tool.special && (
+              <p className="text-white/70 text-sm mt-3 mb-4 leading-relaxed">{tool.description}</p>
+            )
+          }
+
+          {
+            tool.special && (
+              <p className="text-green-400 font-bold text-xl mt-3 mb-4 leading-relaxed">{tool.description}</p>
+            )
+          }
 
           {tool.discount && (
             <div className="bg-white/5 rounded-lg p-3 sm:p-4 mb-3 border border-white/10">

@@ -11,6 +11,7 @@ import { HyperText } from "@/components/ui/hyper-text";
 
 export default function HeroEcomDeals() {
   const [viewportHeight, setViewportHeight] = useState<number | null>(null);
+  const [showCursor, setShowCursor] = useState(false);
 
   useEffect(() => {
     const updateHeight = () => {
@@ -42,6 +43,22 @@ export default function HeroEcomDeals() {
 
   const heroMinHeight = viewportHeight ? `${viewportHeight}px` : undefined
 
+  useEffect(() => {
+    const evaluatePointer = () => {
+      if (typeof window === "undefined") return
+      const desktopPointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+      const widthOkay = window.innerWidth >= 768
+      setShowCursor(desktopPointer && widthOkay)
+    }
+
+    evaluatePointer()
+    window.addEventListener("resize", evaluatePointer)
+
+    return () => {
+      window.removeEventListener("resize", evaluatePointer)
+    }
+  }, [])
+
   return (
     <section
       className="relative isolate overflow-hidden min-h-screen"
@@ -66,7 +83,7 @@ export default function HeroEcomDeals() {
         "
       >
         <div className="z-10">
-          <SplashCursor targetSelector="section" intensity={0.7} />
+          {showCursor && <SplashCursor targetSelector="section" intensity={0.7} />}
         </div>
 
         {/* Top badges */}

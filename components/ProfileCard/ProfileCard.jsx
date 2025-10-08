@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useEffect, useRef, useCallback, useMemo, useState } from 'react';
 import './ProfileCard.css';
 
 const DEFAULT_BEHIND_GRADIENT =
@@ -45,6 +45,8 @@ const ProfileCardComponent = ({
 }) => {
   const wrapRef = useRef(null);
   const cardRef = useRef(null);
+  const avatarRef = useRef(null);
+  const [avatarLoaded, setAvatarLoaded] = useState(false);
 
   const animationHandlers = useMemo(() => {
     if (!enableTilt) return null;
@@ -244,6 +246,37 @@ const ProfileCardComponent = ({
     [iconUrl, grainUrl, showBehindGradient, behindGradient, innerGradient]
   );
 
+  useEffect(() => {
+    if (!avatarUrl || typeof document === 'undefined') return;
+
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'image';
+    preloadLink.href = avatarUrl;
+
+    if (/^https?:\/\//i.test(avatarUrl)) {
+      preloadLink.crossOrigin = 'anonymous';
+    }
+
+    document.head.appendChild(preloadLink);
+
+    return () => {
+      try {
+        document.head.removeChild(preloadLink);
+      } catch {
+        // element might already be removed; ignore cleanup failure
+      }
+    };
+  }, [avatarUrl]);
+
+  useEffect(() => {
+    setAvatarLoaded(false);
+    const avatarEl = avatarRef.current;
+    if (avatarEl?.complete && avatarEl.naturalWidth > 0) {
+      setAvatarLoaded(true);
+    }
+  }, [avatarUrl]);
+
   const handleContactClick = useCallback(() => {
     onContactClick?.();
   }, [onContactClick]);
@@ -256,14 +289,20 @@ const ProfileCardComponent = ({
           <div className="pc-glare" />
           <div className="pc-content pc-avatar-content">
             <img
-              className="avatar"
+              ref={avatarRef}
+              className={`avatar${avatarLoaded ? ' avatar--loaded' : ''}`}
               src={avatarUrl}
               alt={`${name || 'User'} avatar`}
-              loading="lazy"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              width={1080}
+              height={1080}
               onError={e => {
                 const target = e.target;
                 target.style.display = 'none';
               }}
+              onLoad={() => setAvatarLoaded(true)}
             />
             {showUserInfo && (
               <div className="pc-user-info">
