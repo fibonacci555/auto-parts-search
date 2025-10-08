@@ -2,7 +2,7 @@ import React from "react"
 import CategoryPage from "@/components/CategoryPage"
 import { toolCategories } from "@/lib/tool-data"
 export default function PaymentProcessorsPage() {
-  const categoryTitle = "Payment Processors"
+  const categoryTitle = "Scalable Payment Processors"
   const categoryDescription = (
     <>
       Use the same payment processors

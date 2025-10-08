@@ -1,12 +1,15 @@
 "use client"
 
-import { ReactNode } from "react"
-import { ArrowLeft, ExternalLink, Sparkles, ChevronRight, Copy, Check } from "lucide-react"
+import { ReactNode, useEffect, useRef, useState } from "react"
+import { ArrowLeft, ExternalLink, Sparkles, ChevronRight, Copy, Check, Search, Car, X, Menu } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { useCopy } from "@/hooks/use-copy"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
+import { toolCategories } from "@/lib/tool-data"
+
 
 interface Tool {
   name: string
@@ -38,6 +41,82 @@ export default function CategoryPage({
   categorySlug: _categorySlug,
 }: CategoryPageProps) {
   const { copied, copyToClipboard } = useCopy()
+  const [activeSection, setActiveSection] = useState("search")
+  const [showResults, setShowResults] = useState(true)
+  const [activeCategory, setActiveCategory] = useState<string | null>(null)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const router = useRouter()
+  const slugMap: Record<string, string> = {
+    "Best Agency Ad Accounts": "agency-ad-accounts",
+    "Best Spy Tools": "advertising-libraries",
+    "Best UGC Tools": "ugc-tools",
+    "Attribution Tools": "ad-tracking-software",
+    "Payment Processors": "payment-processors",
+  }
+  const [stepperData, setStepperData] = useState({
+    firstName: '',
+    email: '',
+    completed: false
+  })
+  const [currentStep, setCurrentStep] = useState(1)
+
+  const searchSectionRef = useRef<HTMLElement>(null)
+  const howSectionRef = useRef<HTMLElement>(null)
+  const dealsSectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setShowResults(false)
+        setMobileMenuOpen(false)
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [])
+
+  const scrollToSection = (sectionId: string) => {
+    setActiveSection(sectionId)
+
+    const sectionMap = {
+      search: searchSectionRef,
+      how: howSectionRef,
+    }
+
+    const sectionRef = sectionMap[sectionId as keyof typeof sectionMap]
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
+  const scrollToDeals = () => {
+    dealsSectionRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+      const handleScroll = () => {
+        const sections = [
+          { id: "search", ref: searchSectionRef },
+          { id: "how", ref: howSectionRef },
+        ]
+  
+        for (const section of sections) {
+          if (section.ref.current) {
+            const rect = section.ref.current.getBoundingClientRect()
+            if (rect.top <= 100 && rect.bottom >= 100) {
+              setActiveSection(section.id)
+              break
+            }
+          }
+        }
+      }
+  
+      window.addEventListener("scroll", handleScroll)
+      return () => window.removeEventListener("scroll", handleScroll)
+    }, [])
+
+  
 
   const getBadgeColor = (badge: string | null) => {
     switch (badge) {
@@ -103,20 +182,89 @@ export default function CategoryPage({
       </div>
 
       {/* Header */}
-      <header className="relative z-10 w-full backdrop-blur-md bg-black/30 border-b border-white/5">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link href="/">
-            <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
+      
+        <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/30 border-b border-white/5">
+          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+            <Link href="/" className="font-bold text-lg tracking-tight">
+              <img src="/logo.svg" alt="Ecom Insider" className="h-5 md:h-5 mr-2" />
+            </Link>
+
+            <nav className="hidden md:flex items-center gap-2">
+              {Object.keys(toolCategories).map((category) => (
+                <Button
+                  key={category}
+                  variant="ghost"
+                  className={cn(
+                    "text-white/80 hover:text-white hover:bg-white/10 rounded-full relative transition-[color,background,box-shadow] duration-300 hover:shadow-[0_0_18px_rgba(106,228,255,0.45)] focus-visible:outline-none focus-visible:shadow-[0_0_22px_rgba(106,228,255,0.55)] [text-shadow:0_0_12px_rgba(106,228,255,0.45)] hover:[text-shadow:0_0_16px_rgba(106,228,255,0.65)]",
+                    activeCategory === category &&
+                    "text-white bg-white/10 shadow-[0_0_20px_rgba(106,228,255,0.55)] ring-1 ring-[#6AE4FF]/40"
+                  )}
+                  onClick={() => {
+                    const slug = slugMap[category]
+                    if (slug) {
+                      router.push(`/${slug}`)
+                    } else {
+                      setActiveCategory(category)
+                      scrollToDeals()
+                    }
+                  }}
+                >
+                  {category}
+                </Button>
+              ))}
+            </nav>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden text-white hover:bg-white/5 rounded-full"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
-          </Link>
-          <a href="/" className="cursor-pointer"><img src="/logo.svg" alt="logo" className=" h-5" /></a>
-        </div>
-      </header>
+          </div>
+
+        </header>
+
+      {mobileMenuOpen && (
+        <>
+          <button
+            type="button"
+            className="fixed inset-0 z-40 cursor-pointer bg-black/50 backdrop-blur-sm md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close mobile menu"
+          />
+          <div className="fixed top-[72px] left-0 right-0 z-50 bg-black border-t border-white/10 md:hidden">
+            <nav className="flex flex-col divide-y divide-white/5">
+              {Object.keys(toolCategories).map((category) => (
+                <button
+                  key={category}
+                  className={cn(
+                    "flex w-full items-center justify-between px-6 py-4 text-left text-white/80 transition-colors hover:bg-white/5",
+                    activeCategory === category && "text-white bg-white/10"
+                  )}
+                  onClick={() => {
+                    const slug = slugMap[category]
+                    if (slug) {
+                      router.push(`/${slug}`)
+                    } else {
+                      setActiveCategory(category)
+                      scrollToDeals()
+                    }
+                    setMobileMenuOpen(false)
+                  }}
+                >
+                  <span>{category}</span>
+                  <ChevronRight className="h-4 w-4 text-white/40" />
+                </button>
+              ))}
+            </nav>
+          </div>
+        </>
+      )}
 
       {/* Main Content */}
-      <main className="relative z-10 container mx-auto px-4 py-12 flex flex-col items-center">
+      <main className="relative z-10 container mx-auto px-4 py-20 flex flex-col items-center">
         {/* Category Header */}
         <div className="text-center mb-12 max-w-3xl">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent py-4 ">
@@ -172,16 +320,16 @@ export default function CategoryPage({
                         #{tool.rank}
                       </div>
                       {tool.special && (
-                         <div className="text-xs sm:text-sm text-white/60">Ranked Processor</div>
+                        <div className="text-xs sm:text-sm text-white/60">Ranked Processor</div>
                       )
-                      
+
                       }
                       {!tool.special && (
-                         <div className="text-xs sm:text-sm text-white/60">Ranked Tool</div>
+                        <div className="text-xs sm:text-sm text-white/60">Ranked Tool</div>
                       )
-                      
+
                       }
-                      
+
                     </div>
                   </div>
 
@@ -204,7 +352,7 @@ export default function CategoryPage({
                         <p className="text-white/70 text-sm mt-3 mb-4 leading-relaxed">{tool.description}</p>
                       )
                     }
-                   
+
                     {
                       tool.special && (
                         <p className="text-green-400 font-bold text-xl mt-3 mb-4 leading-relaxed">{tool.description}</p>
@@ -214,7 +362,7 @@ export default function CategoryPage({
                     {tool.discount && (
                       <div className="bg-white/5 rounded-lg p-3 sm:p-4 mb-3 border border-white/10">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-xs text-white/50">Exclusive Discount:</span>
+                          <span className="text-xs text-white/50">Exclusive Offer:</span>
                           <span className="text-2xl font-bold text-green-400">{tool.discount.split(" ")[0]}</span>
                         </div>
                         {tool.code && (
