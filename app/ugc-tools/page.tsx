@@ -22,7 +22,6 @@ export default function UGCtoolsPage() {
         categoryDescription="Discover the most advanced UGC creation tools powered by AI. Create photorealistic videos, authentic content, and scale your UGC campaigns with cutting-edge technology."
         tools={categoryData}
         categorySlug="ugc-tools"
-        categoryIcon="🎬"
       />
     </Suspense>
   )

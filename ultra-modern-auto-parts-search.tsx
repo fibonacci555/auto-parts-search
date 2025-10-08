@@ -314,9 +314,10 @@ export default function UltraModernAutoPartsSearch() {
                   onClick={() => {
                     const slugMap: Record<string, string> = {
                       "Best Agency Ad Accounts": "agency-ad-accounts",
-                      "Spy Tools": "advertising-libraries", 
+                      "Best Spy Tools": "advertising-libraries",
                       "Best UGC Tools": "ugc-tools",
-                      "Attribution Tools": "ad-tracking-software"
+                      "Attribution Tools": "ad-tracking-software",
+                      "Payment Processors": "payment-processors",
                     }
                     const slug = slugMap[category]
                     if (slug) {
@@ -352,9 +353,10 @@ export default function UltraModernAutoPartsSearch() {
           onCategorySelect={(category) => {
             const slugMap: Record<string, string> = {
               "Best Agency Ad Accounts": "agency-ad-accounts",
-              "Spy Tools": "advertising-libraries", 
+              "Best Spy Tools": "advertising-libraries",
               "Best UGC Tools": "ugc-tools",
-              "Attribution Tools": "ad-tracking-software"
+              "Attribution Tools": "ad-tracking-software",
+              "Payment Processors": "payment-processors",
             }
             const slug = category ? slugMap[category] : undefined
             if (slug) {
@@ -633,7 +635,7 @@ export default function UltraModernAutoPartsSearch() {
                 <a href="/affiliate-disclosure" className="text-white/50 hover:text-white transition-colors">
                   Affiliate Disclosure
                 </a>
-                <a href="#" className="text-white/50 hover:text-white transition-colors">
+                <a href="https://t.me/patwerx" className="text-white/50 hover:text-white transition-colors">
                   Contact
                 </a>
               </div>
@@ -649,6 +651,7 @@ export default function UltraModernAutoPartsSearch() {
 
 function ToolCard({ tool }: { tool: any }) {
   const { copied, copyToClipboard } = useCopy()
+  const buttonLabel = tool.ctaLabel || (tool.isExternal ? "Visit Tool" : "Activate Deal")
   const getBadgeColor = (badge: string | null) => {
     switch (badge) {
       case 'gold':
@@ -802,6 +805,12 @@ function ToolCard({ tool }: { tool: any }) {
             </div>
           )}
 
+          {tool.preCtaText && (
+            <p className="text-xs sm:text-sm text-white/60 mb-3">
+              {tool.preCtaText}
+            </p>
+          )}
+
           <Button
             onClick={handleActionClick}
             disabled={!tool.url}
@@ -811,7 +820,7 @@ function ToolCard({ tool }: { tool: any }) {
               !tool.url && "opacity-50 cursor-not-allowed hover:scale-100"
             )}
           >
-            {tool.isExternal ? "Visit Tool" : "Activate Deal"}
+            {buttonLabel}
             <ChevronRight className="ml-1 h-4 w-4" />
           </Button>
         </div>

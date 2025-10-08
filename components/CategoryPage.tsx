@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { ArrowLeft, ExternalLink, Sparkles, ChevronRight, Copy, Check, LucideIcon } from "lucide-react"
+import { ReactNode } from "react"
+import { ArrowLeft, ExternalLink, Sparkles, ChevronRight, Copy, Check } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -19,24 +19,23 @@ interface Tool {
   badge: "gold" | "silver" | "bronze" | null
   disclaimer?: string
   isExternal?: boolean
+  preCtaText?: string
+  ctaLabel?: string
 }
 
 interface CategoryPageProps {
   categoryTitle: string
-  categoryDescription: string
+  categoryDescription: ReactNode
   tools: Tool[]
   categorySlug: string
-  categoryIcon: LucideIcon
 }
 
 export default function CategoryPage({
   categoryTitle,
   categoryDescription,
   tools,
-  categorySlug,
-  categoryIcon,
+  categorySlug: _categorySlug,
 }: CategoryPageProps) {
-  const [hoveringTool, setHoveringTool] = useState<string | null>(null)
   const { copied, copyToClipboard } = useCopy()
 
   const getBadgeColor = (badge: string | null) => {
@@ -80,6 +79,8 @@ export default function CategoryPage({
     const target = buildReferralUrl(tool.url, tool.code) || tool.url.trim()
     window.open(target, "_blank", "noopener,noreferrer")
   }
+
+
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center">
@@ -127,14 +128,17 @@ export default function CategoryPage({
 
         {/* Tools Grid */}
         <div className="grid grid-cols-1 gap-8 w-full max-w-4xl">
-          {tools.map((tool, index) => (
-            <div
-              key={index}
-              className={cn(
-                "w-full relative rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-r from-[#1D2235] to-[#121318] p-6 sm:p-8 md:p-10 transition-all duration-300",
-                tool.badge === 'gold' && "ring-2 ring-yellow-400/30 shadow-lg shadow-yellow-400/10"
-              )}
-            >
+          {tools.map((tool, index) => {
+            const buttonLabel = tool.ctaLabel || (tool.isExternal ? "Visit Tool" : "Activate Deal")
+
+            return (
+              <div
+                key={index}
+                className={cn(
+                  "w-full relative rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-r from-[#1D2235] to-[#121318] p-6 sm:p-8 md:p-10 transition-all duration-300",
+                  tool.badge === 'gold' && "ring-2 ring-yellow-400/30 shadow-lg shadow-yellow-400/10"
+                )}
+              >
               {tool.badge && (
                 <div className={cn(
                   "absolute top-2 left-2 sm:top-4 sm:left-4 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r flex items-center justify-center text-sm sm:text-lg md:text-xl z-20 shadow-lg",
@@ -231,6 +235,12 @@ export default function CategoryPage({
                     </div>
                   )}
 
+                  {tool.preCtaText && (
+                    <p className="text-xs sm:text-sm text-white/60 mb-3">
+                      {tool.preCtaText}
+                    </p>
+                  )}
+
                   <Button
                     onClick={() => handleVisitTool(tool)}
                     disabled={!tool.url}
@@ -242,13 +252,14 @@ export default function CategoryPage({
                       !tool.url && "opacity-50 cursor-not-allowed hover:scale-100"
                     )}
                   >
-                    {tool.isExternal ? "Visit Tool" : "Activate Deal"}
+                    {buttonLabel}
                     <ChevronRight className="ml-1 h-4 w-4" />
                   </Button>
                 </div>
               </div>
             </div>
-          ))}
+          )
+        })}
         </div>
 
         {/* Bottom CTA */}
