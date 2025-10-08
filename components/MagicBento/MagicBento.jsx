@@ -25,13 +25,15 @@ const cardData = [
     color: '#060010',
     title: 'One Dashboard',
     description: 'All your favorite Ecom tools tracked and organized in a single view.',
-    label: 'Dashboard'
+    label: 'Dashboard',
+    backgroundImageDesktop: '/dashboard2.png'
   },
   {
     color: '#060010',
     title: 'Deal Alerts',
     description: 'Get notified when prices drop on tools you’re watching. Never miss a discount.',
     label: 'Automation',
+    backgroundImageDesktop: '/automation2.png',
     hideOnMobile: true
   },
   {
@@ -510,11 +512,22 @@ const MagicBento = ({
         {cardData.map((card, index) => {
           if (isMobile && card.hideOnMobile) return null;
           const baseClassName = `card ${textAutoHide ? 'card--text-autohide' : ''} ${enableBorderGlow ? 'card--border-glow' : ''}`;
+          const desktopBackgroundStyles =
+            !isMobile && card.backgroundImageDesktop
+              ? {
+                  backgroundImage: `linear-gradient(rgba(6,0,16,0.55), rgba(6,0,16,0.9)), url(${card.backgroundImageDesktop})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundBlendMode: 'multiply, normal'
+                }
+              : {};
           const cardProps = {
             className: baseClassName,
             style: {
               backgroundColor: card.color,
-              '--glow-color': glowColor
+              '--glow-color': glowColor,
+              ...desktopBackgroundStyles
             }
           };
 
