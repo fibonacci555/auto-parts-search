@@ -6,7 +6,7 @@ export const toolCategories = {
       discount: "10% off first month", 
       code: "INSIDER", 
       url: "https://www.adrevival.io/",
-      logo: "/icons/icons-02.jpg",
+      logo: "/icons/icons-02.webp",
       rank: 1,
       badge: "gold" as const,
       disclaimer: "Discount applies to new customers only"
@@ -37,7 +37,7 @@ export const toolCategories = {
       discount: "15% off for 3 months", 
       code: "INSIDER15", 
       url: "https://web.zocket.com/auth",
-      logo: "/icons/icons-03.jpg",
+      logo: "/icons/icons-03.webp",
       rank: 4,
       badge: null
     },
@@ -49,7 +49,7 @@ export const toolCategories = {
       discount: "25% off lifetime", 
       code: "INSIDER", 
       url: "https://afterlib.com/", 
-      logo: "/icons/icons-04.jpg",
+      logo: "/icons/icons-04.webp",
       rank: 1,
       badge: "gold" as const
     },
@@ -59,7 +59,7 @@ export const toolCategories = {
       discount: "30% off 3 Months ", 
       code: "INSIDER", 
       url: "https://trendtrack.io?fpr=insider",
-      logo: "/icons/icons-08.jpg",
+      logo: "/icons/icons-08.webp",
       rank: 2,
       badge: "silver" as const
     },
@@ -70,7 +70,7 @@ export const toolCategories = {
       discount: "30% off ", 
       code: "INSIDER", 
       url: "https://app.minea.com/en/ads/meta-library?ref=insider",
-      logo: "/icons/icons-01.jpg",
+      logo: "/icons/icons-01.webp",
       rank: 3,
       badge: "bronze" as const
     },
@@ -80,7 +80,7 @@ export const toolCategories = {
       discount: "30% off for 3 months", 
       code: "INSIDER", 
       url: "https://adplexity.com/members/signup/native?coupon=INSIDER",
-      logo: "/icons/icons-05.jpg",
+      logo: "/icons/icons-05.webp",
       rank: 3,
       
     },
@@ -92,7 +92,7 @@ export const toolCategories = {
       
       special: true,
       url: "https://sound-commerce.com/contact?ref=ecom-insider",
-      logo: "/icons/logo_11.jpeg",
+      logo: "/icons/logo_11.webp",
       rank: 1,
       badge: "gold" as const,
   
@@ -109,7 +109,7 @@ export const toolCategories = {
       discount: null, 
       code: null, 
       url: "https://openai.com/sora/", 
-      logo: "/icons/icons-07.jpg",
+      logo: "/icons/icons-07.webp",
       rank: 1,
       badge: "gold" as const,
       isExternal: true
@@ -120,7 +120,7 @@ export const toolCategories = {
       discount: null, 
       code: null, 
       url: "https://labs.google/flow/about", 
-      logo: "/icons/icons-09.jpg",
+      logo: "/icons/icons-09.webp",
       rank: 2,
       badge: "silver" as const,
       isExternal: true
@@ -131,7 +131,7 @@ export const toolCategories = {
       discount: "25% off for 3 months", 
       code: "INSIDER", 
       url: "https://www.makeugc.ai/?code=INSIDER", 
-      logo: "/icons/icons-06.jpg",
+      logo: "/icons/icons-06.webp",
       rank: 3,
       badge: "bronze" as const
     },

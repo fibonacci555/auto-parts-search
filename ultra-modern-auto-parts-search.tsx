@@ -295,7 +295,7 @@ export default function UltraModernAutoPartsSearch() {
 
       {/* Main content */}
       <div className="relative z-10">
-        <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/30 border-b border-white/5">
+        <header data-site-header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/30 border-b border-white/5">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
             <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="font-bold text-lg tracking-tight">
               <img src="/logo.svg" alt="Ecom Insider" className="h-5 md:h-5 mr-2" />
@@ -372,238 +372,238 @@ export default function UltraModernAutoPartsSearch() {
           }}
         />
 
-        <TracingBeam className=" pb-16">
-          <section
-            ref={searchSectionRef}
-            id="search"
-            className="relative w-full"
-          >
-            <Hero />
-          </section>
+
+        <section
+          ref={searchSectionRef}
+          id="search"
+          className="relative w-full"
+        >
+          <Hero />
+        </section>
 
 
 
-          <div className="border border-white/10 rounded-2xl p-8 mb-16 backdrop-blur-xl md:mx-40 mx-10 mt-12 sm:mt-16 md:mt-24">
-            <h3 className="text-2xl font-bold mb-6 text-center">Why Choose Us</h3>
+        <div className="border border-white/10 rounded-2xl p-8 mb-16 backdrop-blur-xl md:mx-40 mx-10 mt-12 sm:mt-16 md:mt-24">
+          <h3 className="text-2xl font-bold mb-6 text-center">Why Choose Us</h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  title: "Best Tools",
-                  description: "Find the tools you really need at the best price",
-                  icon: <Sparkles className="h-6 w-6 text-blue-400" />,
-                },
-                {
-                  title: "Verified Tools",
-                  description: "Each tool has been tested and verified before publishing",
-                  icon: <Check className="h-6 w-6 text-green-400" />,
-                },
-                {
-                  title: "Non-Profit",
-                  description: "We donate every single dollar received in affiliate commissions to charity",
-                  icon: <Heart className="h-6 w-6 text-pink-400" />,
-                },
-                {
-                  title: "Save Big",
-                  description: "Average savings 10% higher than any online search you try",
-                  icon: <DollarSign className="h-6 w-6 text-yellow-400" />,
-                },
-              ].map((benefit, index) => (
-                <div
-                  key={index}
-                  className="border border-white/30 rounded-xl shadow-sm p-4 hover:border-blue-500/50 hover:bg-white/5 transition-all duration-300 relative overflow-hidden"
-                >
-                  <div className="pointer-events-none absolute -inset-8 opacity-30" style={{ background: 'radial-gradient(600px circle at var(--x,50%) var(--y,50%), rgba(59,130,246,0.5), transparent 100%)' }} />
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
-                      {benefit.icon}
-                    </div>
-                    <h4 className="font-bold text-sm sm:text-base">{benefit.title}</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                title: "Best Tools",
+                description: "Find the tools you really need at the best price",
+                icon: <Sparkles className="h-6 w-6 text-blue-400" />,
+              },
+              {
+                title: "Verified Tools",
+                description: "Each tool has been tested and verified before publishing",
+                icon: <Check className="h-6 w-6 text-green-400" />,
+              },
+              {
+                title: "Non-Profit",
+                description: "We donate every single dollar received in affiliate commissions to charity",
+                icon: <Heart className="h-6 w-6 text-pink-400" />,
+              },
+              {
+                title: "Save Big",
+                description: "Average savings 10% higher than any online search you try",
+                icon: <DollarSign className="h-6 w-6 text-yellow-400" />,
+              },
+            ].map((benefit, index) => (
+              <div
+                key={index}
+                className="border border-white/30 rounded-xl shadow-sm p-4 hover:border-blue-500/50 hover:bg-white/5 transition-all duration-300 relative overflow-hidden"
+              >
+                <div className="pointer-events-none absolute -inset-8 opacity-30" style={{ background: 'radial-gradient(600px circle at var(--x,50%) var(--y,50%), rgba(59,130,246,0.5), transparent 100%)' }} />
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+                    {benefit.icon}
                   </div>
-                  <p className="text-white/70 text-xs sm:text-sm">{benefit.description}</p>
+                  <h4 className="font-bold text-sm sm:text-base">{benefit.title}</h4>
                 </div>
-              ))}
+                <p className="text-white/70 text-xs sm:text-sm">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+
+        <section className="px-4 md:px-6 lg:px-8 mx-auto w-full justify-center">
+          <MagicBento
+            textAutoHide={true}
+            enableStars={true}
+            enableSpotlight={true}
+            enableBorderGlow={true}
+            enableTilt={true}
+            enableMagnetism={true}
+            clickEffect={true}
+            spotlightRadius={300}
+            particleCount={12}
+            glowColor="132, 0, 255"
+            className=""
+          />
+        </section>
+
+        {/* Stepper Section */}
+        <section className="py-16 px-4 border-t border-white/5">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Want Weekly Insider Deals?
+              </h2>
+              <p className="text-white/70 text-lg max-w-2xl mx-auto">
+                Get early access to new deals before they go public. Price drops delivered straight to your inbox.
+              </p>
+            </div>
+
+            <div className=" backdrop-blur-sm rounded-2xl mt-20  p-6 md:p-8">
+              <ValidatedStepper
+                currentStep={currentStep}
+                onStepChange={setCurrentStep}
+                stepperData={stepperData}
+                setStepperData={setStepperData}
+                isStepValid={isStepValid}
+                onComplete={() => {
+                  console.log('All steps completed!', stepperData)
+                  setStepperData(prev => ({ ...prev, completed: true }))
+                  // Here you would typically send the data to your backend
+                  alert(`Welcome ${stepperData.firstName}! You'll receive the best deals at ${stepperData.email}`)
+                }}
+              >
+                <Step>
+                  <div className="text-center py-4">
+                    <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                      <User className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-white">What's your first name?</h3>
+                    <p className="text-white/70 text-lg max-w-md mx-auto leading-relaxed mb-6">
+                      Help us send you the most relevant deals for your business.
+                    </p>
+                    <div className="max-w-sm mx-auto">
+                      <input
+                        type="text"
+                        placeholder="Enter your first name"
+                        value={stepperData.firstName}
+                        onChange={(e) => setStepperData(prev => ({ ...prev, firstName: e.target.value }))}
+                        className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-blue-500 focus:bg-white/15 transition-all duration-300"
+                      />
+                    </div>
+                  </div>
+                </Step>
+
+                <Step>
+                  <div className="text-center py-8">
+                    <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
+                      <Mail className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-white">Get exclusive deals via email</h3>
+                    <p className="text-white/70 text-lg max-w-md mx-auto leading-relaxed mb-6">
+                      Weekly insider deals straight to your inbox.
+                    </p>
+                    <div className="max-w-sm mx-auto">
+                      <input
+                        type="email"
+                        placeholder="Enter your email address"
+                        value={stepperData.email}
+                        onChange={(e) => setStepperData(prev => ({ ...prev, email: e.target.value }))}
+                        className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-blue-500 focus:bg-white/15 transition-all duration-300"
+                      />
+                      <p className="text-white/50 text-sm mt-2">
+                        We respect your privacy. Unsubscribe anytime.
+                      </p>
+                    </div>
+                  </div>
+                </Step>
+
+                <Step>
+                  <div className="text-center py-8">
+                    <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center">
+                      <Zap className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 text-white">You're all set, {stepperData.firstName}!</h3>
+                    <p className="text-white/70 text-lg max-w-md mx-auto leading-relaxed mb-6">
+                      You'll now receive exclusive discounts and the best tool recommendations directly to {stepperData.email}.
+                    </p>
+                    <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-4 max-w-sm mx-auto">
+                      <div className="flex items-center gap-3">
+                        <Check className="h-6 w-6 text-green-400" />
+                        <div className="text-left">
+                          <p className="text-green-400 font-semibold">Success!</p>
+                          <p className="text-white/70 text-sm">You're subscribed to our exclusive deals</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Step>
+              </ValidatedStepper>
             </div>
           </div>
-
-
-          <section className="px-4 md:px-6 lg:px-8 mx-auto w-full justify-center">
-            <MagicBento
-              textAutoHide={true}
-              enableStars={true}
-              enableSpotlight={true}
-              enableBorderGlow={true}
-              enableTilt={true}
-              enableMagnetism={true}
-              clickEffect={true}
-              spotlightRadius={300}
-              particleCount={12}
-              glowColor="132, 0, 255"
-              className=""
-            />
-          </section>
-
-          {/* Stepper Section */}
-          <section className="py-16 px-4 border-t border-white/5">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  Want Weekly Insider Deals?
-                </h2>
-                <p className="text-white/70 text-lg max-w-2xl mx-auto">
-                  Get early access to new deals before they go public. Price drops delivered straight to your inbox.
-                </p>
-              </div>
-
-              <div className=" backdrop-blur-sm rounded-2xl mt-20  p-6 md:p-8">
-                <ValidatedStepper
-                  currentStep={currentStep}
-                  onStepChange={setCurrentStep}
-                  stepperData={stepperData}
-                  setStepperData={setStepperData}
-                  isStepValid={isStepValid}
-                  onComplete={() => {
-                    console.log('All steps completed!', stepperData)
-                    setStepperData(prev => ({ ...prev, completed: true }))
-                    // Here you would typically send the data to your backend
-                    alert(`Welcome ${stepperData.firstName}! You'll receive the best deals at ${stepperData.email}`)
-                  }}
-                >
-                  <Step>
-                    <div className="text-center py-4">
-                      <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-                        <User className="h-8 w-8 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold mb-4 text-white">What's your first name?</h3>
-                      <p className="text-white/70 text-lg max-w-md mx-auto leading-relaxed mb-6">
-                        Help us send you the most relevant deals for your business.
-                      </p>
-                      <div className="max-w-sm mx-auto">
-                        <input
-                          type="text"
-                          placeholder="Enter your first name"
-                          value={stepperData.firstName}
-                          onChange={(e) => setStepperData(prev => ({ ...prev, firstName: e.target.value }))}
-                          className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-blue-500 focus:bg-white/15 transition-all duration-300"
-                        />
-                      </div>
-                    </div>
-                  </Step>
-
-                  <Step>
-                    <div className="text-center py-8">
-                      <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center">
-                        <Mail className="h-8 w-8 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold mb-4 text-white">Get exclusive deals via email</h3>
-                      <p className="text-white/70 text-lg max-w-md mx-auto leading-relaxed mb-6">
-                        Weekly insider deals straight to your inbox.
-                      </p>
-                      <div className="max-w-sm mx-auto">
-                        <input
-                          type="email"
-                          placeholder="Enter your email address"
-                          value={stepperData.email}
-                          onChange={(e) => setStepperData(prev => ({ ...prev, email: e.target.value }))}
-                          className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-blue-500 focus:bg-white/15 transition-all duration-300"
-                        />
-                        <p className="text-white/50 text-sm mt-2">
-                          We respect your privacy. Unsubscribe anytime.
-                        </p>
-                      </div>
-                    </div>
-                  </Step>
-
-                  <Step>
-                    <div className="text-center py-8">
-                      <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center">
-                        <Zap className="h-8 w-8 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold mb-4 text-white">You're all set, {stepperData.firstName}!</h3>
-                      <p className="text-white/70 text-lg max-w-md mx-auto leading-relaxed mb-6">
-                        You'll now receive exclusive discounts and the best tool recommendations directly to {stepperData.email}.
-                      </p>
-                      <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-4 max-w-sm mx-auto">
-                        <div className="flex items-center gap-3">
-                          <Check className="h-6 w-6 text-green-400" />
-                          <div className="text-left">
-                            <p className="text-green-400 font-semibold">Success!</p>
-                            <p className="text-white/70 text-sm">You're subscribed to our exclusive deals</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </Step>
-                </ValidatedStepper>
-              </div>
-            </div>
-          </section>
+        </section>
 
 
 
-          {showResults && (
-            <section ref={dealsSectionRef} className="py-16 px-4 border-t border-white/5 min-h-screen" id="deals">
-              <div className="max-w-6xl mx-auto">
-                <div className="flex justify-between items-center mb-8">
-                  <h2 className="text-2xl font-bold">{activeCategory || "All Tools"}</h2>
-                  {activeCategory && (
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="rounded-full hover:bg-white/5"
-                      onClick={() => {
-                        setActiveCategory(null)
-                      }}
-                    >
-                      <X className="h-5 w-5" />
-                    </Button>
-                  )}
-                </div>
-
-                {activeCategory ? (
-                  <div className="grid grid-cols-1 gap-6 md:gap-8">
-                    {filteredTools.map((tool, index) => (
-                      <ToolCard
-                        key={`${tool.name}-${index}`}
-                        tool={tool}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="space-y-12">
-                    {Object.entries(toolCategories).map(([categoryName, tools]) => (
-                      <div key={categoryName} className="space-y-6">
-                        <h3 className="text-xl font-semibold text-white">{categoryName}</h3>
-                        <div className="grid grid-cols-1 gap-6">
-                          {tools.map((tool, index) => (
-                            <ToolCard
-                              key={`${categoryName}-${tool.name}-${index}`}
-                              tool={tool}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+        {showResults && (
+          <section ref={dealsSectionRef} className="py-16 px-4 border-t border-white/5 min-h-screen" id="deals">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex justify-between items-center mb-8">
+                <h2 className="text-2xl font-bold">{activeCategory || "All Tools"}</h2>
+                {activeCategory && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="rounded-full hover:bg-white/5"
+                    onClick={() => {
+                      setActiveCategory(null)
+                    }}
+                  >
+                    <X className="h-5 w-5" />
+                  </Button>
                 )}
               </div>
-            </section>
-          )}
 
-          <section className="flex flex-col items-center justify-center gap-4 py-16 px-4 border-t border-white/5 max-h-screen">
-            <ProfileCardComponent
-              avatarUrl="/avatar.png"
-              name="Patrick Werner"
-              handle="patwerX"
-              title="Super Affiliate"
-              miniAvatarUrl="/avatar.png"
-              grainUrl=""
-
-              onContactClick={() => window.open('https://x.com/patwerX', '_blank', 'noopener,noreferrer')}
-            />
+              {activeCategory ? (
+                <div className="grid grid-cols-1 gap-6 md:gap-8">
+                  {filteredTools.map((tool, index) => (
+                    <ToolCard
+                      key={`${tool.name}-${index}`}
+                      tool={tool}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="space-y-12">
+                  {Object.entries(toolCategories).map(([categoryName, tools]) => (
+                    <div key={categoryName} className="space-y-6">
+                      <h3 className="text-xl font-semibold text-white">{categoryName}</h3>
+                      <div className="grid grid-cols-1 gap-6">
+                        {tools.map((tool, index) => (
+                          <ToolCard
+                            key={`${categoryName}-${tool.name}-${index}`}
+                            tool={tool}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </section>
+        )}
 
-        </TracingBeam>
+        <section className="flex flex-col items-center justify-center gap-4 py-16 px-4 border-t border-white/5 max-h-screen">
+          <ProfileCardComponent
+            avatarUrl="/avatar.webp"
+            name="Patrick Werner"
+            handle="patwerX"
+            title="Super Affiliate"
+            miniAvatarUrl="/avatar.webp"
+            grainUrl=""
+
+            onContactClick={() => window.open('https://x.com/patwerX', '_blank', 'noopener,noreferrer')}
+          />
+        </section>
+
+
 
         {/* Affiliate Disclosure Disclaimer */}
         <div className="border-t border-white/5 py-6">

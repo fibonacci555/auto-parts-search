@@ -10,8 +10,43 @@ import { useEffect, useRef, useState } from "react";
 import { HyperText } from "@/components/ui/hyper-text";
 
 export default function HeroEcomDeals() {
+  const [viewportHeight, setViewportHeight] = useState<number | null>(null);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      const viewport = window.visualViewport
+      const rawHeight = viewport?.height ?? window.innerHeight
+      const header = document.querySelector<HTMLElement>("[data-site-header]")
+      const isMobileViewport = window.innerWidth < 768
+      const headerOffset = header && isMobileViewport ? header.offsetHeight : 0
+      const computedHeight = Math.max(rawHeight - headerOffset, 0)
+      setViewportHeight(computedHeight)
+    }
+
+    updateHeight()
+
+    window.addEventListener("resize", updateHeight)
+    window.addEventListener("orientationchange", updateHeight)
+
+    const visualViewport = window.visualViewport
+    visualViewport?.addEventListener("resize", updateHeight)
+    visualViewport?.addEventListener("scroll", updateHeight)
+
+    return () => {
+      window.removeEventListener("resize", updateHeight)
+      window.removeEventListener("orientationchange", updateHeight)
+      visualViewport?.removeEventListener("resize", updateHeight)
+      visualViewport?.removeEventListener("scroll", updateHeight)
+    }
+  }, [])
+
+  const heroMinHeight = viewportHeight ? `${viewportHeight}px` : undefined
+
   return (
-    <section className="relative isolate overflow-hidden min-h-screen">
+    <section
+      className="relative isolate overflow-hidden min-h-screen"
+      style={{ minHeight: heroMinHeight }}
+    >
       {/* ===== Background FULL-WIDTH ===== */}
       <div className="absolute inset-0 -z-10">
         {/* Radial glow */}
