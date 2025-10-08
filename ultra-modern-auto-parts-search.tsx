@@ -26,7 +26,6 @@ import { TracingBeam } from "@/components/tracing-beam"
 import Image from "next/image"
 import { useCopy } from "@/hooks/use-copy"
 import AnimeSphereAnimation from "@/components/anime-sphere-animation"
-import { Lens } from "@/components/ui/lens"
 import GradientBlinds from "@/components/anime-sphere-animation"
 import Hero from "./components/Hero"
 import MagicBento from "./components/MagicBento/MagicBento"
@@ -190,10 +189,8 @@ function ValidatedStepper({
 export default function UltraModernAutoPartsSearch() {
   const [activeSection, setActiveSection] = useState("search")
   const [showResults, setShowResults] = useState(true)
-  const [selectedDeal, setSelectedDeal] = useState<string | null>(null)
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [hoveringDeal, setHoveringDeal] = useState<string | null>(null)
   const router = useRouter()
   const [stepperData, setStepperData] = useState({
     firstName: '',
@@ -561,17 +558,32 @@ export default function UltraModernAutoPartsSearch() {
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                  {filteredTools.map((tool, index) => (
-                    <ToolCard
-                      key={index}
-                      tool={tool}
-                      isHovering={hoveringDeal === tool.name}
-                      setIsHovering={(hovering) => setHoveringDeal(hovering ? tool.name : null)}
-                      onClick={() => setSelectedDeal(tool.name)}
-                    />
-                  ))}
-                </div>
+                {activeCategory ? (
+                  <div className="grid grid-cols-1 gap-6 md:gap-8">
+                    {filteredTools.map((tool, index) => (
+                      <ToolCard
+                        key={`${tool.name}-${index}`}
+                        tool={tool}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="space-y-12">
+                    {Object.entries(toolCategories).map(([categoryName, tools]) => (
+                      <div key={categoryName} className="space-y-6">
+                        <h3 className="text-xl font-semibold text-white">{categoryName}</h3>
+                        <div className="grid grid-cols-1 gap-6">
+                          {tools.map((tool, index) => (
+                            <ToolCard
+                              key={`${categoryName}-${tool.name}-${index}`}
+                              tool={tool}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </section>
           )}
@@ -635,98 +647,120 @@ export default function UltraModernAutoPartsSearch() {
   )
 }
 
-function ToolCard({
-  tool,
-  isHovering,
-  setIsHovering,
-  onClick,
-}: {
-  tool: any
-  isHovering: boolean
-  setIsHovering: (hovering: boolean) => void
-  onClick: () => void
-}) {
+function ToolCard({ tool }: { tool: any }) {
   const { copied, copyToClipboard } = useCopy()
   const getBadgeColor = (badge: string | null) => {
     switch (badge) {
-      case 'gold': return 'from-yellow-400 to-yellow-600'
-      case 'silver': return 'from-gray-300 to-gray-500'
-      case 'bronze': return 'from-orange-400 to-orange-600'
-      default: return 'from-gray-400 to-gray-600'
+      case 'gold':
+        return 'from-yellow-400 to-yellow-600'
+      case 'silver':
+        return 'from-gray-300 to-gray-500'
+      case 'bronze':
+        return 'from-orange-400 to-orange-600'
+      default:
+        return 'from-gray-400 to-gray-600'
     }
   }
 
   const getBadgeIcon = (badge: string | null) => {
     switch (badge) {
-      case 'gold': return '🏆'
-      case 'silver': return '🥈'
-      case 'bronze': return '🥉'
-      default: return '⭐'
+      case 'gold':
+        return '🏆'
+      case 'silver':
+        return '🥈'
+      case 'bronze':
+        return '🥉'
+      default:
+        return '⭐'
     }
   }
 
-  return (
-    <div className={cn(
-      "w-full relative rounded-2xl md:rounded-3xl overflow-hidden max-w-md mx-auto bg-gradient-to-r from-[#1D2235] to-[#121318] p-4 sm:p-6 md:p-8 transition-all duration-300",
-      tool.badge === 'gold' && "ring-2 ring-yellow-400/30 shadow-lg shadow-yellow-400/10"
-    )}>
-      <Rays />
-      <Beams />
+  const buildReferralUrl = () => {
+    if (!tool.url) return null
+    const trimmed = tool.url.trim()
+    if (!tool.code) return trimmed
 
-      {/* Trophy Badge */}
+    try {
+      const referralUrl = new URL(trimmed)
+      referralUrl.searchParams.append("code", tool.code)
+      return referralUrl.toString()
+    } catch {
+      // If URL constructor fails, fall back to trimmed string
+      const separator = trimmed.includes("?") ? "&" : "?"
+      return `${trimmed}${separator}code=${encodeURIComponent(tool.code)}`
+    }
+  }
+
+  const handleActionClick = () => {
+    if (!tool.url) return
+    if (tool.code) {
+      copyToClipboard(tool.code)
+    }
+    const target = buildReferralUrl() || tool.url.trim()
+    window.open(target, "_blank", "noopener,noreferrer")
+  }
+
+  return (
+    <div
+      className={cn(
+        "w-full relative rounded-2xl md:rounded-3xl overflow-hidden bg-gradient-to-r from-[#1D2235] to-[#121318] p-6 sm:p-8 md:p-10 transition-all duration-300",
+        tool.badge === 'gold' && "ring-2 ring-yellow-400/30 shadow-lg shadow-yellow-400/10"
+      )}
+    >
       {tool.badge && (
-        <div className={cn(
-          "absolute top-2 right-2 sm:top-4 sm:right-4 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r flex items-center justify-center text-sm sm:text-lg md:text-xl z-20 shadow-lg",
-          getBadgeColor(tool.badge)
-        )}>
+        <div
+          className={cn(
+            "absolute top-2 left-2 sm:top-4 sm:left-4 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r flex items-center justify-center text-sm sm:text-lg md:text-xl z-20 shadow-lg",
+            getBadgeColor(tool.badge)
+          )}
+        >
           {getBadgeIcon(tool.badge)}
         </div>
       )}
 
-      <div className="relative z-10">
-        <Lens hovering={isHovering} setHovering={setIsHovering}>
-          <div className="w-full h-32 sm:h-40 md:h-48 rounded-xl md:rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_50%)]"></div>
-            <div className="relative z-10 text-center">
-              <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 rounded-xl md:rounded-2xl bg-white/100 backdrop-blur-sm flex items-center justify-center overflow-hidden">
-                {tool.logo ? (
-                  <Image src={tool.logo} alt={`${tool.name} logo`} width={80} height={80} className="w-full h-full object-contain rounded-xl" />
-                ) : (
-                  <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 text-blue-400" />
-                )}
-              </div>
-              <div className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                #{tool.rank}
-              </div>
-              <div className="text-xs sm:text-sm text-white/60">Ranked Tool</div>
-            </div>
-          </div>
-        </Lens>
-
-        <div className={cn("py-2 sm:py-4 relative z-20 transition-all duration-300", isHovering ? "blur-sm" : "blur-0")}>
-          {/* Tool Name and Badge */}
-          <div className="flex items-start justify-between mb-2 sm:mb-3">
-            <div className="flex-1">
-              <h2 className="text-white text-lg sm:text-xl md:text-2xl font-bold leading-tight">{tool.name}</h2>
-              {tool.badge && (
-                <div className={cn(
-                  "inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold mt-1",
-                  tool.badge === 'gold' && "bg-yellow-400/20 text-yellow-400 border border-yellow-400/30",
-                  tool.badge === 'silver' && "bg-gray-300/20 text-gray-300 border border-gray-300/30",
-                  tool.badge === 'bronze' && "bg-orange-400/20 text-orange-400 border border-orange-400/30"
-                )}>
-                  {getBadgeIcon(tool.badge)} #{tool.rank} in Category
-                </div>
+      <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center">
+        <div className="w-full md:w-48 lg:w-56 h-32 sm:h-40 md:h-48 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-600/20 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_50%)]"></div>
+          <div className="relative z-10 text-center">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 mx-auto mb-2 sm:mb-4 rounded-xl md:rounded-2xl bg-white/100 backdrop-blur-sm flex items-center justify-center overflow-hidden">
+              {tool.logo ? (
+                <Image
+                  src={tool.logo}
+                  alt={`${tool.name} logo`}
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-contain rounded-xl md:rounded-2xl"
+                />
+              ) : (
+                <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 text-blue-400" />
               )}
             </div>
+            <div className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              #{tool.rank}
+            </div>
+            <div className="text-xs sm:text-sm text-white/60">Ranked Tool</div>
           </div>
+        </div>
 
-          {/* Description */}
-          <p className="text-white/80 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">{tool.description}</p>
+        <div className="flex-1 flex flex-col justify-center text-left">
+          <h2 className="text-white text-lg sm:text-xl md:text-2xl font-bold leading-tight">{tool.name}</h2>
+          {tool.badge && (
+            <div
+              className={cn(
+                "inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold mt-1",
+                tool.badge === 'gold' && "bg-yellow-400/20 text-yellow-400 border border-yellow-400/30",
+                tool.badge === 'silver' && "bg-gray-300/20 text-gray-300 border border-gray-300/30",
+                tool.badge === 'bronze' && "bg-orange-400/20 text-orange-400 border border-orange-400/30"
+              )}
+            >
+              {getBadgeIcon(tool.badge)} #{tool.rank} in Category
+            </div>
+          )}
 
-          {/* Discount Section (Secondary) */}
+          <p className="text-white/80 text-sm mt-3 mb-4 leading-relaxed">{tool.description}</p>
+
           {tool.discount && (
-            <div className="bg-white/5 rounded-lg p-3 sm:p-4 mb-3 sm:mb-4 border border-white/10">
+            <div className="bg-white/5 rounded-lg p-3 sm:p-4 mb-3 border border-white/10">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs text-white/50">Exclusive Discount:</span>
                 <span className="text-sm sm:text-lg font-bold text-green-400">{tool.discount.split(" ")[0]}</span>
@@ -734,7 +768,10 @@ function ToolCard({
               {tool.code && (
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-white/50">Code:</span>
-                  <button onClick={() => copyToClipboard(tool.code!)} className="flex items-center gap-2 text-xs sm:text-sm font-mono bg-white/10 hover:bg-white/20 px-2 sm:px-3 py-1 rounded text-blue-400 transition-colors duration-200 group">
+                  <button
+                    onClick={() => copyToClipboard(tool.code!)}
+                    className="flex items-center gap-2 text-xs sm:text-sm font-mono bg-white/10 hover:bg-white/20 px-2 sm:px-3 py-1 rounded text-blue-400 transition-colors duration-200 group"
+                  >
                     <code>{tool.code}</code>
                     {copied ? (
                       <Check className="h-3 w-3 text-green-400" />
@@ -744,15 +781,12 @@ function ToolCard({
                   </button>
                 </div>
               )}
-              {tool.disclaimer && (
-                <p className="text-xs text-white/40 mt-2">{tool.disclaimer}</p>
-              )}
+              {tool.disclaimer && <p className="text-xs text-white/40 mt-2">{tool.disclaimer}</p>}
             </div>
           )}
 
-          {/* External Link Info */}
           {tool.isExternal && (
-            <div className="bg-blue-500/10 rounded-lg p-3 mb-4 border border-blue-500/20">
+            <div className="bg-blue-500/10 rounded-lg p-3 mb-3 border border-blue-500/20">
               <div className="flex items-center gap-2">
                 <ExternalLink className="h-4 w-4 text-blue-400" />
                 <span className="text-sm text-blue-400">External Tool</span>
@@ -761,22 +795,20 @@ function ToolCard({
             </div>
           )}
 
-          {/* URL Display */}
           {tool.url && !tool.isExternal && (
-            <div className="text-xs text-white/50 mb-4 flex items-center gap-2">
+            <div className="text-xs text-white/50 mb-3 flex items-center gap-2">
               <span>🌐</span>
-              <span>{tool.url}</span>
+              <span>{tool.url.trim()}</span>
             </div>
           )}
 
-          {/* Action Button */}
           <Button
-            onClick={onClick}
+            onClick={handleActionClick}
+            disabled={!tool.url}
             className={cn(
-              "w-full rounded-full h-12 transition-all duration-300 hover:scale-105 font-semibold",
-              tool.isExternal
-                ? "bg-gray-600 hover:bg-gray-700"
-                : "bg-blue-600 hover:bg-blue-700"
+              "w-full rounded-full h-10 sm:h-12 transition-all duration-300 hover:scale-105 font-semibold",
+              tool.isExternal ? "bg-gray-600 hover:bg-gray-700" : "bg-blue-600 hover:bg-blue-700",
+              !tool.url && "opacity-50 cursor-not-allowed hover:scale-100"
             )}
           >
             {tool.isExternal ? "Visit Tool" : "Activate Deal"}
@@ -785,302 +817,5 @@ function ToolCard({
         </div>
       </div>
     </div>
-  )
-}
-
-const Beams = () => {
-  return (
-    <svg
-      width="380"
-      height="315"
-      viewBox="0 0 380 315"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="absolute top-0 left-1/2 -translate-x-1/2 w-full pointer-events-none"
-    >
-      <g filter="url(#filter0_f_120_7473)">
-        <circle cx="34" cy="52" r="114" fill="#6925E7" />
-      </g>
-      <g filter="url(#filter1_f_120_7473)">
-        <circle cx="332" cy="24" r="102" fill="#8A4BFF" />
-      </g>
-      <g filter="url(#filter2_f_120_7473)">
-        <circle cx="191" cy="53" r="102" fill="#802FE3" />
-      </g>
-      <defs>
-        <filter
-          id="filter0_f_120_7473"
-          x="-192"
-          y="-174"
-          width="452"
-          height="452"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-          <feGaussianBlur stdDeviation="56" result="effect1_foregroundBlur_120_7473" />
-        </filter>
-        <filter
-          id="filter1_f_120_7473"
-          x="70"
-          y="-238"
-          width="524"
-          height="524"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-          <feGaussianBlur stdDeviation="80" result="effect1_foregroundBlur_120_7473" />
-        </filter>
-        <filter
-          id="filter2_f_120_7473"
-          x="-71"
-          y="-209"
-          width="524"
-          height="524"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-          <feGaussianBlur stdDeviation="80" result="effect1_foregroundBlur_120_7473" />
-        </filter>
-      </defs>
-    </svg>
-  )
-}
-
-const Rays = ({ className }: { className?: string }) => {
-  return (
-    <svg
-      width="380"
-      height="397"
-      viewBox="0 0 380 397"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={cn("absolute left-0 top-0 pointer-events-none z-[1]", className)}
-    >
-      <g filter="url(#filter0_f_120_7480)">
-        <path
-          d="M-37.4202 -76.0163L-18.6447 -90.7295L242.792 162.228L207.51 182.074L-37.4202 -76.0163Z"
-          fill="url(#paint0_linear_120_7480)"
-        />
-      </g>
-      <g style={{ mixBlendMode: "plus-lighter" }} opacity="0.3" filter="url(#filter1_f_120_7480)">
-        <path
-          d="M-109.54 -36.9027L-84.2903 -58.0902L178.786 193.228L132.846 223.731L-109.54 -36.9027Z"
-          fill="url(#paint1_linear_120_7480)"
-        />
-      </g>
-      <g style={{ mixBlendMode: "plus-lighter" }} opacity="0.86" filter="url(#filter2_f_120_7480)">
-        <path
-          d="M-100.647 -65.795L-69.7261 -92.654L194.786 157.229L139.51 197.068L-100.647 -65.795Z"
-          fill="url(#paint2_linear_120_7480)"
-        />
-      </g>
-      <g style={{ mixBlendMode: "plus-lighter" }} opacity="0.31" filter="url(#filter3_f_120_7480)">
-        <path
-          d="M163.917 -89.0982C173.189 -72.1354 80.9618 2.11525 34.7334 30.1553C-11.495 58.1954 -106.505 97.514 -115.777 80.5512C-125.048 63.5885 -45.0708 -3.23233 1.15763 -31.2724C47.386 -59.3124 154.645 -106.061 163.917 -89.0982Z"
-          fill="#8A50FF"
-        />
-      </g>
-      <g style={{ mixBlendMode: "plus-lighter" }} filter="url(#filter4_f_120_7480)">
-        <path d="M34.2031 13.2222L291.721 269.534" stroke="url(#paint3_linear_120_7480)" />
-      </g>
-      <g style={{ mixBlendMode: "plus-lighter" }} filter="url(#filter5_f_120_7480)">
-        <path d="M41 -40.9331L298.518 215.378" stroke="url(#paint4_linear_120_7480)" />
-      </g>
-      <g style={{ mixBlendMode: "plus-lighter" }} filter="url(#filter6_f_120_7480)">
-        <path d="M61.3691 3.8999L317.266 261.83" stroke="url(#paint5_linear_120_7480)" />
-      </g>
-      <g style={{ mixBlendMode: "plus-lighter" }} filter="url(#filter7_f_120_7480)">
-        <path d="M-1.46191 9.06348L129.458 145.868" stroke="url(#paint6_linear_120_7480)" strokeWidth="2" />
-      </g>
-      <defs>
-        <filter
-          id="filter0_f_120_7480"
-          x="-49.4199"
-          y="-102.729"
-          width="304.212"
-          height="296.803"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-          <feGaussianBlur stdDeviation="6" result="effect1_foregroundBlur_120_7480" />
-        </filter>
-        <filter
-          id="filter1_f_120_7480"
-          x="-115.54"
-          y="-64.0903"
-          width="300.326"
-          height="293.822"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-          <feGaussianBlur stdDeviation="3" result="effect1_foregroundBlur_120_7480" />
-        </filter>
-        <filter
-          id="filter2_f_120_7480"
-          x="-111.647"
-          y="-103.654"
-          width="317.434"
-          height="311.722"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-          <feGaussianBlur stdDeviation="5.5" result="effect1_foregroundBlur_120_7480" />
-        </filter>
-        <filter
-          id="filter3_f_120_7480"
-          x="-212.518"
-          y="-188.71"
-          width="473.085"
-          height="369.366"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-          <feGaussianBlur stdDeviation="48" result="effect1_foregroundBlur_120_7480" />
-        </filter>
-        <filter
-          id="filter4_f_120_7480"
-          x="25.8447"
-          y="4.84521"
-          width="274.234"
-          height="273.065"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-          <feGaussianBlur stdDeviation="4" result="effect1_foregroundBlur_120_7480" />
-        </filter>
-        <filter
-          id="filter5_f_120_7480"
-          x="32.6416"
-          y="-49.3101"
-          width="274.234"
-          height="273.065"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-          <feGaussianBlur stdDeviation="4" result="effect1_foregroundBlur_120_7480" />
-        </filter>
-        <filter
-          id="filter6_f_120_7480"
-          x="54.0078"
-          y="-3.47461"
-          width="270.619"
-          height="272.68"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-          <feGaussianBlur stdDeviation="3.5" result="effect1_foregroundBlur_120_7480" />
-        </filter>
-        <filter
-          id="filter7_f_120_7480"
-          x="-9.2002"
-          y="1.32812"
-          width="146.396"
-          height="152.275"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-          <feGaussianBlur stdDeviation="3.5" result="effect1_foregroundBlur_120_7480" />
-        </filter>
-        <linearGradient
-          id="paint0_linear_120_7480"
-          x1="-57.5042"
-          y1="-134.741"
-          x2="403.147"
-          y2="351.523"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0.214779" stopColor="#AF53FF" />
-          <stop offset="0.781583" stopColor="#B253FF" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient
-          id="paint1_linear_120_7480"
-          x1="-122.154"
-          y1="-103.098"
-          x2="342.232"
-          y2="379.765"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0.214779" stopColor="#AF53FF" />
-          <stop offset="0.781583" stopColor="#9E53FF" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient
-          id="paint2_linear_120_7480"
-          x1="-106.717"
-          y1="-138.534"
-          x2="359.545"
-          y2="342.58"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0.214779" stopColor="#9D53FF" />
-          <stop offset="0.781583" stopColor="#A953FF" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient
-          id="paint3_linear_120_7480"
-          x1="72.701"
-          y1="54.347"
-          x2="217.209"
-          y2="187.221"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#AF81FF" />
-          <stop offset="1" stopColor="#C081FF" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient
-          id="paint4_linear_120_7480"
-          x1="79.4978"
-          y1="0.191681"
-          x2="224.006"
-          y2="133.065"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#AF81FF" />
-          <stop offset="1" stopColor="#C081FF" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient
-          id="paint5_linear_120_7480"
-          x1="79.6568"
-          y1="21.8377"
-          x2="234.515"
-          y2="174.189"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#B981FF" />
-          <stop offset="1" stopColor="#CF81FF" stopOpacity="0" />
-        </linearGradient>
-        <linearGradient
-          id="paint6_linear_120_7480"
-          x1="16.119"
-          y1="27.6966"
-          x2="165.979"
-          y2="184.983"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#A981FF" />
-          <stop offset="1" stopColor="#CB81FF" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-    </svg>
   )
 }

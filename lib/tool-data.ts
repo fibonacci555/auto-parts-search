@@ -5,7 +5,7 @@ export const toolCategories = {
       description: "Best agency ad accounts because of their proven track record with 95% success rate and dedicated account managers",
       discount: "10% off first month", 
       code: "INSIDER", 
-      url: "https://adrevival.com",
+      url: "https://adrevival.io",
       logo: "/icons/icons-02.jpg",
       rank: 1,
       badge: "gold" as const,

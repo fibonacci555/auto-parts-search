@@ -57,6 +57,30 @@ export default function CategoryPage({
     }
   }
 
+  const buildReferralUrl = (rawUrl?: string | null, code?: string | null) => {
+    if (!rawUrl) return null
+    const trimmed = rawUrl.trim()
+    if (!code) return trimmed
+
+    try {
+      const referralUrl = new URL(trimmed)
+      referralUrl.searchParams.append("code", code)
+      return referralUrl.toString()
+    } catch {
+      const separator = trimmed.includes("?") ? "&" : "?"
+      return `${trimmed}${separator}code=${encodeURIComponent(code)}`
+    }
+  }
+
+  const handleVisitTool = (tool: Tool) => {
+    if (!tool.url) return
+    if (tool.code) {
+      copyToClipboard(tool.code)
+    }
+    const target = buildReferralUrl(tool.url, tool.code) || tool.url.trim()
+    window.open(target, "_blank", "noopener,noreferrer")
+  }
+
   return (
     <div className="min-h-screen bg-black text-white flex flex-col items-center">
       {/* Background */}
@@ -203,16 +227,19 @@ export default function CategoryPage({
                   {tool.url && !tool.isExternal && (
                     <div className="text-xs text-white/50 mb-3 flex items-center gap-2">
                       <span>🌐</span>
-                      <span>{tool.url}</span>
+                      <span>{tool.url.trim()}</span>
                     </div>
                   )}
 
                   <Button
+                    onClick={() => handleVisitTool(tool)}
+                    disabled={!tool.url}
                     className={cn(
                       "w-full rounded-full h-10 sm:h-12 transition-all duration-300 hover:scale-105 font-semibold",
                       tool.isExternal 
                         ? "bg-gray-600 hover:bg-gray-700" 
-                        : "bg-blue-600 hover:bg-blue-700"
+                        : "bg-blue-600 hover:bg-blue-700",
+                      !tool.url && "opacity-50 cursor-not-allowed hover:scale-100"
                     )}
                   >
                     {tool.isExternal ? "Visit Tool" : "Activate Deal"}
