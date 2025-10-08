@@ -374,10 +374,11 @@ function DonatedCounter({
   return (
     <div className={className}>
       <div className="relative flex w-full items-center justify-center z-10">
-        <span className="absolute inset-0 rounded-full bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF] blur-md opacity-40" aria-hidden="true" />
-        <span className="absolute inset-0 rounded-full p-[2px] bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF]" aria-hidden="true" />
-        <span className="relative w-full rounded-full bg-[#0A0F2C]/85 px-3 sm:px-4 py-1.5 sm:py-2 backdrop-blur-sm ring-1 ring-white/10 text-xs sm:text-sm font-semibold text-white text-center">
-          ${value.toLocaleString()}+ donated
+        <span className="absolute inset-0 md:rounded-full rounded-[20px] bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF] blur-md opacity-40" aria-hidden="true" />
+        <span className="absolute inset-0 md:rounded-full rounded-[20px] p-[2px] bg-gradient-to-r from-[#6AE4FF] to-[#B27DFF]" aria-hidden="true" />
+        <span className="relative w-full md:rounded-full rounded-[20px] bg-[#0A0F2C]/85 px-3 sm:px-4 py-1.5 sm:py-2 backdrop-blur-sm ring-1 ring-white/10 text-sm sm:text-sm font-semibold text-white text-center">
+          
+          <span>${value.toLocaleString()}+ <br className="block sm:hidden" /> donated</span>
         </span>
       </div>
     </div>

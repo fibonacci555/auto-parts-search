@@ -383,7 +383,7 @@ export default function UltraModernAutoPartsSearch() {
 
 
 
-        <div className="border border-white/10 rounded-2xl p-8 mb-16 backdrop-blur-xl md:mx-40 mx-10 mt-12 sm:mt-16 md:mt-24">
+          <div className="border border-white/10 rounded-2xl p-8 mb-10 sm:mb-12 md:mb-16 backdrop-blur-xl md:mx-40 mx-10 mt-8 sm:mt-14 md:mt-24">
           <h3 className="text-2xl font-bold mb-6 text-center">Why Choose Us</h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -444,7 +444,7 @@ export default function UltraModernAutoPartsSearch() {
         </section>
 
         {/* Stepper Section */}
-        <section className="py-16 px-4 border-t border-white/5">
+        <section className="py-10 md:py-16 px-4 border-t border-white/5">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -455,7 +455,7 @@ export default function UltraModernAutoPartsSearch() {
               </p>
             </div>
 
-            <div className=" backdrop-blur-sm rounded-2xl mt-20  p-6 md:p-8">
+            <div className=" backdrop-blur-sm rounded-2xl mt-10 md:mt-20  p-6 md:p-8">
               <ValidatedStepper
                 currentStep={currentStep}
                 onStepChange={setCurrentStep}
@@ -542,7 +542,7 @@ export default function UltraModernAutoPartsSearch() {
 
 
         {showResults && (
-          <section ref={dealsSectionRef} className="py-16 px-4 border-t border-white/5 min-h-screen" id="deals">
+          <section ref={dealsSectionRef} className="py-12 md:py-16 px-4 border-t border-white/5 min-h-screen" id="deals">
             <div className="max-w-6xl mx-auto">
               <div className="flex justify-between items-center mb-8">
                 <h2 className="text-2xl font-bold">{activeCategory || "All Tools"}</h2>
@@ -590,7 +590,7 @@ export default function UltraModernAutoPartsSearch() {
           </section>
         )}
 
-        <section className="flex flex-col items-center justify-center gap-4 py-16 px-4 border-t border-white/5 max-h-screen">
+        <section className="flex flex-col items-center justify-center gap-4 py-12 md:py-16 px-4 border-t border-white/5 max-h-screen">
           <ProfileCardComponent
             avatarUrl="/avatar.webp"
             name="Patrick Werner"
