@@ -2,7 +2,7 @@ export const toolCategories = {
   "Best Agency Ad Accounts": [
     { 
       name: "Adrevival", 
-      description: "Best agency ad accounts because of their proven track record with 95% success rate and dedicated account managers",
+      description: "Best agency ad accounts because of their proven track record, powering $20M/mo in ecom ad spend through 24/7 support. Zero spend fees, attach your own credit card",
       discount: "10% off first month", 
       code: "INSIDER", 
       url: "https://www.adrevival.io/",
@@ -33,10 +33,10 @@ export const toolCategories = {
     },
     { 
       name: "Zocket", 
-      description: "Affordable solution with good performance for small to medium businesses",
+      description: "Get ban-free, stable whitelisted agency ad accounts with unlimited spends & instant approvals - across Meta, Google, TikTok, X, Bing & Snapchat.",
       discount: "15% off for 3 months", 
       code: "INSIDER15", 
-      url: "https://web.zocket.com/auth",
+      url: "https://www.zocket.com/agency-ad-account/",
       logo: "/icons/icons-03.webp",
       rank: 4,
       badge: null
@@ -65,8 +65,8 @@ export const toolCategories = {
     },
     { 
       name: "Trendtrack", 
-      description: "Comprehensive ad intelligence with competitor analysis and trend tracking",
-      discount: "30% off 3 Months", 
+      description: "Find the latest winning products and ads with real-time insights from market data.",
+      discount: "20% off 3 Months", 
       code: "INSIDER", 
       url: "https://trendtrack.io?fpr=insider",
       logo: "/icons/icons-08.webp",
