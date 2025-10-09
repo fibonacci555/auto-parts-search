@@ -687,9 +687,7 @@ export default function UltraModernAutoPartsSearch() {
               <div className="text-white/50">© {new Date().getFullYear()} Ecom Insider</div>
             </div>
           </div>
-          <div className="container mx-auto justify-center text-center px-4 text-sm mt-10 text-white/50">
-            <p>Developed by <a href="https://joao-branco-portfolio.vercel.app" target="_blank" className="underline">4rentnotsale</a> & Designed by <a href="https://whynotagency.pt" target="_blank" className="underline">WhyNot</a></p>
-          </div>
+        
         </footer>
       </div>
     </div>
