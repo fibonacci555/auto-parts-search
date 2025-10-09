@@ -1,4 +1,5 @@
 export const toolCategories = {
+
   "Agency Ad Accounts": [
     { 
       name: "Adrevival", 
@@ -23,7 +24,7 @@ export const toolCategories = {
     },
     { 
       name: "UpRoas", 
-      description: "Data-driven approach with advanced analytics and performance optimization",
+      description: "Run any offer you want with the strong agency accounts from Uproas. Forget spend fees, get cashback and spend unlimited from day 1.",
       discount: "30% Discount Off First Month", 
       code: "INSIDER", 
       url: "https://www.uproas.io/",
@@ -85,6 +86,23 @@ export const toolCategories = {
     },
   ],
   "Payment Processors": [
+    { 
+      name: "Sound Commerce", 
+      description: "25% Discount Lifetime Fee Reduction",
+      
+      special: true,
+      url: "https://sound-commerce.com/contact?ref=ecom-insider",
+      logo: "/icons/logo_11.webp",
+      rank: 1,
+      badge: "gold" as const,
+  
+      preCtaText: "25% Fee Reduction on MIDs + standard fees",
+     
+    },
+    
+    
+  ],
+  "Banks": [
     { 
       name: "Sound Commerce", 
       description: "25% Discount Lifetime Fee Reduction",
