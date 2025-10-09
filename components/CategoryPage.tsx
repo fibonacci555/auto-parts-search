@@ -9,6 +9,7 @@ import { useCopy } from "@/hooks/use-copy"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { toolCategories } from "@/lib/tool-data"
+import GradientText from "./GradientText/GradientText"
 
 
 interface Tool {
@@ -32,6 +33,7 @@ interface CategoryPageProps {
   categoryDescription: ReactNode
   tools: Tool[]
   categorySlug: string
+  isPayment? : boolean
 }
 
 export default function CategoryPage({
@@ -39,6 +41,7 @@ export default function CategoryPage({
   categoryDescription,
   tools,
   categorySlug: _categorySlug,
+  isPayment = false,
 }: CategoryPageProps) {
   const { copied, copyToClipboard } = useCopy()
   const [activeSection, setActiveSection] = useState("search")
@@ -430,6 +433,13 @@ export default function CategoryPage({
               </div>
             )
           })}
+          <div className="relative flex flex-col gap-4 px-5 py-5 rounded-[30px] backdrop-blur-lg border border-white/25 bg-[#060E25]/100 shadow-[0_0_28px_rgba(106,228,255,0.28)]">
+        <div className="flex items-center gap-3 text-left">
+          <GradientText className="flex-1 text-base font-semibold tracking-tight leading-tight text-left">
+            Integratable with Shopify. All CRMs are supported.
+          </GradientText>
+        </div>
+      </div>
         </div>
 
         {/* Bottom CTA */}
