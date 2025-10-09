@@ -57,7 +57,7 @@ export const toolCategories = {
     { 
       name: "Minea", 
       description: "Comprehensive Ad Spy with competitor analysis and trend tracking",
-      discount: "30% Discount 3 Months", 
+      discount: "30% Discount for 3 Months", 
       code: "INSIDER", 
       url: "https://app.minea.com/en/ads/meta-library?ref=insider",
       logo: "/icons/icons-01.webp",
@@ -67,7 +67,7 @@ export const toolCategories = {
     { 
       name: "Trendtrack", 
       description: "Find the latest winning products and ads with real-time insights from market data.",
-      discount: "20% Discount 3 Months", 
+      discount: "20% Discount for 3 Months", 
       code: "INSIDER", 
       url: "https://trendtrack.io?fpr=insider",
       logo: "/icons/icons-08.webp",
