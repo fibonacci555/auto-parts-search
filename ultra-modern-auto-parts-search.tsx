@@ -830,7 +830,7 @@ function ToolCard({ tool }: { tool: any }) {
             <div className="bg-white/5 rounded-lg p-3 sm:p-4 mb-3 border border-white/10">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs text-white/50">Exclusive Offer:</span>
-                <span className="text-xl font-bold text-green-400">{tool.discount.split(" ")[0]} Discount</span>
+                <span className="text-xl font-bold text-green-400">{tool.discount}</span>
               </div>
               {tool.code && (
                 <div className="flex items-center justify-between">
