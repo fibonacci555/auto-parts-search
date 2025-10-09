@@ -12,14 +12,16 @@ const cardData = [
     color: '#060010',
     title: 'Pro Tools',
     description: 'Handpicked tools A-players actually use. No fluff, just what works.',
-    label: 'Efficiency'
+    label: 'Efficiency',
+    backgroundImageDesktop: '/efficiency.jpeg'
   },
   {
     color: '#060010',
     title: 'Trusted Ranking',
     description: 'Every tool ranked based on global feedback.',
     label: 'Analytics',
-    hideOnMobile: true
+    hideOnMobile: true,
+    backgroundImageDesktop: '/analytic.jpeg'
   },
   {
     color: '#060010',
@@ -34,20 +36,23 @@ const cardData = [
     description: 'Get notified when prices drop on tools you’re watching. Never miss a discount.',
     label: 'Automation',
     backgroundImageDesktop: '/automation2.png',
-    hideOnMobile: true
+    hideOnMobile: true,
+    
   },
   {
     color: '#060010',
     title: 'A-Player Approved',
     description: 'Curated by people running 7–8 figure Ecom stores. Tools they actually use.',
     label: 'Collaboration',
-    hideOnMobile: true
+    hideOnMobile: true,
+    backgroundImageDesktop: '/social.jpeg'
   },
   {
     color: '#060010',
     title: 'Best Deals.',
     description: 'Click to claim. No hoops, no hidden fees, just instant exclusive pricing.',
-    label: 'Integration'
+    label: 'Integration',
+    backgroundImageDesktop: '/best-deals.jpeg'
   },
 ];
 
