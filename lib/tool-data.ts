@@ -1,5 +1,5 @@
 export const toolCategories = {
-  "Best Agency Ad Accounts": [
+  "Agency Ad Accounts": [
     { 
       name: "Adrevival", 
       description: "Best agency ad accounts because of their proven track record, powering $20M/mo in ecom ad spend through 24/7 support. Zero spend fees, attach your own credit card",
@@ -42,7 +42,7 @@ export const toolCategories = {
       badge: null
     },
   ],
-  "Best Spy Tools": [
+  "Spy Tools": [
     { 
       name: "Afterlib", 
       description: "The standard Ad Spy Platform to find winning ads and outscale your competitors with 100M+ ads, smart filters and real-time updates",
@@ -101,7 +101,7 @@ export const toolCategories = {
     
     
   ],
-  "Best UGC Tools": [
+  "UGC Tools": [
     { 
       name: "Sora by OpenAI", 
       description: "Best UGC tool because it creates photorealistic videos from text prompts with unmatched quality",

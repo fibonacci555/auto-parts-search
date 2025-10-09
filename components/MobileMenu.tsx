@@ -78,9 +78,9 @@ export default function MobileMenu({
 
   const getCategorySlug = (category: string) => {
     const slugMap: Record<string, string> = {
-      "Best Agency Ad Accounts": "agency-ad-accounts",
-      "Best Spy Tools": "advertising-libraries",
-      "Best UGC Tools": "ugc-tools",
+      "Agency Ad Accounts": "agency-ad-accounts",
+      "Spy Tools": "advertising-libraries",
+      "UGC Tools": "ugc-tools",
       "Attribution Tools": "attribution-tools",
       "Scalable Payment Processors": "payment-processors",
     }
