@@ -17,9 +17,23 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ecom Insider – Find The Best Ecom Tools In Seconds",
     description: "Insider access to the best Ecom tools at pricing you won't find anywhere else.",
+    images: [
+      {
+        url: "/banner.jpeg",
+        width: 1024,
+        height: 1024,
+        alt: "Ecom Insider hero graphic",
+      },
+    ],
   },
   icons: {
     icon: "/favicon.ico",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ecom Insider – Find The Best Ecom Tools In Seconds",
+    description: "Insider access to the best Ecom tools at pricing you won't find anywhere else.",
+    images: ["/banner.jpeg"],
   },
 }
 

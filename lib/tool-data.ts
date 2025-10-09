@@ -47,7 +47,7 @@ export const toolCategories = {
     { 
       name: "Afterlib", 
       description: "The standard Ad Spy Platform to find winning ads and outscale your competitors with 100M+ ads, smart filters and real-time updates",
-      discount: "25% Discount Off lifetime", 
+      discount: "25% Lifetime Discount", 
       code: "INSIDER", 
       url: "https://afterlib.com/", 
       logo: "/icons/icons-04.webp",
@@ -77,7 +77,7 @@ export const toolCategories = {
     { 
       name: "Adplexity Native", 
       description: "Advanced filtering and search capabilities for finding winning ad creatives",
-      discount: "30% Discount Off Lifetime", 
+      discount: "30% Lifetime Discount", 
       code: "INSIDER", 
       url: "https://adplexity.com/members/signup/native?coupon=INSIDER",
       logo: "/icons/icons-05.webp",
@@ -88,7 +88,7 @@ export const toolCategories = {
   "Payment Processors": [
     { 
       name: "Sound Commerce", 
-      description: "25% Discount Lifetime Fee Reduction",
+      description: "25% Lifetime Discount Fee Reduction",
       
       special: true,
       url: "https://sound-commerce.com/contact?ref=ecom-insider",
@@ -105,7 +105,7 @@ export const toolCategories = {
   "Banks": [
     { 
       name: "Sound Commerce", 
-      description: "25% Discount Lifetime Fee Reduction",
+      description: "25% Lifetime Discount Fee Reduction",
       
       special: true,
       url: "https://sound-commerce.com/contact?ref=ecom-insider",

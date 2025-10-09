@@ -52,6 +52,7 @@ export default function CategoryPage({
     "UGC Tools": "ugc-tools",
     "Attribution Tools": "attribution-tools",
     "Payment Processors": "payment-processors",
+    "Banks" : "banks",
   }
   const [stepperData, setStepperData] = useState({
     firstName: '',
@@ -363,7 +364,7 @@ export default function CategoryPage({
                       <div className="bg-white/5 rounded-lg p-3 sm:p-4 mb-3 border border-white/10">
                         <div className="flex items-center justify-between mb-2">
                           <span className="text-xs text-white/50">Exclusive Offer:</span>
-                          <span className="text-lg font-bold text-green-400">{tool.discount}</span>
+                          <span className="text-sm md:text-lg font-bold text-green-400">{tool.discount}</span>
                         </div>
                         {tool.code && (
                           <div className="flex items-center justify-between">

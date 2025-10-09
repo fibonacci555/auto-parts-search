@@ -3,7 +3,7 @@ import CategoryPage from "../../components/CategoryPage"
 import { toolCategories } from "../../lib/tool-data"
 
 export default function UGCtoolsPage() {
-  const categoryData = toolCategories["Best UGC Tools"]
+  const categoryData = toolCategories["UGC Tools"]
   
   return (
     <Suspense

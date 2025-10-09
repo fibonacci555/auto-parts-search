@@ -350,6 +350,7 @@ export default function UltraModernAutoPartsSearch() {
                     const slugMap: Record<string, string> = {
                       "Agency Ad Accounts": "agency-ad-accounts",
                       "Spy Tools": "advertising-libraries",
+                      "Banks" : "banks",
                       "UGC Tools": "ugc-tools",
                       "Attribution Tools": "attribution-tools",
                       "Payment Processors": "payment-processors",
@@ -390,6 +391,7 @@ export default function UltraModernAutoPartsSearch() {
               "Agency Ad Accounts": "agency-ad-accounts",
               "Spy Tools": "advertising-libraries",
               "UGC Tools": "ugc-tools",
+              "Banks" : "banks",
               "Attribution Tools": "attribution-tools",
               "Payment Processors": "payment-processors",
             }
@@ -830,7 +832,7 @@ function ToolCard({ tool }: { tool: any }) {
             <div className="bg-white/5 rounded-lg p-3 sm:p-4 mb-3 border border-white/10">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs text-white/50">Exclusive Offer:</span>
-                <span className="text-lg font-bold text-green-400">{tool.discount}</span>
+                <span className="text-sm md:text-lg font-bold text-green-400">{tool.discount}</span>
               </div>
               {tool.code && (
                 <div className="flex items-center justify-between">

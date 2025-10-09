@@ -3,7 +3,7 @@ import CategoryPage from "../../components/CategoryPage"
 import { toolCategories } from "../../lib/tool-data"
 
 export default function AgencyAdAccountsPage() {
-  const categoryData = toolCategories["Best Agency Ad Accounts"]
+  const categoryData = toolCategories["Agency Ad Accounts"]
   
   return (
     <Suspense
