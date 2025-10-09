@@ -4,7 +4,7 @@ export const toolCategories = {
     { 
       name: "Adrevival", 
       description: "Best agency ad accounts because of their proven track record, powering $20M/mo in ecom ad spend through 24/7 support. Zero spend fees, attach your own credit card",
-      discount: "10% Discount Off First Month", 
+      discount: "10% Discount First Month", 
       code: "INSIDER", 
       url: "https://www.adrevival.io/",
       logo: "/icons/icons-02.webp",
@@ -15,7 +15,7 @@ export const toolCategories = {
     { 
       name: "Agency Aurora", 
       description: "Premium agency with white-glove service and custom ad strategies for scaling businesses",
-      discount: "30% Discount Off for 3 Months", 
+      discount: "30% Discount for 3 Months", 
       code: "INSIDER", 
       url: "https://agency-aurora.com",
       logo: "https://media.licdn.com/dms/image/v2/D4E0BAQFtkeB4XTtQ7g/company-logo_200_200/company-logo_200_200/0/1714415780856/agency_aurora_logo?e=2147483647&v=beta&t=vwlKeJJXp4kmVfcbh497Z-kWtnRg_8H-npio215l_OQ",
@@ -25,7 +25,7 @@ export const toolCategories = {
     { 
       name: "UpRoas", 
       description: "Run any offer you want with the strong agency accounts from Uproas. Forget spend fees, get cashback and spend unlimited from day 1.",
-      discount: "30% Discount Off First Month", 
+      discount: "30% Discount First Month", 
       code: "INSIDER", 
       url: "https://www.uproas.io/",
       logo: "https://media.licdn.com/dms/image/v2/D4D0BAQHHVnELrXJ0Rw/company-logo_200_200/company-logo_200_200/0/1723407743169?e=2147483647&v=beta&t=Ua73-iYypHakS-oTXlDmsA6GcHBSPsfiLBavbEtLC8E",
@@ -35,7 +35,7 @@ export const toolCategories = {
     { 
       name: "Zocket", 
       description: "Get ban-free, stable whitelisted agency ad accounts with unlimited spends & instant approvals - across Meta, Google, TikTok, X, Bing & Snapchat.",
-      discount: "15% Discount Off for 3 Months", 
+      discount: "15% Discount for 3 Months", 
       code: "INSIDER15", 
       url: "https://www.zocket.com/agency-ad-account/",
       logo: "/icons/icons-03.webp",
@@ -57,7 +57,7 @@ export const toolCategories = {
     { 
       name: "Minea", 
       description: "Comprehensive Ad Spy with competitor analysis and trend tracking",
-      discount: "30% Discount Off 3 Months", 
+      discount: "30% Discount 3 Months", 
       code: "INSIDER", 
       url: "https://app.minea.com/en/ads/meta-library?ref=insider",
       logo: "/icons/icons-01.webp",
@@ -67,7 +67,7 @@ export const toolCategories = {
     { 
       name: "Trendtrack", 
       description: "Find the latest winning products and ads with real-time insights from market data.",
-      discount: "20% Discount Off 3 Months", 
+      discount: "20% Discount 3 Months", 
       code: "INSIDER", 
       url: "https://trendtrack.io?fpr=insider",
       logo: "/icons/icons-08.webp",
@@ -134,7 +134,7 @@ export const toolCategories = {
     { 
       name: "MakeUGC", 
       description: "User-friendly platform for creating authentic UGC content at scale",
-      discount: "25% Discount Off for 1 Month", 
+      discount: "25% Discount for 1 Month", 
       code: "INSIDER", 
       url: "https://www.makeugc.ai/?code=INSIDER", 
       logo: "/icons/icons-06.webp",
@@ -158,7 +158,7 @@ export const toolCategories = {
     { 
       name: "WeTracked.io", 
       description: "Best Attribution Tools because it provides pixel-perfect attribution and real-time analytics",
-      discount: "15% Discount Off for 3 Months", 
+      discount: "15% Discount for 3 Months", 
       code: "INSIDER", 
       url: "https://www.wetracked.io/?ref=30fe42fa-17bb-4a3f-9cc9-b006afdcf472",
       logo: "https://media.licdn.com/dms/image/v2/D4E0BAQHEWFsBQQ_MDQ/company-logo_200_200/company-logo_200_200/0/1719257959864/wetracked_io_logo?e=2147483647&v=beta&t=Fu4EitdtXjHE0s4Tis1Pk2i8PZQrH6JwZ2KTYg9DKlA",
