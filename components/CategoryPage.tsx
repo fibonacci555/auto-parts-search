@@ -50,7 +50,7 @@ export default function CategoryPage({
     "Best Agency Ad Accounts": "agency-ad-accounts",
     "Best Spy Tools": "advertising-libraries",
     "Best UGC Tools": "ugc-tools",
-    "Attribution Tools": "ad-tracking-software",
+    "Attribution Tools": "attribution-tools",
     "Payment Processors": "payment-processors",
   }
   const [stepperData, setStepperData] = useState({

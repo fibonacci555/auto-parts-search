@@ -81,7 +81,7 @@ export default function MobileMenu({
       "Best Agency Ad Accounts": "agency-ad-accounts",
       "Best Spy Tools": "advertising-libraries",
       "Best UGC Tools": "ugc-tools",
-      "Attribution Tools": "ad-tracking-software",
+      "Attribution Tools": "attribution-tools",
       "Scalable Payment Processors": "payment-processors",
     }
     return slugMap[category] || category.toLowerCase().replace(/\s+/g, '-')

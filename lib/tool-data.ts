@@ -54,30 +54,29 @@ export const toolCategories = {
       badge: "gold" as const
     },
     { 
-      name: "Trendtrack", 
-      description: "Comprehensive ad intelligence with competitor analysis and trend tracking",
-      discount: "30% off 3 Months ", 
-      code: "INSIDER", 
-      url: "https://trendtrack.io?fpr=insider",
-      logo: "/icons/icons-08.webp",
-      rank: 2,
-      badge: "silver" as const
-    },
-
-    { 
       name: "Minea", 
       description: "Comprehensive ad intelligence with competitor analysis and trend tracking",
-      discount: "30% off ", 
+      discount: "30% off 3 Months", 
       code: "INSIDER", 
       url: "https://app.minea.com/en/ads/meta-library?ref=insider",
       logo: "/icons/icons-01.webp",
-      rank: 3,
+      rank: 2,
       badge: "bronze" as const
+    },
+    { 
+      name: "Trendtrack", 
+      description: "Comprehensive ad intelligence with competitor analysis and trend tracking",
+      discount: "30% off 3 Months", 
+      code: "INSIDER", 
+      url: "https://trendtrack.io?fpr=insider",
+      logo: "/icons/icons-08.webp",
+      rank: 3,
+      badge: "silver" as const
     },
     { 
       name: "Adplexity Native", 
       description: "Advanced filtering and search capabilities for finding winning ad creatives",
-      discount: "30% off for 3 months", 
+      discount: "30% off lifetime", 
       code: "INSIDER", 
       url: "https://adplexity.com/members/signup/native?coupon=INSIDER",
       logo: "/icons/icons-05.webp",
@@ -88,7 +87,7 @@ export const toolCategories = {
   "Payment Processors": [
     { 
       name: "Sound Commerce", 
-      description: "25% Fee Reduction",
+      description: "25% Lifetime Fee Reduction",
       
       special: true,
       url: "https://sound-commerce.com/contact?ref=ecom-insider",
@@ -117,7 +116,7 @@ export const toolCategories = {
     { 
       name: "MakeUGC", 
       description: "User-friendly platform for creating authentic UGC content at scale",
-      discount: "25% off for 3 months", 
+      discount: "25% off for 1 months", 
       code: "INSIDER", 
       url: "https://www.makeugc.ai/?code=INSIDER", 
       logo: "/icons/icons-06.webp",
