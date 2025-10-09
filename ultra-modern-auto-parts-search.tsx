@@ -186,36 +186,30 @@ function ValidatedStepper({
   )
 }
 
-async function submitToGetform(payload: {
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+const WEB3FORMS_ACCESS_KEY = "a4ee83ea-c564-460c-84f2-875a27bb17c9";
+
+async function submitToWeb3Forms(payload: {
   firstName: string;
   email: string;
-  subscribe?: "yes" | "no";
-  gender?: "male" | "female" | "other";
-  workExperience?: "one-year" | "one-five-years";
   message?: string;
 }) {
   const fd = new FormData();
-  fd.append("name", payload.firstName || "");
-  fd.append("email", payload.email || "");
-  fd.append("message", payload.message ?? "Newsletter signup via Ecom Insider");
-  // Honeypot
-  fd.append("_gotcha", "");
-  // Nice to have: where this was submitted from
-  if (typeof window !== "undefined") {
-    fd.append("page", window.location.href);
-  }
-  const GETFORM_ENDPOINT = "https://getform.io/f/bwnymvva";
-  const res = await fetch(GETFORM_ENDPOINT, {
-    method: "POST",
-    body: fd,
-  });
+  fd.append("access_key", WEB3FORMS_ACCESS_KEY);
+  fd.append("name", payload.firstName);
+  fd.append("email", payload.email);
 
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(`Getform error (${res.status}): ${text || "unknown error"}`);
+  if (typeof window !== "undefined") fd.append("page", window.location.href);
+
+  const res = await fetch(WEB3FORMS_ENDPOINT, { method: "POST", body: fd });
+  const data = await res.json();
+
+  if (!res.ok || data.success === false) {
+    throw new Error(`Web3Forms submission failed: ${data.message || res.statusText}`);
   }
+
+  return data;
 }
-
 
 export default function UltraModernAutoPartsSearch() {
   const [activeSection, setActiveSection] = useState("search")
@@ -495,19 +489,19 @@ export default function UltraModernAutoPartsSearch() {
                 isStepValid={isStepValid}
                 onComplete={async () => {
                   try {
-                    await submitToGetform({
+                    await submitToWeb3Forms({
                       firstName: stepperData.firstName,
                       email: stepperData.email,
                     });
 
                     setStepperData(prev => ({ ...prev, completed: true }));
+
                     alert(`Welcome ${stepperData.firstName}! You'll receive the best deals at ${stepperData.email}`);
-                  } catch (err: any) {
+                  } catch (err) {
                     console.error(err);
-                    alert("We hit a snag submitting the form. Please try again in a moment.");
+                    alert("Something went wrong while submitting the form. Please try again later.");
                   }
                 }}
-
               >
                 <Step>
                   <div className="text-center py-4">
