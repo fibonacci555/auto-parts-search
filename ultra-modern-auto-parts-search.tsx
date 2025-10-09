@@ -104,12 +104,20 @@ function ValidatedStepper({
   const stepsArray = React.Children.toArray(children)
   const totalSteps = stepsArray.length
   const isLastStep = currentStep === totalSteps
+  const finalFormStep = Math.max(totalSteps - 1, 1)
+  const isFinalFormStep = currentStep === finalFormStep
+  const showPrimaryButton = currentStep <= finalFormStep
 
   const handleNext = () => {
-    if (isStepValid(currentStep) && !isLastStep) {
+    if (!isStepValid(currentStep)) return
+
+    if (currentStep < finalFormStep) {
       onStepChange(currentStep + 1)
-    } else if (isStepValid(currentStep) && isLastStep) {
+    } else if (isFinalFormStep) {
       onComplete()
+      if (!isLastStep) {
+        onStepChange(currentStep + 1)
+      }
     }
   }
 
@@ -172,13 +180,15 @@ function ValidatedStepper({
                 Previous
               </button>
             )}
-            <button
-              onClick={handleNext}
-              className={`next-button ${!isStepValid(currentStep) ? 'opacity-50 cursor-not-allowed' : ''}`}
-              disabled={!isStepValid(currentStep)}
-            >
-              {isLastStep ? 'Complete' : 'Next Step'}
-            </button>
+            {showPrimaryButton && (
+              <button
+                onClick={handleNext}
+                className={`next-button ${!isStepValid(currentStep) ? 'opacity-50 cursor-not-allowed' : ''}`}
+                disabled={!isStepValid(currentStep)}
+              >
+                {isFinalFormStep ? 'Complete' : 'Next Step'}
+              </button>
+            )}
           </div>
         </div>
       </div>
