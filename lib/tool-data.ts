@@ -115,26 +115,27 @@ export const toolCategories = {
       isExternal: true
     },
     { 
-      name: "Google Flow", 
-      description: "AI-powered video generation with natural motion and realistic physics",
-      discount: null, 
-      code: null, 
-      url: "https://labs.google/flow/about", 
-      logo: "/icons/icons-09.webp",
-      rank: 2,
-      badge: "silver" as const,
-      isExternal: true
-    },
-    { 
       name: "MakeUGC", 
       description: "User-friendly platform for creating authentic UGC content at scale",
       discount: "25% off for 3 months", 
       code: "INSIDER", 
       url: "https://www.makeugc.ai/?code=INSIDER", 
       logo: "/icons/icons-06.webp",
-      rank: 3,
+      rank: 2,
       badge: "bronze" as const
     },
+    { 
+      name: "Google Flow", 
+      description: "AI-powered video generation with natural motion and realistic physics",
+      discount: null, 
+      code: null, 
+      url: "https://labs.google/flow/about", 
+      logo: "/icons/icons-09.webp",
+      rank: 3,
+      badge: "silver" as const,
+      isExternal: true
+    },
+   
   ],
   "Attribution Tools": [
     { 

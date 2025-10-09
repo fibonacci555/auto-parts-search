@@ -186,6 +186,37 @@ function ValidatedStepper({
   )
 }
 
+async function submitToGetform(payload: {
+  firstName: string;
+  email: string;
+  subscribe?: "yes" | "no";
+  gender?: "male" | "female" | "other";
+  workExperience?: "one-year" | "one-five-years";
+  message?: string;
+}) {
+  const fd = new FormData();
+  fd.append("name", payload.firstName || "");
+  fd.append("email", payload.email || "");
+  fd.append("message", payload.message ?? "Newsletter signup via Ecom Insider");
+  // Honeypot
+  fd.append("_gotcha", "");
+  // Nice to have: where this was submitted from
+  if (typeof window !== "undefined") {
+    fd.append("page", window.location.href);
+  }
+  const GETFORM_ENDPOINT = "https://getform.io/f/bwnymvva";
+  const res = await fetch(GETFORM_ENDPOINT, {
+    method: "POST",
+    body: fd,
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`Getform error (${res.status}): ${text || "unknown error"}`);
+  }
+}
+
+
 export default function UltraModernAutoPartsSearch() {
   const [activeSection, setActiveSection] = useState("search")
   const [showResults, setShowResults] = useState(true)
@@ -383,7 +414,7 @@ export default function UltraModernAutoPartsSearch() {
 
 
 
-          <div className="border border-white/10 rounded-2xl p-8 mb-10 sm:mb-12 md:mb-16 backdrop-blur-xl md:mx-40 mx-10 mt-8 sm:mt-14 md:mt-24">
+        <div className="border border-white/10 rounded-2xl p-8 mb-10 sm:mb-12 md:mb-16 backdrop-blur-xl md:mx-40 mx-10 mt-8 sm:mt-14 md:mt-24">
           <h3 className="text-2xl font-bold mb-6 text-center">Why Choose Us</h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -462,12 +493,21 @@ export default function UltraModernAutoPartsSearch() {
                 stepperData={stepperData}
                 setStepperData={setStepperData}
                 isStepValid={isStepValid}
-                onComplete={() => {
-                  console.log('All steps completed!', stepperData)
-                  setStepperData(prev => ({ ...prev, completed: true }))
-                  // Here you would typically send the data to your backend
-                  alert(`Welcome ${stepperData.firstName}! You'll receive the best deals at ${stepperData.email}`)
+                onComplete={async () => {
+                  try {
+                    await submitToGetform({
+                      firstName: stepperData.firstName,
+                      email: stepperData.email,
+                    });
+
+                    setStepperData(prev => ({ ...prev, completed: true }));
+                    alert(`Welcome ${stepperData.firstName}! You'll receive the best deals at ${stepperData.email}`);
+                  } catch (err: any) {
+                    console.error(err);
+                    alert("We hit a snag submitting the form. Please try again in a moment.");
+                  }
                 }}
+
               >
                 <Step>
                   <div className="text-center py-4">
