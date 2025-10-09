@@ -104,16 +104,16 @@ export const toolCategories = {
   ],
   "Banks": [
     { 
-      name: "Sound Commerce", 
-      description: "25% Lifetime Discount Fee Reduction",
+      name: "Slash", 
+      description: "2%+ Unlimited Cashback · Up to 4.05% Treasury Yield",
       
       special: true,
-      url: "https://sound-commerce.com/contact?ref=ecom-insider",
-      logo: "/icons/logo_11.webp",
+      url: "https://app.slash.com/i/INSIDER",
+      logo: "/slash.jpeg",
       rank: 1,
       badge: "gold" as const,
   
-      preCtaText: "25% Fee Reduction on MIDs + standard fees",
+      preCtaText: "2%+ Unlimited Cashback · Up to 4.05% Treasury Yield",
      
     },
     
