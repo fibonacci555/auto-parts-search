@@ -4,11 +4,12 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { Suspense } from "react"
 import Clarity from '@microsoft/clarity';
+import Script from "next/script"
 
 
 const inter = Inter({ subsets: ["latin"] })
-const projectId = "tn7mpehk4g"
-Clarity.init(projectId);
+//const projectId = "tn7mpehk4g"
+//Clarity.init(projectId);
 
 export const metadata: Metadata = {
   title: "Ecom Insider – Find The Best Ecom Tools In Seconds",
@@ -32,6 +33,19 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="shortcut icon" href="/favicon.ico" />
+        <Script
+          id="microsoft-clarity"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "tn7mpehk4g");
+        `,
+          }}
+        />
       </head>
       <body className={inter.className}>
         <Suspense
