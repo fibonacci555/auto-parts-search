@@ -45,7 +45,7 @@ export const toolCategories = {
   "Best Spy Tools": [
     { 
       name: "Afterlib", 
-      description: "Best advertising library because it has the largest database with 100M+ ads and real-time updates",
+      description: "The standard Ad Intelligence Platform to find winning ads and outscale your competitors with 100M+ ads, smart filters and real-time updates",
       discount: "25% off lifetime", 
       code: "INSIDER", 
       url: "https://afterlib.com/", 
