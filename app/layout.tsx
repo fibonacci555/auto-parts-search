@@ -3,8 +3,12 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { Suspense } from "react"
+import Clarity from '@microsoft/clarity';
+
 
 const inter = Inter({ subsets: ["latin"] })
+const projectId = "tn7mpehk4g"
+Clarity.init(projectId);
 
 export const metadata: Metadata = {
   title: "Ecom Insider – Find The Best Ecom Tools In Seconds",
