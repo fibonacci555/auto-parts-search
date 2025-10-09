@@ -28,6 +28,7 @@ export default function PaymentProcessorsPage() {
       categoryTitle={categoryTitle}
       categoryDescription={categoryDescription}
       tools={tools}
-      categorySlug={categorySlug} /></>
+      categorySlug={categorySlug} 
+      isPayment={true}/></>
   )
 }
