@@ -138,10 +138,7 @@ export default function MobileMenu({
         {/* Header */}
         <div className="relative flex items-center justify-between p-6 border-b border-white/10">
           <div className="flex items-center gap-2">
-            <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Ecom
-            </div>
-            <div className="text-xl font-semibold text-white">Insider</div>
+            <img src="/logo.svg" alt="Ecom Insider" className="h-5 md:h-5 mr-2" />
           </div>
           <button
             onClick={onClose}
