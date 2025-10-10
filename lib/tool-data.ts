@@ -157,7 +157,7 @@ export const toolCategories = {
   "Attribution Tools": [
     { 
       name: "wetracked.io", 
-      description: "’The #1 ad-tracking platform for eCommerce. wetracked.io delivers pixel-perfect attribution and sends back 100% accurate data to your ad platforms to improve better algorithms and higher ROAS.",
+      description: "The #1 ad-tracking platform for eCommerce. wetracked.io delivers pixel-perfect attribution and sends back 100% accurate data to your ad platforms to improve better algorithms and higher ROAS.",
       discount: "15% Discount for 3 Months", 
       code: "INSIDER", 
       url: "https://www.wetracked.io/?ref=30fe42fa-17bb-4a3f-9cc9-b006afdcf472",
