@@ -14,7 +14,7 @@ export default function Loading() {
           </div>
         </div>
 
-        <h2 className="text-xl font-semibold mb-2">Loading ECOM INSIDER</h2>
+        <h2 className="text-xl font-semibold mb-2">Loading Ecom Insider</h2>
         <p className="text-white/60">Preparing your vip experience...</p>
       </div>
     </div>
