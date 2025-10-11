@@ -4,7 +4,7 @@ export const toolCategories = {
     { 
       name: "Adrevival", 
       description: "Best agency ad accounts because of their proven track record, powering $20M/mo in ecom ad spend through 24/7 support. Zero spend fees, attach your own credit card",
-      discount: "10% Discount First Month", 
+      discount: "10% Discount for 1 Month", 
       code: "INSIDER", 
       url: "https://www.adrevival.io/",
       logo: "/icons/icons-02.webp",
@@ -25,7 +25,7 @@ export const toolCategories = {
     { 
       name: "UpRoas", 
       description: "Run any offer you want with the strong agency accounts from Uproas. Forget spend fees, get cashback and spend unlimited from day 1.",
-      discount: "30% Discount First Month", 
+      discount: "30% Discount for 1 Month", 
       code: "INSIDER", 
       url: "https://www.uproas.io/",
       logo: "https://media.licdn.com/dms/image/v2/D4D0BAQHHVnELrXJ0Rw/company-logo_200_200/company-logo_200_200/0/1723407743169?e=2147483647&v=beta&t=Ua73-iYypHakS-oTXlDmsA6GcHBSPsfiLBavbEtLC8E",
@@ -156,8 +156,8 @@ export const toolCategories = {
   ],
   "Attribution Tools": [
     { 
-      name: "WeTracked.io", 
-      description: "Best Attribution Tools because it provides pixel-perfect attribution and real-time analytics",
+      name: "wetracked.io", 
+      description: "The #1 ad-tracking platform for eCommerce. wetracked.io delivers pixel-perfect attribution and sends back 100% accurate data to your ad platforms to improve better algorithms and higher ROAS.",
       discount: "15% Discount for 3 Months", 
       code: "INSIDER", 
       url: "https://www.wetracked.io/?ref=30fe42fa-17bb-4a3f-9cc9-b006afdcf472",

@@ -1,6 +1,7 @@
 import React from "react"
 import CategoryPage from "@/components/CategoryPage"
 import { toolCategories } from "@/lib/tool-data"
+import GradientText from "@/components/GradientText/GradientText"
 export default function PaymentProcessorsPage() {
   const categoryTitle = "Scalable Payment Processors"
   const categoryDescription = (
@@ -22,11 +23,12 @@ export default function PaymentProcessorsPage() {
   const categorySlug = "payment-processors"
 
   return (
-    <CategoryPage
+
+    <><CategoryPage
       categoryTitle={categoryTitle}
       categoryDescription={categoryDescription}
       tools={tools}
-      categorySlug={categorySlug}
-    />
+      categorySlug={categorySlug} 
+      isPayment={true}/></>
   )
 }
