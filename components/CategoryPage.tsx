@@ -320,7 +320,7 @@ export default function CategoryPage({
                       <div className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                         #{tool.rank}
                       </div>
-                      {tool.special && (
+                      {(tool.special && _categorySlug !== "banks") && (
                         <div className="text-xs sm:text-sm text-white/60">Ranked Processor</div>
                       )
 
@@ -329,6 +329,12 @@ export default function CategoryPage({
                         <div className="text-xs sm:text-sm text-white/60">Ranked Tool</div>
                       )
 
+                      }
+
+                      {
+                        _categorySlug === "banks" && (
+                          <div className="text-xs sm:text-sm text-white/60">Ranked Bank</div>
+                        )
                       }
 
                     </div>
